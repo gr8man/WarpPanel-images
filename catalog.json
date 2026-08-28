@@ -1,6 +1,6 @@
 {
     "version": "1.0",
-    "generated_at": "2026-08-28T22:42:21+00:00",
+    "generated_at": "2026-08-28T22:55:04+00:00",
     "registry": "ghcr.io/warppanel",
     "summary": {
         "total_php_versions": 12,
@@ -161,8 +161,8 @@
                     "ghcr.io/warppanel/php:8.3-fpm",
                     "ghcr.io/warppanel/php:latest-fpm"
                 ],
-                "status": "VERIFIED_PASS",
-                "verified_at": "2026-08-28T22:42:21+00:00",
+                "status": "READY",
+                "verified_at": null,
                 "php_extensions": [
                     "bcmath",
                     "bz2",
@@ -563,8 +563,8 @@
                     "cloudflare_realip",
                     "waf_basic"
                 ],
-                "status": "VERIFIED_PASS",
-                "verified_at": "2026-08-28T22:42:21+00:00"
+                "status": "READY",
+                "verified_at": null
             },
             {
                 "server": "apache",
@@ -586,8 +586,8 @@
                     "remoteip",
                     "waf_basic"
                 ],
-                "status": "VERIFIED_PASS",
-                "verified_at": "2026-08-28T22:42:21+00:00"
+                "status": "READY",
+                "verified_at": null
             },
             {
                 "server": "openlitespeed",

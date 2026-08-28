@@ -1,6 +1,6 @@
 {
     "registry": "ghcr.io/warppanel",
-    "updated_at": "2026-08-28T22:42:21+00:00",
+    "updated_at": "2026-08-28T22:55:04+00:00",
     "php": {
         "8.0": [
             "ghcr.io/warppanel/php:8.0-fpm-alpine",

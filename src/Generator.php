@@ -196,17 +196,17 @@ class Generator
         $phpTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'php-fpm')));
         $frankenTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'frankenphp')));
 
-        $content = "group \"default\" {\n    targets = " . json_encode($targetNames) . "\n}\n\n";
-        $content .= "group \"php\" {\n    targets = " . json_encode($phpTargets) . "\n}\n\n";
-        $content .= "group \"frankenphp\" {\n    targets = " . json_encode($frankenTargets) . "\n}\n\n";
+        $content = "group \"default\" {\n    targets = " . json_encode($targetNames, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
+        $content .= "group \"php\" {\n    targets = " . json_encode($phpTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
+        $content .= "group \"frankenphp\" {\n    targets = " . json_encode($frankenTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"webservers\" {\n    targets = [\"nginx\", \"apache\", \"openlitespeed\"]\n}\n\n";
 
         foreach ($targets as $name => $cfg) {
             $content .= "target \"{$name}\" {\n";
             $content .= "    context = \"{$cfg['context']}\"\n";
             $content .= "    dockerfile = \"{$cfg['dockerfile']}\"\n";
-            $content .= "    tags = " . json_encode($cfg['tags']) . "\n";
-            $content .= "    platforms = " . json_encode($cfg['platforms']) . "\n";
+            $content .= "    tags = " . json_encode($cfg['tags'], JSON_UNESCAPED_SLASHES) . "\n";
+            $content .= "    platforms = " . json_encode($cfg['platforms'], JSON_UNESCAPED_SLASHES) . "\n";
             $content .= "}\n\n";
         }
 
