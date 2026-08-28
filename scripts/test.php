@@ -30,47 +30,70 @@ function runCmd(string $cmd, bool $check = true): string
     return $outStr;
 }
 
-function ensureImageAvailable(string $image): void
+function resolveImageCandidate(string $target, string $registry, array $matrix): string
 {
-    exec("docker image inspect {$image} >/dev/null 2>&1", $out, $code);
-    if ($code !== 0) {
-        echo "[*] Image {$image} not found locally, pulling from registry...\n";
-        exec("docker pull {$image} 2>&1", $pullOut, $pullCode);
-        if ($pullCode !== 0) {
-            echo "  [!] Warning: Failed to pull {$image} from registry. Will try running directly.\n";
-        }
-    }
-}
+    $candidates = [];
 
-function resolveImageTag(string $target, string $registry, array $matrix): string
-{
     if ($target === 'nginx') {
-        return "{$registry}/nginx:{$matrix['images']['webservers']['nginx']['tags'][0]}";
-    }
-    if ($target === 'apache') {
-        return "{$registry}/apache:{$matrix['images']['webservers']['apache']['tags'][0]}";
-    }
-    if ($target === 'openlitespeed') {
-        return "{$registry}/openlitespeed:{$matrix['images']['webservers']['openlitespeed']['tags'][0]}";
-    }
-    if (str_starts_with($target, 'php-fpm-')) {
+        $tag = $matrix['images']['webservers']['nginx']['tags'][0];
+        $candidates[] = "{$registry}/nginx:{$tag}";
+        $candidates[] = "warppanel-test/nginx:latest";
+        $candidates[] = "warppanel-test/nginx";
+    } elseif ($target === 'apache') {
+        $tag = $matrix['images']['webservers']['apache']['tags'][0];
+        $candidates[] = "{$registry}/apache:{$tag}";
+        $candidates[] = "warppanel-test/apache:latest";
+        $candidates[] = "warppanel-test/apache";
+    } elseif ($target === 'openlitespeed') {
+        $tag = $matrix['images']['webservers']['openlitespeed']['tags'][0];
+        $candidates[] = "{$registry}/openlitespeed:{$tag}";
+        $candidates[] = "warppanel-test/openlitespeed:latest";
+        $candidates[] = "warppanel-test/openlitespeed";
+        $candidates[] = "warppanel-test/ols:latest";
+    } elseif ($target && str_starts_with($target, 'php-fpm-')) {
         $ver = str_replace(['php-fpm-', '_'], ['', '.'], $target);
-        foreach (array_merge($matrix['images']['php_fpm']['modern'], $matrix['images']['php_fpm']['legacy']) as $img) {
+        $allPhp = array_merge($matrix['images']['php_fpm']['modern'] ?? [], $matrix['images']['php_fpm']['legacy'] ?? []);
+        foreach ($allPhp as $img) {
             if ($img['version'] === $ver) {
-                return "{$registry}/php:{$img['tags'][0]}";
+                $candidates[] = "{$registry}/php:{$img['tags'][0]}";
+                $candidates[] = "warppanel-test/php:{$ver}";
+                $candidates[] = "warppanel-test/php-fpm-{$ver}";
+                break;
             }
         }
-    }
-    if (str_starts_with($target, 'frankenphp-')) {
+    } elseif ($target && str_starts_with($target, 'frankenphp-')) {
         $ver = str_replace(['frankenphp-', '_'], ['', '.'], $target);
         foreach ($matrix['images']['frankenphp']['versions'] as $img) {
             if ($img['php_version'] === $ver) {
-                return "{$registry}/frankenphp:{$img['tags'][0]}";
+                $candidates[] = "{$registry}/frankenphp:{$img['tags'][0]}";
+                $candidates[] = "warppanel-test/frankenphp:{$ver}";
+                break;
             }
         }
     }
 
-    return "{$registry}/{$target}:latest";
+    if (empty($candidates)) {
+        $candidates[] = "{$registry}/{$target}:latest";
+    }
+
+    // 1. Check if any candidate is already available locally
+    foreach ($candidates as $cand) {
+        exec("docker image inspect {$cand} >/dev/null 2>&1", $out, $code);
+        if ($code === 0) {
+            return $cand;
+        }
+    }
+
+    // 2. Try pulling primary candidate from registry
+    $primary = $candidates[0];
+    echo "[*] Image not found locally, attempting docker pull {$primary}...\n";
+    exec("docker pull {$primary} 2>&1", $pullOut, $pullCode);
+    if ($pullCode === 0) {
+        return $primary;
+    }
+
+    // Fallback to primary
+    return $primary;
 }
 
 $catalogManager = new CatalogManager($rootDir);
@@ -85,8 +108,7 @@ $containerName = 'test-' . ($target ?: 'stack') . '-' . uniqid();
 
 try {
     if ($target === 'nginx') {
-        $image = resolveImageTag($target, $registry, $matrix);
-        ensureImageAvailable($image);
+        $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing Nginx container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} -p 8088:80 {$image}");
         sleep(2);
@@ -95,8 +117,7 @@ try {
         $catalogManager->recordVerification('nginx', 'VERIFIED_PASS');
 
     } elseif ($target === 'apache') {
-        $image = resolveImageTag($target, $registry, $matrix);
-        ensureImageAvailable($image);
+        $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing Apache container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} -p 8089:80 {$image}");
         sleep(2);
@@ -105,8 +126,7 @@ try {
         $catalogManager->recordVerification('apache', 'VERIFIED_PASS');
 
     } elseif ($target === 'openlitespeed') {
-        $image = resolveImageTag($target, $registry, $matrix);
-        ensureImageAvailable($image);
+        $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing OpenLiteSpeed container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} -p 8090:80 {$image}");
         sleep(2);
@@ -114,8 +134,7 @@ try {
         $catalogManager->recordVerification('openlitespeed', 'VERIFIED_PASS');
 
     } elseif ($target && str_starts_with($target, 'php-fpm-')) {
-        $image = resolveImageTag($target, $registry, $matrix);
-        ensureImageAvailable($image);
+        $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing PHP-FPM container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} {$image}");
         sleep(2);
@@ -126,8 +145,7 @@ try {
         $catalogManager->recordVerification($target, 'VERIFIED_PASS');
 
     } elseif ($target && str_starts_with($target, 'frankenphp-')) {
-        $image = resolveImageTag($target, $registry, $matrix);
-        ensureImageAvailable($image);
+        $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing FrankenPHP container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} -p 8091:80 {$image}");
         sleep(2);

@@ -11,6 +11,9 @@ server {
     # Include WAF rules if enabled
     ${WAF_INCLUDE_LINE}
 
+    # Docker internal DNS resolver for non-blocking dynamic upstream discovery
+    resolver 127.0.0.11 1.1.1.1 8.8.8.8 valid=10s ipv6=off;
+
     location / {
         try_files $uri $uri/ /index.php?$query_string;
     }
@@ -18,7 +21,8 @@ server {
     location ~ \.php$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass ${PHP_FPM_BACKEND};
+        set $fpm_backend "${PHP_FPM_BACKEND}";
+        fastcgi_pass $fpm_backend;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         fastcgi_param DOCUMENT_ROOT $realpath_root;
