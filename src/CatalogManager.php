@@ -23,7 +23,44 @@ class CatalogManager
         $this->availableImagesJsonFile = $this->rootDir . '/available-images.json';
     }
 
-    public function generateCatalog(array $verifiedImages = []): array
+    public function recordVerification(string $target, string $status = 'VERIFIED_PASS', array $meta = []): string
+    {
+        $data = [
+            'target' => $target,
+            'status' => $status,
+            'timestamp' => date('c'),
+            'metadata' => $meta,
+        ];
+
+        $outputDir = $this->rootDir . '/verifications';
+        if (!is_dir($outputDir)) {
+            mkdir($outputDir, 0755, true);
+        }
+
+        $filename = "{$outputDir}/verification-{$target}.json";
+        file_put_contents($filename, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        echo "✓ Verification record saved: {$filename}\n";
+
+        return $filename;
+    }
+
+    public function aggregateFromDirectory(string $dir): array
+    {
+        $verifiedTargets = [];
+        if (is_dir($dir)) {
+            $files = glob("{$dir}/**/verification-*.json") ?: glob("{$dir}/verification-*.json") ?: [];
+            foreach ($files as $file) {
+                $json = json_decode(file_get_contents($file), true);
+                if (!empty($json['target']) && ($json['status'] ?? '') === 'VERIFIED_PASS') {
+                    $verifiedTargets[] = $json['target'];
+                }
+            }
+        }
+
+        return $this->generateCatalog($verifiedTargets);
+    }
+
+    public function generateCatalog(array $verifiedTargets = []): array
     {
         $matrix = Yaml::parseFile($this->matrixFile);
         $envRegistry = getenv('IMAGE_REGISTRY');
@@ -38,6 +75,7 @@ class CatalogManager
                 'total_php_versions' => count($matrix['images']['php_fpm']['legacy']) + count($matrix['images']['php_fpm']['modern']),
                 'total_frankenphp_versions' => count($matrix['images']['frankenphp']['versions']),
                 'total_webservers' => count($matrix['images']['webservers']),
+                'verified_count' => count($verifiedTargets),
             ],
             'images' => [
                 'php_fpm' => [],
@@ -57,11 +95,13 @@ class CatalogManager
         // 1. PHP-FPM Modern
         foreach ($matrix['images']['php_fpm']['modern'] as $img) {
             $ver = $img['version'];
+            $targetKey = 'php-fpm-' . str_replace('.', '_', $ver);
             $fullTags = array_map(fn($t) => "{$registry}/php:{$t}", $img['tags']);
-            $isVerified = in_array("php:{$ver}", $verifiedImages, true) || !empty($verifiedImages['all']);
+            $isVerified = in_array($targetKey, $verifiedTargets, true) || in_array("php:{$ver}", $verifiedTargets, true);
 
             $item = [
                 'version' => $ver,
+                'target' => $targetKey,
                 'type' => 'modern',
                 'base_image' => $img['base_image'],
                 'tags' => $img['tags'],
@@ -71,17 +111,21 @@ class CatalogManager
                 'php_extensions' => $matrix['defaults']['php_extensions'] ?? [],
             ];
             $catalog['images']['php_fpm'][] = $item;
-            $simpleList['php'][$ver] = $fullTags;
+            if ($isVerified || empty($verifiedTargets)) {
+                $simpleList['php'][$ver] = $fullTags;
+            }
         }
 
         // 2. PHP-FPM Legacy
         foreach ($matrix['images']['php_fpm']['legacy'] as $img) {
             $ver = $img['version'];
+            $targetKey = 'php-fpm-' . str_replace('.', '_', $ver);
             $fullTags = array_map(fn($t) => "{$registry}/php:{$t}", $img['tags']);
-            $isVerified = in_array("php:{$ver}", $verifiedImages, true) || !empty($verifiedImages['all']);
+            $isVerified = in_array($targetKey, $verifiedTargets, true) || in_array("php:{$ver}", $verifiedTargets, true);
 
             $item = [
                 'version' => $ver,
+                'target' => $targetKey,
                 'type' => 'legacy',
                 'base_image' => $img['base_image'],
                 'tags' => $img['tags'],
@@ -91,17 +135,21 @@ class CatalogManager
                 'php_extensions' => ['pdo_mysql', 'mysqli', 'gd', 'opcache', 'curl', 'zip', 'intl', 'mbstring'],
             ];
             $catalog['images']['php_fpm'][] = $item;
-            $simpleList['php'][$ver] = $fullTags;
+            if ($isVerified || empty($verifiedTargets)) {
+                $simpleList['php'][$ver] = $fullTags;
+            }
         }
 
         // 3. FrankenPHP
         foreach ($matrix['images']['frankenphp']['versions'] as $img) {
             $ver = $img['php_version'];
+            $targetKey = 'frankenphp-' . str_replace('.', '_', $ver);
             $fullTags = array_map(fn($t) => "{$registry}/frankenphp:{$t}", $img['tags']);
-            $isVerified = in_array("frankenphp:{$ver}", $verifiedImages, true) || !empty($verifiedImages['all']);
+            $isVerified = in_array($targetKey, $verifiedTargets, true) || in_array("frankenphp:{$ver}", $verifiedTargets, true);
 
             $item = [
                 'php_version' => $ver,
+                'target' => $targetKey,
                 'base_image' => $img['base_image'],
                 'tags' => $img['tags'],
                 'full_image_tags' => $fullTags,
@@ -110,16 +158,20 @@ class CatalogManager
                 'features' => ['caddy', 'worker_mode', 'http3', 'https_auto'],
             ];
             $catalog['images']['frankenphp'][] = $item;
-            $simpleList['frankenphp'][$ver] = $fullTags;
+            if ($isVerified || empty($verifiedTargets)) {
+                $simpleList['frankenphp'][$ver] = $fullTags;
+            }
         }
 
         // 4. Webservers
         foreach ($matrix['images']['webservers'] as $srvName => $srvCfg) {
+            $targetKey = $srvName;
             $fullTags = array_map(fn($t) => "{$registry}/{$srvName}:{$t}", $srvCfg['tags']);
-            $isVerified = in_array("webserver:{$srvName}", $verifiedImages, true) || !empty($verifiedImages['all']);
+            $isVerified = in_array($targetKey, $verifiedTargets, true) || in_array("webserver:{$srvName}", $verifiedTargets, true);
 
             $item = [
                 'server' => $srvName,
+                'target' => $targetKey,
                 'base_image' => $srvCfg['base_image'],
                 'tags' => $srvCfg['tags'],
                 'full_image_tags' => $fullTags,
@@ -128,7 +180,9 @@ class CatalogManager
                 'verified_at' => $isVerified ? $now : null,
             ];
             $catalog['images']['webservers'][] = $item;
-            $simpleList['webservers'][$srvName] = $fullTags;
+            if ($isVerified || empty($verifiedTargets)) {
+                $simpleList['webservers'][$srvName] = $fullTags;
+            }
         }
 
         // Save catalog.json
@@ -137,7 +191,7 @@ class CatalogManager
             json_encode($catalog, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
         );
 
-        // Save available-images.json (Flat simple list for WarpPanel)
+        // Save available-images.json
         file_put_contents(
             $this->availableImagesJsonFile,
             json_encode($simpleList, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
@@ -145,11 +199,6 @@ class CatalogManager
 
         // Save CATALOG.md
         $this->writeMarkdownCatalog($catalog);
-
-        echo "✓ Catalog files successfully generated:\n";
-        echo "  → " . basename($this->catalogJsonFile) . " (Full manifest for WarpPanel API)\n";
-        echo "  → " . basename($this->availableImagesJsonFile) . " (Simple image tags registry)\n";
-        echo "  → " . basename($this->catalogMdFile) . " (Markdown documentation)\n";
 
         return $catalog;
     }

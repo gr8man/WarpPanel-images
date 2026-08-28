@@ -6,7 +6,7 @@ on:
     tags: ['v*']
   pull_request:
     branches: [main, master]
-  workflow_dispatch: # Ręczne uruchomienie publikacji z poziomu GitHub Actions
+  workflow_dispatch:
   schedule:
     - cron: '0 3 * * 1' # Co poniedziałek o 03:00 UTC
 
@@ -15,10 +15,41 @@ permissions:
   packages: write
 
 jobs:
-  build-and-publish:
+  # ============================================================================
+  # 1. RÓWNOLEGŁE BUDOWANIE, TESTOWANIE I PUBLIKACJA KAŻDEGO OBRAZU
+  # ============================================================================
+  build-image:
+    name: Build & Test [${{ matrix.target }}]
     runs-on: ubuntu-latest
     env:
       IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+    strategy:
+      fail-fast: false # Błąd jednego obrazu nie przerywa pozostałych!
+      matrix:
+        target:
+          # Webserwery
+          - nginx
+          - apache
+          - openlitespeed
+          # PHP-FPM Modern
+          - php-fpm-8_0
+          - php-fpm-8_1
+          - php-fpm-8_2
+          - php-fpm-8_3
+          - php-fpm-8_4
+          - php-fpm-8_5
+          # PHP-FPM Legacy
+          - php-fpm-5_6
+          - php-fpm-7_0
+          - php-fpm-7_1
+          - php-fpm-7_2
+          - php-fpm-7_3
+          - php-fpm-7_4
+          # FrankenPHP
+          - frankenphp-8_2
+          - frankenphp-8_3
+          - frankenphp-8_4
+          - frankenphp-8_5
 
     steps:
       - name: Checkout repository
@@ -39,10 +70,6 @@ jobs:
       - name: Generate Dockerfiles & Manifests
         run: composer run generate
 
-      - name: Run Integration Tests
-        run: composer run test
-
-      # 1. Log in to GitHub Container Registry (ghcr.io)
       - name: Log in to GitHub Container Registry (GHCR)
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
@@ -51,7 +78,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Optional: Log in to Docker Hub (if secrets DOCKERHUB_USERNAME and DOCKERHUB_TOKEN are provided)
       - name: Log in to Docker Hub (Optional)
         if: github.event_name != 'pull_request' && env.HAS_DOCKERHUB == 'true'
         env:
@@ -61,24 +87,62 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 3. Build and Push Multi-arch Verified Images
-      - name: Build and Push Verified Images (Bake)
-        if: github.event_name != 'pull_request'
+      # Budowanie i publikacja konkretnego celu z macierzy
+      - name: Build & Push [${{ matrix.target }}]
         uses: docker/bake-action@v6
         with:
           source: .
           files: docker-bake.hcl
-          push: true
+          targets: ${{ matrix.target }}
+          push: ${{ github.event_name != 'pull_request' }}
           set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+            *.cache-from=type=gha,scope=${{ matrix.target }}
+            *.cache-to=type=gha,scope=${{ matrix.target }},mode=max
 
-      # 4. Upload Verified Catalogs & Manifests as GitHub Actions Artifacts
-      - name: Upload Verified Catalog Artifacts
-        if: always()
+      # Uruchomienie testu weryfikacyjnego dla tego celu
+      - name: Run Verification Test [${{ matrix.target }}]
+        run: php scripts/test.php --target=${{ matrix.target }}
+
+      # Zapisanie wyniku weryfikacji jako artefaktu
+      - name: Upload Target Verification Record
         uses: actions/upload-artifact@v4
         with:
-          name: warppanel-images-catalog
+          name: verification-${{ matrix.target }}
+          path: verifications/verification-${{ matrix.target }}.json
+
+  # ============================================================================
+  # 2. FINALIZACJA I AGREGACJA KATALOGU SPRAWDZONYCH OBRAZÓW (catalog.json)
+  # ============================================================================
+  finalize-catalog:
+    name: Aggregate & Finalize Catalog
+    needs: build-image
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Download all verification records
+        uses: actions/download-artifact@v4
+        with:
+          path: downloaded-verifications
+
+      - name: Aggregate Verified Images into catalog.json & CATALOG.md
+        run: php scripts/aggregate_catalog.php downloaded-verifications
+
+      - name: Upload Consolidated Catalog Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: warppanel-verified-catalog
           path: |
             CATALOG.md
             catalog.json

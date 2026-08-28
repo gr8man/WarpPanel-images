@@ -24,6 +24,7 @@
         "test": "php scripts/test.php",
         "check-updates": "php scripts/check_updates.php",
         "catalog": "php scripts/generate.php --catalog-only",
+        "aggregate-catalog": "php scripts/aggregate_catalog.php",
         "sync-obsidian": "php scripts/sync_obsidian.php"
     },
     "config": {

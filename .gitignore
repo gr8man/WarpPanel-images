@@ -21,6 +21,8 @@ composer.phar
 CATALOG.md
 catalog.json
 available-images.json
+verifications/
+downloaded-verifications/
 
 # Generated build contexts (generated dynamically via composer generate)
 /build/
