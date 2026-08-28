@@ -66,6 +66,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/bake-action@v6
         with:
+          source: .
           files: docker-bake.hcl
           push: true
           set: |
