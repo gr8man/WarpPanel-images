@@ -1,0 +1,95 @@
+{
+    "registry": "ghcr.io/warppanel",
+    "updated_at": "2026-08-28T22:42:21+00:00",
+    "php": {
+        "8.0": [
+            "ghcr.io/warppanel/php:8.0-fpm-alpine",
+            "ghcr.io/warppanel/php:8.0-fpm"
+        ],
+        "8.1": [
+            "ghcr.io/warppanel/php:8.1-fpm-alpine",
+            "ghcr.io/warppanel/php:8.1-fpm"
+        ],
+        "8.2": [
+            "ghcr.io/warppanel/php:8.2-fpm-alpine",
+            "ghcr.io/warppanel/php:8.2-fpm"
+        ],
+        "8.3": [
+            "ghcr.io/warppanel/php:8.3-fpm-alpine",
+            "ghcr.io/warppanel/php:8.3-fpm",
+            "ghcr.io/warppanel/php:latest-fpm"
+        ],
+        "8.4": [
+            "ghcr.io/warppanel/php:8.4-fpm-alpine",
+            "ghcr.io/warppanel/php:8.4-fpm"
+        ],
+        "8.5": [
+            "ghcr.io/warppanel/php:8.5-fpm-alpine",
+            "ghcr.io/warppanel/php:8.5-fpm-dev"
+        ],
+        "5.6": [
+            "ghcr.io/warppanel/php:5.6-fpm-alpine",
+            "ghcr.io/warppanel/php:5.6-fpm"
+        ],
+        "7.0": [
+            "ghcr.io/warppanel/php:7.0-fpm-alpine",
+            "ghcr.io/warppanel/php:7.0-fpm"
+        ],
+        "7.1": [
+            "ghcr.io/warppanel/php:7.1-fpm-alpine",
+            "ghcr.io/warppanel/php:7.1-fpm"
+        ],
+        "7.2": [
+            "ghcr.io/warppanel/php:7.2-fpm-alpine",
+            "ghcr.io/warppanel/php:7.2-fpm"
+        ],
+        "7.3": [
+            "ghcr.io/warppanel/php:7.3-fpm-alpine",
+            "ghcr.io/warppanel/php:7.3-fpm"
+        ],
+        "7.4": [
+            "ghcr.io/warppanel/php:7.4-fpm-alpine",
+            "ghcr.io/warppanel/php:7.4-fpm"
+        ]
+    },
+    "frankenphp": {
+        "8.1": [
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.1-alpine",
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.1"
+        ],
+        "8.2": [
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.2-alpine",
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.2"
+        ],
+        "8.3": [
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine",
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.3",
+            "ghcr.io/warppanel/frankenphp:frankenphp-latest"
+        ],
+        "8.4": [
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.4-alpine",
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.4"
+        ],
+        "8.5": [
+            "ghcr.io/warppanel/frankenphp:frankenphp-8.5-alpine",
+            "ghcr.io/warppanel/frankenphp:frankenphp-dev"
+        ]
+    },
+    "webservers": {
+        "nginx": [
+            "ghcr.io/warppanel/nginx:nginx-alpine",
+            "ghcr.io/warppanel/nginx:nginx-latest",
+            "ghcr.io/warppanel/nginx:nginx-1.27"
+        ],
+        "apache": [
+            "ghcr.io/warppanel/apache:apache-alpine",
+            "ghcr.io/warppanel/apache:apache-latest",
+            "ghcr.io/warppanel/apache:httpd-2.4"
+        ],
+        "openlitespeed": [
+            "ghcr.io/warppanel/openlitespeed:openlitespeed-alpine",
+            "ghcr.io/warppanel/openlitespeed:openlitespeed-latest",
+            "ghcr.io/warppanel/openlitespeed:ols-1.8"
+        ]
+    }
+}

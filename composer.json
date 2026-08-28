@@ -1,0 +1,34 @@
+{
+    "name": "warppanel/images-builder",
+    "description": "Automated Docker container generation and testing suite for WarpPanel hosting platform",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WarpPanel Team"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "symfony/yaml": "^7.0|^6.4",
+        "twig/twig": "^3.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "WarpPanel\\Images\\": "src/"
+        }
+    },
+    "scripts": {
+        "generate": "php scripts/generate.php",
+        "build": "docker buildx bake",
+        "test": "php scripts/test.php",
+        "check-updates": "php scripts/check_updates.php",
+        "catalog": "php scripts/generate.php --catalog-only",
+        "sync-obsidian": "php scripts/sync_obsidian.php"
+    },
+    "config": {
+        "allow-plugins": {},
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

@@ -1,0 +1,41 @@
+{
+    {$CADDY_GLOBAL_OPTIONS}
+    frankenphp {
+        {$FRANKENPHP_CONFIG}
+    }
+    servers {
+        trusted_proxies static {$TRUSTED_PROXIES}
+        client_ip_headers {$REAL_IP_HEADER} X-Forwarded-For
+    }
+}
+
+:80 {
+    root * {$RESOLVED_DOCUMENT_ROOT}
+    encode zstd gzip
+
+    # Block sensitive files
+    @sensitive {
+        path */.*
+        path *.env
+        path *.git*
+        path *.sql
+        path *.bak
+        path *.backup
+        not path /.well-known/*
+    }
+    error @sensitive 404
+
+    # Security headers
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    # Execute PHP files
+    php_server
+
+    # Static file serving fallback
+    file_server
+}

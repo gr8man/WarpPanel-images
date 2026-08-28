@@ -1,0 +1,45 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+
+    root ${RESOLVED_DOCUMENT_ROOT};
+    index index.php index.html index.htm;
+
+    client_max_body_size ${CLIENT_MAX_BODY_SIZE};
+
+    # Include WAF rules if enabled
+    ${WAF_INCLUDE_LINE}
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass ${PHP_FPM_BACKEND};
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
+        include fastcgi_params;
+
+        fastcgi_read_timeout ${FASTCGI_READ_TIMEOUT};
+        fastcgi_buffer_size 128k;
+        fastcgi_buffers 4 256k;
+        fastcgi_busy_buffers_size 256k;
+    }
+
+    # Static assets caching
+    location ~* \.(jpg|jpeg|gif|png|webp|svg|ico|css|js|woff|woff2|ttf|eot)$ {
+        expires 30d;
+        access_log off;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    # Health check endpoint
+    location /healthz {
+        access_log off;
+        return 200 "OK\n";
+    }
+}

@@ -1,0 +1,40 @@
+FROM httpd:2.4-alpine
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel Apache HTTPD (Alpine)"
+LABEL org.opencontainers.image.description="Apache HTTPD with mpm_event, mod_proxy_fcgi, mod_remoteip, Traefik & Cloudflare Real-IP and .htaccess support"
+
+RUN apk add --no-cache \
+    bash \
+    curl \
+    ca-certificates \
+    shadow \
+    tzdata \
+    apache2-utils
+
+# Standard paths (serversideup standard)
+ENV APP_DIR=/var/www/html \
+    WEB_DOCUMENT_ROOT=/var/www/html/public \
+    PUID=1000 \
+    PGID=1000 \
+    PHP_FPM_HOST=php-fpm \
+    PHP_FPM_PORT=9000 \
+    CLOUDFLARE_REAL_IP=1 \
+    TRUSTED_PROXIES="10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 127.0.0.1/32" \
+    SECURITY_WAF_ENABLED=1
+
+WORKDIR /var/www/html
+
+# Copy Apache config, templates and scripts
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY vhost.conf.template /usr/local/apache2/conf/extra/vhost.conf.template
+COPY waf-rules.conf /usr/local/apache2/conf/extra/waf-rules.conf
+COPY cloudflare-ips.txt /usr/local/apache2/conf/extra/cloudflare-ips.txt
+COPY docker-entrypoint-apache.sh /usr/local/bin/docker-entrypoint.sh
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 80 443
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["httpd", "-D", "FOREGROUND"]

@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^custom-route$ index.php [L]

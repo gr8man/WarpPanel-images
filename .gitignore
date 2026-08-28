@@ -1,0 +1,45 @@
+# ==============================================================================
+# WarpPanel Images .gitignore
+# ==============================================================================
+
+# AI Agents & IDE metadata
+.agents/
+.gemini/
+.claude/
+.cursor/
+.antigravity/
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Composer & PHP Dependencies
+/vendor/
+composer.phar
+
+# Generated build contexts & manifests (generated via composer generate)
+# Uncomment if build directory should not be committed:
+# /build/
+
+# Logs & Temporary Test Files
+*.log
+/tmp/
+updates-summary.md
+.phpunit.result.cache
+
+# Environment Variables & Local Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
