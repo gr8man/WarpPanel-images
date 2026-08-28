@@ -9,7 +9,11 @@ Automated build, testing, and distribution system for lightweight, high-performa
 - **Ultra-Lightweight Alpine Base**: Minimal image footprint (tens of MBs instead of hundreds of MBs), fast boot times, and hardened security.
 - **Full PHP Version Matrix (5.6 – 8.5)**:
   - **Legacy PHP (5.6, 7.0, 7.1, 7.2, 7.3, 7.4)** with Composer 2.2 LTS.
-  - **Modern PHP (8.0, 8.1, 8.2, 8.3, 8.4, 8.5)** with latest Composer 2.x and pre-installed hosting extensions (`pdo_mysql`, `gd`, `opcache`, `redis`, `imagick`, `zip`, `intl`, etc.).
+  - **Modern PHP (8.0, 8.1, 8.2, 8.3, 8.4, 8.5)** with latest Composer 2.x and pre-installed hosting extensions (`pdo_mysql`, `gd`, `opcache`, `redis`, `imagick`, `zip`, `intl`, `xdebug`, etc.).
+- **Built-in Xdebug Support**:
+  - Pre-installed and ready for step debugging, profiling, and coverage.
+  - Disabled by default for zero performance overhead in production (`PHP_XDEBUG_ENABLED=0`).
+  - Easily activated on demand with `PHP_XDEBUG_ENABLED=1`.
 - **Versatile Web Servers**:
   - **Nginx**: FastCGI proxying (TCP/Unix socket), HTTP/2, HTTP/3 (QUIC), and Brotli compression.
   - **Apache HTTPD**: `mpm_event` + `mod_proxy_fcgi` with full `.htaccess` & `mod_rewrite` support.
@@ -26,7 +30,7 @@ Automated build, testing, and distribution system for lightweight, high-performa
   - Protects against Path Traversal, XSS, and SQLi exploit patterns.
   - Injects hardened security headers (`X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, `Referrer-Policy`).
 - **Full Runtime Configurability**:
-  - Over 25+ parameters customizable via environment variables (`PHP_MEMORY_LIMIT`, `PHP_MAX_EXECUTION_TIME`, `PHP_OPCACHE_*`, `FPM_PM_*`) or by mounting custom `.ini` / `.conf` files.
+  - Over 30+ parameters customizable via environment variables (`PHP_MEMORY_LIMIT`, `PHP_XDEBUG_*`, `PHP_OPCACHE_*`, `FPM_PM_*`) or by mounting custom `.ini` / `.conf` files.
 - **Automated Verified Catalog Manifests**:
   - Generates machine-readable `catalog.json` and `available-images.json` alongside [CATALOG.md](CATALOG.md) only after integration tests pass.
 - **Daily Automated Upstream Version Checks**:
@@ -117,7 +121,17 @@ docker pull ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine
 | `PHP_OPCACHE_ENABLE` | `1` | Enable Zend OPcache |
 | `PHP_OPCACHE_MEMORY_CONSUMPTION` | `128` | OPcache memory allocation in MB |
 
-### 3. Composer
+### 3. Xdebug (Debugging & Profiling)
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PHP_XDEBUG_ENABLED` | `0` | Enable Xdebug extension (`1` to enable, `0` for max prod speed) |
+| `PHP_XDEBUG_MODE` | `develop,debug` | Xdebug modes (`develop`, `debug`, `coverage`, `profile`, `trace`) |
+| `PHP_XDEBUG_CLIENT_HOST` | `host.docker.internal` | Host IP/DNS where IDE (PhpStorm/VS Code) is listening |
+| `PHP_XDEBUG_CLIENT_PORT` | `9003` | Xdebug connection port (default 9003 for Xdebug 3) |
+| `PHP_XDEBUG_START_WITH_REQUEST` | `trigger` | Trigger mode (`yes`, `no`, `trigger`, `default`) |
+| `PHP_XDEBUG_IDEKEY` | `docker` | IDE Key for session mapping |
+
+### 4. Composer
 | Variable | Default | Description |
 | :--- | :--- | :--- |
 | `COMPOSER_ALLOW_SUPERUSER` | `1` | Allow Composer execution as superuser |
@@ -125,7 +139,7 @@ docker pull ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine
 | `COMPOSER_MEMORY_LIMIT` | `-1` | Unlimited memory for Composer operations |
 | `COMPOSER_AUTO_INSTALL` | `0` | Run `composer install` automatically on boot if `composer.json` is found (`1` to enable) |
 
-### 4. Networking, Proxy & Security
+### 5. Networking, Proxy & Security
 | Variable | Default | Description |
 | :--- | :--- | :--- |
 | `CLOUDFLARE_REAL_IP` | `1` | Restore client IP from `CF-Connecting-IP` |

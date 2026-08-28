@@ -36,6 +36,7 @@ defaults:
     - sysvmsg
     - sysvsem
     - sysvshm
+    - xdebug
     - xml
     - xsl
     - zip
@@ -52,6 +53,11 @@ defaults:
     PHP_OPCACHE_MEMORY_CONSUMPTION: "128"
     PHP_OPCACHE_MAX_ACCELERATED_FILES: "10000"
     PHP_OPCACHE_VALIDATE_TIMESTAMPS: "1"
+    PHP_XDEBUG_ENABLED: "0"
+    PHP_XDEBUG_MODE: "develop,debug"
+    PHP_XDEBUG_CLIENT_HOST: "host.docker.internal"
+    PHP_XDEBUG_CLIENT_PORT: "9003"
+    PHP_XDEBUG_START_WITH_REQUEST: "trigger"
   security:
     SECURITY_WAF_ENABLED: "1"
     SECURITY_BLOCK_SENSITIVE_FILES: "1"
@@ -62,58 +68,40 @@ images:
   php_fpm:
     legacy:
       - version: "5.6"
-        alpine_version: "3.8"
-        base_image: "alpine:3.8"
-        php_full_version: "5.6.40"
+        base_image: "php:5.6-fpm-alpine"
         tags: ["5.6-fpm-alpine", "5.6-fpm"]
       - version: "7.0"
-        alpine_version: "3.7"
-        base_image: "alpine:3.7"
-        php_full_version: "7.0.33"
+        base_image: "php:7.0-fpm-alpine"
         tags: ["7.0-fpm-alpine", "7.0-fpm"]
       - version: "7.1"
-        alpine_version: "3.8"
-        base_image: "alpine:3.8"
-        php_full_version: "7.1.33"
+        base_image: "php:7.1-fpm-alpine"
         tags: ["7.1-fpm-alpine", "7.1-fpm"]
       - version: "7.2"
-        alpine_version: "3.9"
-        base_image: "alpine:3.9"
-        php_full_version: "7.2.34"
+        base_image: "php:7.2-fpm-alpine"
         tags: ["7.2-fpm-alpine", "7.2-fpm"]
       - version: "7.3"
-        alpine_version: "3.10"
-        base_image: "alpine:3.10"
-        php_full_version: "7.3.33"
+        base_image: "php:7.3-fpm-alpine"
         tags: ["7.3-fpm-alpine", "7.3-fpm"]
       - version: "7.4"
-        alpine_version: "3.15"
         base_image: "php:7.4-fpm-alpine"
-        php_full_version: "7.4.33"
         tags: ["7.4-fpm-alpine", "7.4-fpm"]
     modern:
       - version: "8.0"
-        alpine_version: "3.16"
         base_image: "php:8.0-fpm-alpine"
         tags: ["8.0-fpm-alpine", "8.0-fpm"]
       - version: "8.1"
-        alpine_version: "3.20"
         base_image: "php:8.1-fpm-alpine"
         tags: ["8.1-fpm-alpine", "8.1-fpm"]
       - version: "8.2"
-        alpine_version: "3.20"
         base_image: "php:8.2-fpm-alpine"
         tags: ["8.2-fpm-alpine", "8.2-fpm"]
       - version: "8.3"
-        alpine_version: "3.21"
         base_image: "php:8.3-fpm-alpine"
         tags: ["8.3-fpm-alpine", "8.3-fpm", "latest-fpm"]
       - version: "8.4"
-        alpine_version: "3.21"
         base_image: "php:8.4-fpm-alpine"
         tags: ["8.4-fpm-alpine", "8.4-fpm"]
       - version: "8.5"
-        alpine_version: "edge"
         base_image: "php:8.5-fpm-alpine"
         is_experimental: true
         tags: ["8.5-fpm-alpine", "8.5-fpm-dev"]

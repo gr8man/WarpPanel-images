@@ -56,6 +56,30 @@ opcache.max_accelerated_files = ${PHP_OPCACHE_MAX_ACCELERATED_FILES:-10000}
 opcache.validate_timestamps = ${PHP_OPCACHE_VALIDATE_TIMESTAMPS:-1}
 EOF
 
+# Xdebug dynamic configuration
+PHP_XDEBUG_ENABLED=${PHP_XDEBUG_ENABLED:-0}
+XDEBUG_INI="$PHP_INI_DIR/docker-php-ext-xdebug.ini"
+[ ! -f "$XDEBUG_INI" ] && XDEBUG_INI="$PHP_INI_DIR/99-xdebug.ini"
+
+if [ "$PHP_XDEBUG_ENABLED" = "1" ] || [ "$PHP_XDEBUG_ENABLED" = "true" ]; then
+    echo "[WarpPanel FrankenPHP] Enabling Xdebug (${PHP_XDEBUG_MODE:-develop,debug})..."
+    cat <<EOF > "$XDEBUG_INI"
+zend_extension = xdebug
+xdebug.mode = ${PHP_XDEBUG_MODE:-develop,debug}
+xdebug.start_with_request = ${PHP_XDEBUG_START_WITH_REQUEST:-trigger}
+xdebug.client_host = ${PHP_XDEBUG_CLIENT_HOST:-host.docker.internal}
+xdebug.client_port = ${PHP_XDEBUG_CLIENT_PORT:-9003}
+xdebug.discover_client_host = ${PHP_XDEBUG_DISCOVER_CLIENT_HOST:-1}
+xdebug.idekey = ${PHP_XDEBUG_IDEKEY:-docker}
+xdebug.log_level = 0
+EOF
+else
+    if [ -f "$XDEBUG_INI" ]; then
+        sed -i 's/^zend_extension = xdebug/;zend_extension = xdebug/' "$XDEBUG_INI" 2>/dev/null || true
+        sed -i 's/^zend_extension=xdebug/;zend_extension=xdebug/' "$XDEBUG_INI" 2>/dev/null || true
+    fi
+fi
+
 # Fallback check
 if [ ! -d "$WEB_DOCUMENT_ROOT" ] && [ -d "/var/www/html" ]; then
     echo "[WarpPanel FrankenPHP] Notice: Document root $WEB_DOCUMENT_ROOT does not exist, falling back to /var/www/html"

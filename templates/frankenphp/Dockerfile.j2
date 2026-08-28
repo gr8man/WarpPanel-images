@@ -2,7 +2,7 @@ FROM {{ image.base_image }}
 
 LABEL maintainer="WarpPanel Team"
 LABEL org.opencontainers.image.title="WarpPanel FrankenPHP {{ image.php_version }} (Alpine)"
-LABEL org.opencontainers.image.description="All-in-one high-performance PHP runtime with Caddy, HTTP/3, Worker Mode and Cloudflare Real-IP"
+LABEL org.opencontainers.image.description="All-in-one high-performance PHP runtime with Caddy, HTTP/3, Worker Mode, Xdebug and Cloudflare Real-IP"
 
 RUN apk add --no-cache \
     bash \
@@ -18,7 +18,7 @@ RUN apk add --no-cache \
 # Add official Docker PHP extension installer
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 
-# Install standard WarpPanel extensions
+# Install standard WarpPanel extensions including Xdebug
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions \
     bcmath \
@@ -31,20 +31,17 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     igbinary \
     imagick \
     intl \
-    mbstring \
     mysqli \
-    opcache \
-    pdo \
     pdo_mysql \
     pdo_pgsql \
     pgsql \
     redis \
     soap \
     sockets \
-    sodium \
     sysvmsg \
     sysvsem \
     sysvshm \
+    xdebug \
     xsl \
     zip
 
@@ -59,7 +56,8 @@ ENV APP_DIR=/var/www/html \
     CADDY_GLOBAL_OPTIONS="" \
     FRANKENPHP_CONFIG="" \
     CLOUDFLARE_REAL_IP=1 \
-    SECURITY_WAF_ENABLED=1
+    SECURITY_WAF_ENABLED=1 \
+    PHP_XDEBUG_ENABLED=0
 
 WORKDIR /var/www/html
 

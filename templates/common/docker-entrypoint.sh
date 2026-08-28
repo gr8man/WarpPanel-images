@@ -37,6 +37,7 @@ fi
 if command -v php >/dev/null 2>&1; then
     PHP_INI_DIR=$(php -r 'echo ini_get("cfg_file_path") ? dirname(ini_get("cfg_file_path")) : "/usr/local/etc/php/conf.d";' 2>/dev/null || echo "/usr/local/etc/php/conf.d")
     [ -d "/etc/php/conf.d" ] && PHP_INI_DIR="/etc/php/conf.d"
+    [ -d "/etc/php84/conf.d" ] && PHP_INI_DIR="/etc/php84/conf.d"
     [ -d "/etc/php83/conf.d" ] && PHP_INI_DIR="/etc/php83/conf.d"
     [ -d "/etc/php82/conf.d" ] && PHP_INI_DIR="/etc/php82/conf.d"
     [ -d "/etc/php81/conf.d" ] && PHP_INI_DIR="/etc/php81/conf.d"
@@ -76,12 +77,39 @@ opcache.fast_shutdown = 1
 ${PHP_OPCACHE_JIT:+opcache.jit = ${PHP_OPCACHE_JIT}}
 ${PHP_OPCACHE_JIT_BUFFER_SIZE:+opcache.jit_buffer_size = ${PHP_OPCACHE_JIT_BUFFER_SIZE}}
 EOF
+
+    # 2.1 Dynamic Xdebug Configuration & Activation
+    PHP_XDEBUG_ENABLED=${PHP_XDEBUG_ENABLED:-0}
+    XDEBUG_INI="$PHP_INI_DIR/docker-php-ext-xdebug.ini"
+    [ ! -f "$XDEBUG_INI" ] && XDEBUG_INI="$PHP_INI_DIR/99-xdebug.ini"
+
+    if [ "$PHP_XDEBUG_ENABLED" = "1" ] || [ "$PHP_XDEBUG_ENABLED" = "true" ]; then
+        echo "[WarpPanel] Enabling Xdebug (${PHP_XDEBUG_MODE:-develop,debug})..."
+        cat <<EOF > "$XDEBUG_INI"
+; --- WarpPanel Auto-generated Xdebug Configuration ---
+zend_extension = xdebug
+xdebug.mode = ${PHP_XDEBUG_MODE:-develop,debug}
+xdebug.start_with_request = ${PHP_XDEBUG_START_WITH_REQUEST:-trigger}
+xdebug.client_host = ${PHP_XDEBUG_CLIENT_HOST:-host.docker.internal}
+xdebug.client_port = ${PHP_XDEBUG_CLIENT_PORT:-9003}
+xdebug.discover_client_host = ${PHP_XDEBUG_DISCOVER_CLIENT_HOST:-1}
+xdebug.idekey = ${PHP_XDEBUG_IDEKEY:-docker}
+xdebug.log_level = 0
+EOF
+    else
+        # Disable Xdebug extension to keep maximum runtime performance in production
+        if [ -f "$XDEBUG_INI" ]; then
+            sed -i 's/^zend_extension = xdebug/;zend_extension = xdebug/' "$XDEBUG_INI" 2>/dev/null || true
+            sed -i 's/^zend_extension=xdebug/;zend_extension=xdebug/' "$XDEBUG_INI" 2>/dev/null || true
+        fi
+    fi
 fi
 
 # 3. Dynamic PHP-FPM Pool Configuration Generation
-if [ -d "/usr/local/etc/php-fpm.d" ] || [ -d "/etc/php-fpm.d" ] || [ -d "/etc/php83/php-fpm.d" ] || [ -d "/etc/php7/php-fpm.d" ]; then
+if [ -d "/usr/local/etc/php-fpm.d" ] || [ -d "/etc/php-fpm.d" ] || [ -d "/etc/php84/php-fpm.d" ] || [ -d "/etc/php83/php-fpm.d" ] || [ -d "/etc/php7/php-fpm.d" ]; then
     FPM_DIR="/usr/local/etc/php-fpm.d"
     [ -d "/etc/php-fpm.d" ] && FPM_DIR="/etc/php-fpm.d"
+    [ -d "/etc/php84/php-fpm.d" ] && FPM_DIR="/etc/php84/php-fpm.d"
     [ -d "/etc/php83/php-fpm.d" ] && FPM_DIR="/etc/php83/php-fpm.d"
     [ -d "/etc/php7/php-fpm.d" ] && FPM_DIR="/etc/php7/php-fpm.d"
     [ -d "/etc/php5/php-fpm.d" ] && FPM_DIR="/etc/php5/php-fpm.d"
