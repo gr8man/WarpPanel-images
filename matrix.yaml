@@ -88,41 +88,38 @@ images:
         tags: ["7.3-fpm-alpine", "7.3-fpm"]
       - version: "7.4"
         alpine_version: "3.15"
-        base_image: "php:7.4.33-fpm-alpine3.15"
+        base_image: "php:7.4-fpm-alpine"
         php_full_version: "7.4.33"
         tags: ["7.4-fpm-alpine", "7.4-fpm"]
     modern:
       - version: "8.0"
         alpine_version: "3.16"
-        base_image: "php:8.0.30-fpm-alpine3.16"
+        base_image: "php:8.0-fpm-alpine"
         tags: ["8.0-fpm-alpine", "8.0-fpm"]
       - version: "8.1"
         alpine_version: "3.20"
-        base_image: "php:8.1.31-fpm-alpine3.20"
+        base_image: "php:8.1-fpm-alpine"
         tags: ["8.1-fpm-alpine", "8.1-fpm"]
       - version: "8.2"
         alpine_version: "3.20"
-        base_image: "php:8.2.27-fpm-alpine3.20"
+        base_image: "php:8.2-fpm-alpine"
         tags: ["8.2-fpm-alpine", "8.2-fpm"]
       - version: "8.3"
         alpine_version: "3.21"
-        base_image: "php:8.3.17-fpm-alpine3.21"
+        base_image: "php:8.3-fpm-alpine"
         tags: ["8.3-fpm-alpine", "8.3-fpm", "latest-fpm"]
       - version: "8.4"
         alpine_version: "3.21"
-        base_image: "php:8.4.4-fpm-alpine3.21"
+        base_image: "php:8.4-fpm-alpine"
         tags: ["8.4-fpm-alpine", "8.4-fpm"]
       - version: "8.5"
         alpine_version: "edge"
-        base_image: "php:8.5.0-dev-fpm-alpine"
+        base_image: "php:8.5-fpm-alpine"
         is_experimental: true
         tags: ["8.5-fpm-alpine", "8.5-fpm-dev"]
 
   frankenphp:
     versions:
-      - php_version: "8.1"
-        base_image: "dunglas/frankenphp:1-php8.1-alpine"
-        tags: ["frankenphp-8.1-alpine", "frankenphp-8.1"]
       - php_version: "8.2"
         base_image: "dunglas/frankenphp:1-php8.2-alpine"
         tags: ["frankenphp-8.2-alpine", "frankenphp-8.2"]
@@ -147,6 +144,6 @@ images:
       tags: ["apache-alpine", "apache-latest", "httpd-2.4"]
       features: ["mpm_event", "mod_proxy_fcgi", "mod_rewrite", "remoteip", "waf_basic"]
     openlitespeed:
-      base_image: "litespeedtech/openlitespeed:1.8-alpine"
-      tags: ["openlitespeed-alpine", "openlitespeed-latest", "ols-1.8"]
+      base_image: "litespeedtech/openlitespeed:latest"
+      tags: ["openlitespeed-alpine", "openlitespeed-latest", "ols-latest"]
       features: ["lscache", "quic", "waf_rules", "cloudflare_realip"]

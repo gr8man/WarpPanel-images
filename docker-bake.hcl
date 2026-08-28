@@ -1,5 +1,5 @@
 group "default" {
-    targets = ["php-fpm-8_0","php-fpm-8_1","php-fpm-8_2","php-fpm-8_3","php-fpm-8_4","php-fpm-8_5","php-fpm-5_6","php-fpm-7_0","php-fpm-7_1","php-fpm-7_2","php-fpm-7_3","php-fpm-7_4","frankenphp-8_1","frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5","nginx","apache","openlitespeed"]
+    targets = ["php-fpm-8_0","php-fpm-8_1","php-fpm-8_2","php-fpm-8_3","php-fpm-8_4","php-fpm-8_5","php-fpm-5_6","php-fpm-7_0","php-fpm-7_1","php-fpm-7_2","php-fpm-7_3","php-fpm-7_4","frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5","nginx","apache","openlitespeed"]
 }
 
 group "php" {
@@ -7,7 +7,7 @@ group "php" {
 }
 
 group "frankenphp" {
-    targets = ["frankenphp-8_1","frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5"]
+    targets = ["frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5"]
 }
 
 group "webservers" {
@@ -98,13 +98,6 @@ target "php-fpm-7_4" {
     platforms = ["linux/amd64"]
 }
 
-target "frankenphp-8_1" {
-    context = "./build/frankenphp/8.1"
-    dockerfile = "Dockerfile"
-    tags = ["ghcr.io/warppanel/frankenphp:frankenphp-8.1-alpine","ghcr.io/warppanel/frankenphp:frankenphp-8.1"]
-    platforms = ["linux/amd64","linux/arm64"]
-}
-
 target "frankenphp-8_2" {
     context = "./build/frankenphp/8.2"
     dockerfile = "Dockerfile"
@@ -150,7 +143,7 @@ target "apache" {
 target "openlitespeed" {
     context = "./build/openlitespeed"
     dockerfile = "Dockerfile"
-    tags = ["ghcr.io/warppanel/openlitespeed:openlitespeed-alpine","ghcr.io/warppanel/openlitespeed:openlitespeed-latest","ghcr.io/warppanel/openlitespeed:ols-1.8"]
+    tags = ["ghcr.io/warppanel/openlitespeed:openlitespeed-alpine","ghcr.io/warppanel/openlitespeed:openlitespeed-latest","ghcr.io/warppanel/openlitespeed:ols-latest"]
     platforms = ["linux/amd64"]
 }
 

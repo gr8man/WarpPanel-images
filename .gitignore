@@ -22,9 +22,8 @@ CATALOG.md
 catalog.json
 available-images.json
 
-# Generated build contexts & manifests (generated via composer generate)
-# Uncomment if build directory should not be committed:
-# /build/
+# Generated build contexts (generated dynamically via composer generate)
+/build/
 
 # Logs & Temporary Test Files
 *.log
