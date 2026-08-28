@@ -17,6 +17,11 @@
 /vendor/
 composer.phar
 
+# Auto-generated image catalogs and manifests (generated automatically in CI/CD)
+CATALOG.md
+catalog.json
+available-images.json
+
 # Generated build contexts & manifests (generated via composer generate)
 # Uncomment if build directory should not be committed:
 # /build/

@@ -71,3 +71,14 @@ jobs:
           set: |
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
+
+      # 4. Upload Verified Catalogs & Manifests as GitHub Actions Artifacts
+      - name: Upload Verified Catalog Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: warppanel-images-catalog
+          path: |
+            CATALOG.md
+            catalog.json
+            available-images.json
