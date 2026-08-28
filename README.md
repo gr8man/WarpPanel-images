@@ -1,50 +1,147 @@
 # WarpPanel Images 🚀
 
-Automatyczny system generowania, budowania, testowania i publikowania zoptymalizowanych, lekkich obrazów kontenerowych (**Alpine Linux**) dla panelu hostingowego **WarpPanel**.
+Automated build, testing, and distribution system for lightweight, high-performance container images (**Alpine Linux**) tailored for the **WarpPanel** web hosting platform.
 
 ---
 
-## 🌟 Kluczowe Cechy
+## 🌟 Key Features
 
-- **Baza Alpine**: Ultra-lekkie kontenery (kilkadziesiąt MB zamiast kilkuset MB).
-- **Szerokie wsparcie PHP**: PHP 5.6 – 8.5 (FPM) zoptymalizowane pod hosting.
-- **Wielowariantowość Webserwerów**: Nginx, Apache HTTPD (`mpm_event` + `mod_proxy_fcgi`), OpenLiteSpeed oraz nowoczesny runtime FrankenPHP (Caddy + PHP z obsługą Worker Mode).
-- **Standard ścieżek `serversideup`**:
-  - Aplikacje w `/var/www/html`
-  - Konfigurowalny `WEB_DOCUMENT_ROOT` (domyślnie `/var/www/html/public`, automatyczny fallback do `/var/www/html`)
-  - Dynamiczny `PUID` / `PGID` w `docker-entrypoint.sh` bez problemów z uprawnieniami do wolumenów.
-- **Traefik + Cloudflare Real IP**: Automatyczne pobieranie rzeczywistego IP klienta z nagłówków `CF-Connecting-IP` / `X-Forwarded-For`.
-- **Wbudowany WAF**: Ochrona przed skanowaniem i exploitami, automatyczna blokada plików `.env`, `.git`, `.sql` oraz ochrona nagłówków HTTP.
-- **Pełna Konfigurowalność przez zmienne środowiskowe i pliki**: Każdy parametr PHP/FPM/Nginx/Apache można nadpisać przez ENV lub pliki `conf.d`.
-- **Automatyczny Katalog Sprawdzonych Obrazów**: Publikacja w `catalog.json` i `CATALOG.md` tylko po pomyślnym przejściu testów integracyjnych.
+- **Ultra-Lightweight Alpine Base**: Minimal image footprint (tens of MBs instead of hundreds of MBs), fast boot times, and hardened security.
+- **Full PHP Version Matrix (5.6 – 8.5)**:
+  - **Legacy PHP (5.6, 7.0, 7.1, 7.2, 7.3, 7.4)** with Composer 2.2 LTS.
+  - **Modern PHP (8.0, 8.1, 8.2, 8.3, 8.4, 8.5)** with latest Composer 2.x and pre-installed hosting extensions (`pdo_mysql`, `gd`, `opcache`, `redis`, `imagick`, `zip`, `intl`, etc.).
+- **Versatile Web Servers**:
+  - **Nginx**: FastCGI proxying (TCP/Unix socket), HTTP/2, HTTP/3 (QUIC), and Brotli compression.
+  - **Apache HTTPD**: `mpm_event` + `mod_proxy_fcgi` with full `.htaccess` & `mod_rewrite` support.
+  - **OpenLiteSpeed**: High-performance HTTP/3 web server with LSCache support.
+  - **FrankenPHP**: All-in-one modern PHP runtime (Caddy + PHP) supporting Classic and Worker Mode (Laravel Octane, Symfony Runtime).
+- **Serversideup-Compliant Directory & Permission Model**:
+  - Base application directory: `/var/www/html`
+  - Configurable document root via `WEB_DOCUMENT_ROOT` (defaults to `/var/www/html/public`, automatic fallback to `/var/www/html`).
+  - Dynamic user mapping (`PUID` / `PGID`) in `docker-entrypoint.sh` for `www-data` to eliminate host volume permission issues.
+- **Traefik & Cloudflare Real-IP Compatibility**:
+  - Automatic client IP restoration from `CF-Connecting-IP` and `X-Forwarded-For` across trusted proxy subnets (`TRUSTED_PROXIES`).
+- **Built-in Web Application Firewall (WAF) & Security**:
+  - Blocks sensitive files (`.env`, `.git`, `.sql`, backups).
+  - Protects against Path Traversal, XSS, and SQLi exploit patterns.
+  - Injects hardened security headers (`X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, `Referrer-Policy`).
+- **Full Runtime Configurability**:
+  - Over 25+ parameters customizable via environment variables (`PHP_MEMORY_LIMIT`, `PHP_MAX_EXECUTION_TIME`, `PHP_OPCACHE_*`, `FPM_PM_*`) or by mounting custom `.ini` / `.conf` files.
+- **Automated Verified Catalog Manifests**:
+  - Generates machine-readable `catalog.json` and `available-images.json` alongside [CATALOG.md](CATALOG.md) only after integration tests pass.
+- **Daily Automated Upstream Version Checks**:
+  - Daily GitHub Actions cron checks for newer Alpine/PHP/Nginx/Apache releases and triggers automatic pull requests.
 
 ---
 
-## 📦 Szybki Start
+## 📦 Quick Start
 
-### 1. Wygenerowanie wszystkich Dockerfile i konfiguracji
+### Prerequisites
+- **PHP 8.1+** & **Composer**
+- **Docker** & **Docker Buildx**
+
+### 1. Install Builder Dependencies
 ```bash
-make generate
+composer install
 ```
 
-### 2. Budowanie równoległe za pomocą `docker buildx bake`
+### 2. Generate Dockerfiles & Bake Manifest
 ```bash
-make build
+composer generate
+# or: make generate
 ```
 
-### 3. Uruchomienie automatycznych testów integracyjnych
+### 3. Build Container Images Locally
 ```bash
-make test
+composer build
+# or: make build
+```
+
+### 4. Run Integration Test Suite
+```bash
+composer test
+# or: make test
+```
+
+### 5. Check for Upstream Version Updates
+```bash
+composer check-updates
+# or: make check-updates
 ```
 
 ---
 
-## 📋 Lista Dostępnych Obrazów
+## 📋 Available Images & Tags
 
-Zobacz pełny, automatycznie generowany [CATALOG.md](CATALOG.md) oraz [catalog.json](catalog.json).
+Detailed manifest and verification status are available in [CATALOG.md](CATALOG.md) and [available-images.json](available-images.json).
+
+### Pulling from GitHub Container Registry (GHCR):
+```bash
+# PHP-FPM
+docker pull ghcr.io/warppanel/php:8.3-fpm-alpine
+docker pull ghcr.io/warppanel/php:8.4-fpm-alpine
+docker pull ghcr.io/warppanel/php:7.4-fpm-alpine
+
+# Webservers
+docker pull ghcr.io/warppanel/nginx:nginx-alpine
+docker pull ghcr.io/warppanel/apache:apache-alpine
+docker pull ghcr.io/warppanel/openlitespeed:openlitespeed-alpine
+
+# FrankenPHP
+docker pull ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine
+```
 
 ---
 
-## 🔧 Zmienne Środowiskowe
+## 🔧 Environment Variables Reference
 
-Szczegółowy opis wszystkich zmiennych środowiskowych i reguł bezpieczeństwa znajduje się w pliku [AGENTS.md](AGENTS.md) oraz w dokumentacji Obsidian (`Projekty/WarpPanel/Zmienne Środowiskowe.md`).
+### 1. Path & Permissions
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `APP_DIR` | `/var/www/html` | Application root directory |
+| `WEB_DOCUMENT_ROOT` | `/var/www/html/public` | Document root (falls back to `/var/www/html` if `/public` is missing) |
+| `PUID` | `1000` | User ID for `www-data` |
+| `PGID` | `1000` | Group ID for `www-data` |
+
+### 2. PHP Runtime
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `PHP_MEMORY_LIMIT` | `256M` | Script memory limit |
+| `PHP_MAX_EXECUTION_TIME` | `60` | Maximum execution time in seconds |
+| `PHP_UPLOAD_MAX_FILESIZE` | `64M` | Maximum uploaded file size |
+| `PHP_POST_MAX_SIZE` | `64M` | Maximum POST body size |
+| `PHP_MAX_INPUT_VARS` | `3000` | Maximum input variables count |
+| `PHP_DATE_TIMEZONE` | `UTC` | Default timezone |
+| `PHP_DISPLAY_ERRORS` | `Off` | Display errors in browser (`On` / `Off`) |
+| `PHP_EXPOSE_PHP` | `Off` | Hide `X-Powered-By: PHP` header |
+| `PHP_OPCACHE_ENABLE` | `1` | Enable Zend OPcache |
+| `PHP_OPCACHE_MEMORY_CONSUMPTION` | `128` | OPcache memory allocation in MB |
+
+### 3. Composer
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `COMPOSER_ALLOW_SUPERUSER` | `1` | Allow Composer execution as superuser |
+| `COMPOSER_HOME` | `/tmp/composer` | Composer cache & config directory |
+| `COMPOSER_MEMORY_LIMIT` | `-1` | Unlimited memory for Composer operations |
+| `COMPOSER_AUTO_INSTALL` | `0` | Run `composer install` automatically on boot if `composer.json` is found (`1` to enable) |
+
+### 4. Networking, Proxy & Security
+| Variable | Default | Description |
+| :--- | :--- | :--- |
+| `CLOUDFLARE_REAL_IP` | `1` | Restore client IP from `CF-Connecting-IP` |
+| `TRUSTED_PROXIES` | `10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 127.0.0.1/32` | Trusted proxy subnets (Traefik/Docker networks) |
+| `SECURITY_WAF_ENABLED` | `1` | Enable built-in WAF rules |
+| `PHP_FPM_HOST` | `php-fpm` | PHP-FPM container hostname for Nginx/Apache |
+| `PHP_FPM_PORT` | `9000` | PHP-FPM TCP port |
+
+---
+
+## 🤖 AI Agents & Developer Guidelines
+
+Guidelines, coding standards, and architectural instructions for AI agents are documented in [AGENTS.md](AGENTS.md).
+
+---
+
+## 📄 License
+
+This project is open-source software licensed under the [MIT License](LICENSE).

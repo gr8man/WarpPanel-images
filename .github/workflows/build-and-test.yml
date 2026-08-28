@@ -64,7 +64,7 @@ jobs:
       # 3. Build and Push Multi-arch Verified Images
       - name: Build and Push Verified Images (Bake)
         if: github.event_name != 'pull_request'
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v6
         with:
           files: docker-bake.hcl
           push: true
