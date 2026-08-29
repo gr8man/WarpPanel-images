@@ -103,8 +103,8 @@ echo "WARPPANEL CONTAINER TEST RUNNER\n";
 echo "Target: " . ($target ?: 'Full Stack Integration') . "\n";
 echo str_repeat('=', 60) . "\n";
 
-$netName = 'warppanel-test-net-' . uniqid();
 $containerName = 'test-' . ($target ?: 'stack') . '-' . uniqid();
+$failed = false;
 
 try {
     if ($target === 'nginx') {
@@ -137,7 +137,7 @@ try {
         $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing PHP-FPM container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} {$image}");
-        sleep(2);
+        sleep(3);
         $verRes = runCmd("docker exec {$containerName} php -v");
         echo "  ✓ PHP Version:\n" . explode("\n", $verRes)[0] . "\n";
         $extRes = runCmd("docker exec {$containerName} php -m");
@@ -148,7 +148,7 @@ try {
         $image = resolveImageCandidate($target, $registry, $matrix);
         echo "[*] Testing FrankenPHP container ({$image})...\n";
         runCmd("docker run -d --name {$containerName} -p 8091:80 {$image}");
-        sleep(2);
+        sleep(3);
         $verRes = runCmd("docker exec {$containerName} php -v");
         echo "  ✓ PHP Version in FrankenPHP:\n" . explode("\n", $verRes)[0] . "\n";
         $catalogManager->recordVerification($target, 'VERIFIED_PASS');
@@ -162,6 +162,12 @@ try {
 
     echo "\n✓ Test successfully passed for target: " . ($target ?: 'all') . "\n";
 
+} catch (\Throwable $e) {
+    $failed = true;
+    echo "\n[!] Test FAILED for target {$target}: " . $e->getMessage() . "\n";
+    echo "[*] Container logs:\n";
+    system("docker logs {$containerName} 2>&1");
+    throw $e;
 } finally {
     runCmd("docker stop {$containerName} 2>/dev/null || true", false);
     runCmd("docker rm {$containerName} 2>/dev/null || true", false);

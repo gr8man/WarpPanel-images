@@ -117,6 +117,9 @@ if [ -d "/usr/local/etc/php-fpm.d" ] || [ -d "/etc/php-fpm.d" ] || [ -d "/etc/ph
 
     mkdir -p "$FPM_DIR"
 
+    # Remove conflicting default pools to prevent "Section [www] is already defined"
+    rm -f "$FPM_DIR/www.conf" "$FPM_DIR/www.conf.default" "$FPM_DIR/docker.conf" "$FPM_DIR/zz-docker.conf" 2>/dev/null || true
+
     # Ensure main php-fpm.conf includes pool directory (critical for legacy PHP 5.6/7.0)
     if [ -f "/usr/local/etc/php-fpm.conf" ]; then
         if ! grep -q "php-fpm.d" "/usr/local/etc/php-fpm.conf"; then
@@ -128,7 +131,7 @@ if [ -d "/usr/local/etc/php-fpm.d" ] || [ -d "/etc/php-fpm.d" ] || [ -d "/etc/ph
     DECORATE_LINE=""
     case "$PHP_MAJOR_MINOR" in
         5.*|7.0|7.1|7.2)
-            DECORATE_LINE="# decorate_workers_output not supported in PHP <= 7.2"
+            DECORATE_LINE="; decorate_workers_output not supported in PHP <= 7.2"
             ;;
         *)
             DECORATE_LINE="decorate_workers_output = no"
