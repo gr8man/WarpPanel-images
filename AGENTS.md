@@ -17,9 +17,10 @@ Projekt wykorzystuje **PHP 8.1+ & Composer** (`symfony/yaml`, `twig/twig`) do pa
    - Domyślny katalog: `/var/www/html`
    - DocumentRoot: zmienna środowiskowa `WEB_DOCUMENT_ROOT` (domyślnie `/var/www/html/public`, fallback do `/var/www/html`).
    - Dynamiczny UID/GID: zmienne `PUID` i `PGID` (domyślnie `1000:1000` dla `www-data`), brak problemów z uprawnieniami na wolumenach hosta.
-3. **Wbudowany Composer, Xdebug & Obsługa SQLite w kontenerach PHP**:
+3. **Wbudowany Composer, Xdebug, ionCube Loader & Obsługa SQLite w kontenerach PHP**:
    - Wersje 5.6-7.1: Composer 2.2 LTS.
    - Wersje 7.2-8.5 oraz FrankenPHP: najnowszy Composer 2.x.
+   - ionCube Loader wbudowany w standardzie dla wersji ze wsparciem upstream.
    - Xdebug zainstalowany we wszystkich wersjach, domyślnie wyłączony (`PHP_XDEBUG_ENABLED=0`) z możliwością włączenia w locie (`PHP_XDEBUG_ENABLED=1`).
    - Wbudowane rozszerzenia `pdo_sqlite` oraz `sqlite3` we wszystkich obrazach PHP-FPM i FrankenPHP (lokalny zapis plików bazodanowych).
 4. **Wbudowane Sieciowe Bazy Danych**:

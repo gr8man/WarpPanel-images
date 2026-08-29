@@ -21,6 +21,7 @@ defaults:
     - imagick
     - imap
     - intl
+    - ioncube_loader
     - mbstring
     - mysqli
     - opcache

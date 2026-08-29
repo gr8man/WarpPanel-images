@@ -732,6 +732,8 @@ class CatalogManager
             'redis' => '6.0.2',
             'imagick' => '3.7.0',
             'igbinary' => '3.2.16',
+            'ioncube_loader' => '13.3.0',
+            'ionCube Loader' => '13.3.0',
             'xdebug' => str_starts_with($phpVersion, '5.') ? '2.5.5' : (str_starts_with($phpVersion, '7.0') ? '2.7.2' : (str_starts_with($phpVersion, '7.1') ? '2.9.8' : '3.3.2')),
         ];
 

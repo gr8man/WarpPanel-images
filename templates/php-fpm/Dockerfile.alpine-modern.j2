@@ -35,6 +35,9 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     imagick \
     imap \
     intl \
+{% if image.version != '8.0' %}
+    ioncube_loader \
+{% endif %}
     mbstring \
     mysqli \
     opcache \
