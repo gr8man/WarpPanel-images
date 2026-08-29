@@ -211,8 +211,11 @@ jobs:
 
       - name: Download all verification records
         uses: actions/download-artifact@v4
+        continue-on-error: true
         with:
+          pattern: verification-*
           path: downloaded-verifications
+          merge-multiple: true
 
       - name: Aggregate Verified Images into catalog.json & CATALOG.md
         run: php scripts/aggregate_catalog.php downloaded-verifications
