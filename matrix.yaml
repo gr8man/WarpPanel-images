@@ -209,6 +209,86 @@ images:
         - quic
         - waf_rules
         - cloudflare_realip
+    caddy:
+      base_image: 'caddy:2.8-alpine'
+      tags:
+        - caddy-alpine
+        - caddy-latest
+        - caddy-2.8
+      features:
+        - auto_https
+        - http3_quic
+        - zstd_gzip
+        - cloudflare_realip
+        - waf_basic
+        - fastcgi_php
+    lighttpd:
+      base_image: 'alpine:3.20'
+      tags:
+        - lighttpd-alpine
+        - lighttpd-latest
+      features:
+        - fastcgi_php
+        - mod_rewrite
+        - mod_deflate
+        - cloudflare_realip
+        - waf_basic
+  traefik:
+    versions:
+      -
+        version: '2.11'
+        base_image: 'traefik:v2.11'
+        tags:
+          - traefik-2.11
+          - traefik-v2.11
+          - traefik-v2
+        features:
+          - docker_provider
+          - acme_letsencrypt
+          - cloudflare_realip
+          - http_to_https
+          - dashboard
+      -
+        version: '3.1'
+        base_image: 'traefik:v3.1'
+        tags:
+          - traefik-3.1
+          - traefik-v3.1
+        features:
+          - docker_provider
+          - http3_quic
+          - acme_letsencrypt
+          - cloudflare_realip
+          - http_to_https
+          - dashboard
+      -
+        version: '3.2'
+        base_image: 'traefik:v3.2'
+        tags:
+          - traefik-3.2
+          - traefik-v3.2
+        features:
+          - docker_provider
+          - http3_quic
+          - acme_letsencrypt
+          - cloudflare_realip
+          - http_to_https
+          - dashboard
+      -
+        version: '3.3'
+        base_image: 'traefik:v3.3'
+        tags:
+          - traefik-3.3
+          - traefik-v3.3
+          - traefik-v3
+          - traefik-latest
+        features:
+          - docker_provider
+          - http3_quic
+          - acme_letsencrypt
+          - cloudflare_realip
+          - http_to_https
+          - dashboard
   databases:
     mysql:
       -

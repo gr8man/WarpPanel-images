@@ -1,0 +1,15 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel Traefik {{ image.version }} Edge Router & Load Balancer"
+LABEL org.opencontainers.image.description="Cloud-native Edge Router, Reverse Proxy and Ingress with Docker Provider, Auto-HTTPS, Cloudflare Real-IP and HTTP/3 QUIC for WarpPanel"
+
+RUN mkdir -p /etc/traefik /var/log/traefik /etc/traefik/dynamic
+
+COPY traefik.yml /etc/traefik/traefik.yml
+COPY dynamic_conf.yml /etc/traefik/dynamic/dynamic_conf.yml
+
+EXPOSE 80 443 443/udp 8080
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["traefik", "--configFile=/etc/traefik/traefik.yml"]

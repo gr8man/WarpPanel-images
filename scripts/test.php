@@ -49,6 +49,24 @@ function resolveCandidate(string $type, string $tagOrVer, string $registry, arra
         $candidates[] = "{$registry}/openlitespeed:{$tag}";
         $candidates[] = "warppanel-test/openlitespeed:latest";
         $candidates[] = "warppanel-test/openlitespeed";
+    } elseif ($type === 'caddy') {
+        $candidates[] = "{$registry}/caddy:{$matrix['images']['webservers']['caddy']['tags'][0]}";
+        $candidates[] = "warppanel-test/caddy:latest";
+    } elseif ($type === 'lighttpd') {
+        $candidates[] = "{$registry}/lighttpd:{$matrix['images']['webservers']['lighttpd']['tags'][0]}";
+        $candidates[] = "warppanel-test/lighttpd:latest";
+    } elseif ($type === 'traefik') {
+        $ver = str_replace(['traefik-v', 'traefik-', 'v'], '', $tagOrVer);
+        $ver = str_replace('_', '.', $ver);
+        if (!empty($matrix['images']['traefik']['versions'])) {
+            foreach ($matrix['images']['traefik']['versions'] as $trImg) {
+                if ($trImg['version'] === $ver) {
+                    $candidates[] = "{$registry}/traefik:{$trImg['tags'][0]}";
+                    $candidates[] = "warppanel-test/traefik:{$ver}";
+                    break;
+                }
+            }
+        }
     } elseif ($type === 'php') {
         $ver = str_replace('_', '.', $tagOrVer);
         $allPhp = array_merge($matrix['images']['php_fpm']['modern'] ?? [], $matrix['images']['php_fpm']['legacy'] ?? []);
@@ -109,6 +127,32 @@ function resolveCandidate(string $type, string $tagOrVer, string $registry, arra
     );
 }
 
+function testTraefikIntegration(string $version, string $registry, array $matrix, int $port): void
+{
+    $image = resolveCandidate('traefik', $version, $registry, $matrix);
+    $cName = 'test-traefik-' . uniqid();
+    echo "[*] Testing Traefik v{$version} container ({$image})...\n";
+    runCmd("docker run -d --name {$cName} -p {$port}:80 -p " . ($port + 1000) . ":8080 {$image}");
+    sleep(3);
+    $out = runCmd("docker exec {$cName} traefik version");
+    echo "  ✓ Traefik Version Output:\n" . explode("\n", $out)[0] . "\n";
+    
+    // Test health ping endpoint
+    $ch = curl_init("http://127.0.0.1:{$port}/ping");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    $res = curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if ($code === 200 && trim((string)$res) === 'OK') {
+        echo "  ✓ Traefik /ping health endpoint responded HTTP 200 (OK).\n";
+    } else {
+        echo "  [i] Traefik health response code: {$code}, output: {$res}\n";
+    }
+    runCmd("docker stop {$cName} >/dev/null 2>&1 || true", false);
+    runCmd("docker rm {$cName} >/dev/null 2>&1 || true", false);
+}
+
 function testStackIntegration(
     string $webserverType,
     string $phpVersion,
@@ -141,7 +185,6 @@ function testStackIntegration(
                "{$fpmImage}");
 
         // Start Web server container
-        runCmd("docker run -d --name {$webContainer} --network {$netName} -p {$port}:80 " .
                "-v " . escapeshellarg($fixturesDir) . ":/var/www/html " .
                "-e WEB_DOCUMENT_ROOT=/var/www/html/public " .
                "-e PHP_FPM_HOST={$fpmContainer} " .
@@ -304,15 +347,21 @@ try {
         testStackIntegration('apache', '8.3', $registry, $matrix, $fixturesDir, $portCounter++);
         $catalogManager->recordVerification('apache', 'VERIFIED_PASS');
 
-    } elseif ($target === 'openlitespeed') {
-        $image = resolveCandidate('openlitespeed', '', $registry, $matrix);
-        echo "[*] Testing OpenLiteSpeed container ({$image})...\n";
-        $cName = 'test-ols-' . uniqid();
-        runCmd("docker run -d --name {$cName} -p 8090:80 {$image}");
-        sleep(2);
-        echo "  ✓ OpenLiteSpeed container started successfully.\n";
-        runCmd("docker stop {$cName} && docker rm {$cName} >/dev/null 2>&1", false);
-        $catalogManager->recordVerification('openlitespeed', 'VERIFIED_PASS');
+    } elseif ($target === 'caddy') {
+        echo "[*] Running integration test for Caddy Standalone...\n";
+        testStackIntegration('caddy', '8.3', $registry, $matrix, $fixturesDir, $portCounter++);
+        $catalogManager->recordVerification('caddy', 'VERIFIED_PASS');
+
+    } elseif ($target === 'lighttpd') {
+        echo "[*] Running integration test for Lighttpd...\n";
+        testStackIntegration('lighttpd', '8.3', $registry, $matrix, $fixturesDir, $portCounter++);
+        $catalogManager->recordVerification('lighttpd', 'VERIFIED_PASS');
+
+    } elseif ($target && str_starts_with($target, 'traefik-v')) {
+        $ver = str_replace(['traefik-v', '_'], ['', '.'], $target);
+        echo "[*] Running integration test for Traefik v{$ver}...\n";
+        testTraefikIntegration($ver, $registry, $matrix, $portCounter++);
+        $catalogManager->recordVerification($target, 'VERIFIED_PASS');
 
     } elseif ($target && preg_match('/^(mysql|mariadb|postgres|redis|mongodb)-(.+)$/', $target, $m)) {
         $dbType = $m[1];

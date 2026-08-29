@@ -1,0 +1,25 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel Caddy Standalone Web Server"
+LABEL org.opencontainers.image.description="High-performance Caddy v2 web server with Auto-HTTPS, HTTP/3 QUIC, Cloudflare Real-IP and WAF rules for WarpPanel"
+
+RUN apk add --no-cache bash curl ca-certificates tzdata shadow
+
+ENV PUID=1000 \
+    PGID=1000 \
+    WEB_DOCUMENT_ROOT=/var/www/html/public \
+    PHP_FPM_UPSTREAM=php:9000 \
+    CLOUDFLARE_REAL_IP=1 \
+    SECURITY_WAF_ENABLED=1
+
+WORKDIR /var/www/html
+
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY docker-entrypoint-caddy.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 80 443 443/udp
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

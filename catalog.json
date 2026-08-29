@@ -1,7 +1,7 @@
 {
     "version": "1.0",
     "channel": "current",
-    "updated_at": "2026-08-29T23:24:22+00:00",
+    "updated_at": "2026-08-29T23:33:59+00:00",
     "current_build_id": "20260829",
     "available_builds": [
         "20260829"
@@ -10,7 +10,8 @@
     "summary": {
         "total_php_versions": 12,
         "total_frankenphp_versions": 4,
-        "total_webservers": 3,
+        "total_webservers": 5,
+        "total_traefik_versions": 4,
         "total_databases": 10,
         "verified_count": 0
     },
@@ -614,6 +615,246 @@
                     "quic",
                     "waf_rules",
                     "cloudflare_realip"
+                ],
+                "status": "READY",
+                "verified_at": null
+            },
+            {
+                "server": "caddy",
+                "channel": "current",
+                "build_id": "20260829",
+                "target": "caddy",
+                "base_image": "caddy:2.8-alpine",
+                "primary_tag": "ghcr.io/warppanel/caddy:caddy-alpine-20260829",
+                "floating_tag": "ghcr.io/warppanel/caddy:caddy-alpine",
+                "tags": [
+                    "caddy-alpine",
+                    "caddy-alpine-20260829",
+                    "caddy-alpine-current",
+                    "caddy-latest",
+                    "caddy-latest-20260829",
+                    "caddy-latest-current",
+                    "caddy-2.8",
+                    "caddy-2.8-20260829",
+                    "caddy-2.8-current"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/caddy:caddy-alpine",
+                    "ghcr.io/warppanel/caddy:caddy-alpine-20260829",
+                    "ghcr.io/warppanel/caddy:caddy-alpine-current",
+                    "ghcr.io/warppanel/caddy:caddy-latest",
+                    "ghcr.io/warppanel/caddy:caddy-latest-20260829",
+                    "ghcr.io/warppanel/caddy:caddy-latest-current",
+                    "ghcr.io/warppanel/caddy:caddy-2.8",
+                    "ghcr.io/warppanel/caddy:caddy-2.8-20260829",
+                    "ghcr.io/warppanel/caddy:caddy-2.8-current"
+                ],
+                "details_file": "catalog/current/webservers/caddy/20260829.json",
+                "features": [
+                    "auto_https",
+                    "http3_quic",
+                    "zstd_gzip",
+                    "cloudflare_realip",
+                    "waf_basic",
+                    "fastcgi_php"
+                ],
+                "status": "READY",
+                "verified_at": null
+            },
+            {
+                "server": "lighttpd",
+                "channel": "current",
+                "build_id": "20260829",
+                "target": "lighttpd",
+                "base_image": "alpine:3.20",
+                "primary_tag": "ghcr.io/warppanel/lighttpd:lighttpd-alpine-20260829",
+                "floating_tag": "ghcr.io/warppanel/lighttpd:lighttpd-alpine",
+                "tags": [
+                    "lighttpd-alpine",
+                    "lighttpd-alpine-20260829",
+                    "lighttpd-alpine-current",
+                    "lighttpd-latest",
+                    "lighttpd-latest-20260829",
+                    "lighttpd-latest-current"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/lighttpd:lighttpd-alpine",
+                    "ghcr.io/warppanel/lighttpd:lighttpd-alpine-20260829",
+                    "ghcr.io/warppanel/lighttpd:lighttpd-alpine-current",
+                    "ghcr.io/warppanel/lighttpd:lighttpd-latest",
+                    "ghcr.io/warppanel/lighttpd:lighttpd-latest-20260829",
+                    "ghcr.io/warppanel/lighttpd:lighttpd-latest-current"
+                ],
+                "details_file": "catalog/current/webservers/lighttpd/20260829.json",
+                "features": [
+                    "fastcgi_php",
+                    "mod_rewrite",
+                    "mod_deflate",
+                    "cloudflare_realip",
+                    "waf_basic"
+                ],
+                "status": "READY",
+                "verified_at": null
+            }
+        ],
+        "traefik": [
+            {
+                "version": "2.11",
+                "channel": "current",
+                "build_id": "20260829",
+                "target": "traefik-v2_11",
+                "base_image": "traefik:v2.11",
+                "primary_tag": "ghcr.io/warppanel/traefik:traefik-2.11-20260829",
+                "floating_tag": "ghcr.io/warppanel/traefik:traefik-2.11",
+                "tags": [
+                    "traefik-2.11",
+                    "traefik-2.11-20260829",
+                    "traefik-2.11-current",
+                    "traefik-v2.11",
+                    "traefik-v2.11-20260829",
+                    "traefik-v2.11-current",
+                    "traefik-v2",
+                    "traefik-v2-20260829",
+                    "traefik-v2-current"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/traefik:traefik-2.11",
+                    "ghcr.io/warppanel/traefik:traefik-2.11-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-2.11-current",
+                    "ghcr.io/warppanel/traefik:traefik-v2.11",
+                    "ghcr.io/warppanel/traefik:traefik-v2.11-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-v2.11-current",
+                    "ghcr.io/warppanel/traefik:traefik-v2",
+                    "ghcr.io/warppanel/traefik:traefik-v2-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-v2-current"
+                ],
+                "details_file": "catalog/current/traefik/2.11/20260829.json",
+                "features": [
+                    "docker_provider",
+                    "acme_letsencrypt",
+                    "cloudflare_realip",
+                    "http_to_https",
+                    "dashboard"
+                ],
+                "status": "READY",
+                "verified_at": null
+            },
+            {
+                "version": "3.1",
+                "channel": "current",
+                "build_id": "20260829",
+                "target": "traefik-v3_1",
+                "base_image": "traefik:v3.1",
+                "primary_tag": "ghcr.io/warppanel/traefik:traefik-3.1-20260829",
+                "floating_tag": "ghcr.io/warppanel/traefik:traefik-3.1",
+                "tags": [
+                    "traefik-3.1",
+                    "traefik-3.1-20260829",
+                    "traefik-3.1-current",
+                    "traefik-v3.1",
+                    "traefik-v3.1-20260829",
+                    "traefik-v3.1-current"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/traefik:traefik-3.1",
+                    "ghcr.io/warppanel/traefik:traefik-3.1-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-3.1-current",
+                    "ghcr.io/warppanel/traefik:traefik-v3.1",
+                    "ghcr.io/warppanel/traefik:traefik-v3.1-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-v3.1-current"
+                ],
+                "details_file": "catalog/current/traefik/3.1/20260829.json",
+                "features": [
+                    "docker_provider",
+                    "http3_quic",
+                    "acme_letsencrypt",
+                    "cloudflare_realip",
+                    "http_to_https",
+                    "dashboard"
+                ],
+                "status": "READY",
+                "verified_at": null
+            },
+            {
+                "version": "3.2",
+                "channel": "current",
+                "build_id": "20260829",
+                "target": "traefik-v3_2",
+                "base_image": "traefik:v3.2",
+                "primary_tag": "ghcr.io/warppanel/traefik:traefik-3.2-20260829",
+                "floating_tag": "ghcr.io/warppanel/traefik:traefik-3.2",
+                "tags": [
+                    "traefik-3.2",
+                    "traefik-3.2-20260829",
+                    "traefik-3.2-current",
+                    "traefik-v3.2",
+                    "traefik-v3.2-20260829",
+                    "traefik-v3.2-current"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/traefik:traefik-3.2",
+                    "ghcr.io/warppanel/traefik:traefik-3.2-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-3.2-current",
+                    "ghcr.io/warppanel/traefik:traefik-v3.2",
+                    "ghcr.io/warppanel/traefik:traefik-v3.2-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-v3.2-current"
+                ],
+                "details_file": "catalog/current/traefik/3.2/20260829.json",
+                "features": [
+                    "docker_provider",
+                    "http3_quic",
+                    "acme_letsencrypt",
+                    "cloudflare_realip",
+                    "http_to_https",
+                    "dashboard"
+                ],
+                "status": "READY",
+                "verified_at": null
+            },
+            {
+                "version": "3.3",
+                "channel": "current",
+                "build_id": "20260829",
+                "target": "traefik-v3_3",
+                "base_image": "traefik:v3.3",
+                "primary_tag": "ghcr.io/warppanel/traefik:traefik-3.3-20260829",
+                "floating_tag": "ghcr.io/warppanel/traefik:traefik-3.3",
+                "tags": [
+                    "traefik-3.3",
+                    "traefik-3.3-20260829",
+                    "traefik-3.3-current",
+                    "traefik-v3.3",
+                    "traefik-v3.3-20260829",
+                    "traefik-v3.3-current",
+                    "traefik-v3",
+                    "traefik-v3-20260829",
+                    "traefik-v3-current",
+                    "traefik-latest",
+                    "traefik-latest-20260829",
+                    "traefik-latest-current"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/traefik:traefik-3.3",
+                    "ghcr.io/warppanel/traefik:traefik-3.3-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-3.3-current",
+                    "ghcr.io/warppanel/traefik:traefik-v3.3",
+                    "ghcr.io/warppanel/traefik:traefik-v3.3-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-v3.3-current",
+                    "ghcr.io/warppanel/traefik:traefik-v3",
+                    "ghcr.io/warppanel/traefik:traefik-v3-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-v3-current",
+                    "ghcr.io/warppanel/traefik:traefik-latest",
+                    "ghcr.io/warppanel/traefik:traefik-latest-20260829",
+                    "ghcr.io/warppanel/traefik:traefik-latest-current"
+                ],
+                "details_file": "catalog/current/traefik/3.3/20260829.json",
+                "features": [
+                    "docker_provider",
+                    "http3_quic",
+                    "acme_letsencrypt",
+                    "cloudflare_realip",
+                    "http_to_https",
+                    "dashboard"
                 ],
                 "status": "READY",
                 "verified_at": null

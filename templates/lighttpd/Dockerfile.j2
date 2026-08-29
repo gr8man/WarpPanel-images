@@ -1,0 +1,35 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel Lighttpd Ultra-Light Web Server"
+LABEL org.opencontainers.image.description="Ultra-lightweight Lighttpd web server with FastCGI PHP-FPM, Cloudflare Real-IP, Gzip compression and WAF rules for WarpPanel"
+
+RUN apk add --no-cache \
+    lighttpd \
+    lighttpd-mod_auth \
+    lighttpd-mod_openssl \
+    lighttpd-mod_deflate \
+    bash \
+    curl \
+    ca-certificates \
+    shadow \
+    tzdata
+
+ENV PUID=1000 \
+    PGID=1000 \
+    WEB_DOCUMENT_ROOT=/var/www/html/public \
+    PHP_FPM_HOST=php \
+    PHP_FPM_PORT=9000 \
+    CLOUDFLARE_REAL_IP=1 \
+    SECURITY_WAF_ENABLED=1
+
+WORKDIR /var/www/html
+
+COPY lighttpd.conf /etc/lighttpd/lighttpd.conf
+COPY docker-entrypoint-lighttpd.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]

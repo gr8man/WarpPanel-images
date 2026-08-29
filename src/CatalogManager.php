@@ -109,6 +109,8 @@ class CatalogManager
             }
         }
 
+        $totalTraefik = !empty($matrix['images']['traefik']['versions']) ? count($matrix['images']['traefik']['versions']) : 0;
+
         $catalog = [
             'version' => '1.0',
             'channel' => $channel,
@@ -120,6 +122,7 @@ class CatalogManager
                 'total_php_versions' => count($matrix['images']['php_fpm']['legacy']) + count($matrix['images']['php_fpm']['modern']),
                 'total_frankenphp_versions' => count($matrix['images']['frankenphp']['versions']),
                 'total_webservers' => count($matrix['images']['webservers']),
+                'total_traefik_versions' => $totalTraefik,
                 'total_databases' => $totalDatabases,
                 'verified_count' => count($verifiedTargets),
             ],
@@ -127,6 +130,7 @@ class CatalogManager
                 'php_fpm' => [],
                 'frankenphp' => [],
                 'webservers' => [],
+                'traefik' => [],
                 'databases' => [],
             ],
         ];
@@ -139,6 +143,7 @@ class CatalogManager
             'php' => [],
             'frankenphp' => [],
             'webservers' => [],
+            'traefik' => [],
             'databases' => [],
         ];
 
@@ -509,6 +514,25 @@ class CatalogManager
                     'security' => ['Built-in WAF rules', 'Cloudflare Real-IP'],
                     'ports' => [80, 443, 7080],
                 ];
+            } elseif ($srvName === 'caddy') {
+                $stackInfo = [
+                    'software' => 'Caddy v2 Standalone Web Server',
+                    'engine' => 'Caddy v2 (Go)',
+                    'protocols' => ['HTTP/1.1', 'HTTP/2', 'HTTP/3 (QUIC)'],
+                    'compression' => ['Zstd', 'Gzip'],
+                    'upstream' => 'FastCGI Support (PHP-FPM :9000)',
+                    'security' => ['Auto-HTTPS ACME', 'Cloudflare Real-IP', 'WAF Rules'],
+                    'ports' => [80, 443, '443/udp'],
+                ];
+            } elseif ($srvName === 'lighttpd') {
+                $stackInfo = [
+                    'software' => 'Lighttpd Ultra-Light Web Server (Alpine Linux)',
+                    'protocols' => ['HTTP/1.1'],
+                    'compression' => ['Gzip (mod_deflate)'],
+                    'upstream' => 'FastCGI Support (PHP-FPM :9000)',
+                    'security' => ['Cloudflare Real-IP (mod_extforward)', 'WAF Rules'],
+                    'ports' => [80],
+                ];
             }
 
             $detailData = [
@@ -560,10 +584,80 @@ class CatalogManager
             }
         }
 
-        // 5. Databases
+        // 5. Traefik (Edge Router & Load Balancer)
+        if (!empty($matrix['images']['traefik']['versions'])) {
+            foreach ($matrix['images']['traefik']['versions'] as $trImg) {
+                $ver = $trImg['version'];
+                $verKey = str_replace('.', '_', $ver);
+                $targetKey = "traefik-v{$verKey}";
+                $fullTags = $this->expandTags($trImg['tags'], $registry, 'traefik', $buildDate, $channel);
+                $rawTags = $this->expandRawTags($trImg['tags'], $buildDate, $channel);
+                $isVerified = in_array($targetKey, $verifiedTargets, true) || in_array("traefik:v{$ver}", $verifiedTargets, true);
+
+                $trDir = $channelDir . "/traefik/{$ver}";
+                $this->ensureDir($trDir);
+                $detailRelPath = "catalog/{$channel}/traefik/{$ver}/{$buildDate}.json";
+                $latestRelPath = "catalog/{$channel}/traefik/{$ver}/latest.json";
+
+                $detailData = [
+                    'name' => "WarpPanel Traefik v{$ver} Edge Router ({$channel})",
+                    'product' => 'Traefik',
+                    'channel' => $channel,
+                    'version' => $ver,
+                    'build_id' => $buildDate,
+                    'build_date' => $buildDate,
+                    'build_timestamp' => $now,
+                    'target' => $targetKey,
+                    'base_image' => $trImg['base_image'],
+                    'registry' => $registry,
+                    'primary_tag' => $fullTags[1] ?? $fullTags[0],
+                    'tags' => $rawTags,
+                    'full_image_tags' => $fullTags,
+                    'software_stack' => [
+                        'software' => "Traefik v{$ver} Cloud-Native Ingress & Reverse Proxy",
+                        'providers' => ['Docker Provider (auto-discovery)', 'File Provider (dynamic middleware)'],
+                        'features' => $trImg['features'] ?? [],
+                        'ports' => [80, 443, '443/udp (HTTP/3)', 8080],
+                    ],
+                    'status' => $isVerified ? 'VERIFIED_PASS' : 'READY',
+                    'verified_at' => $isVerified ? $now : null,
+                ];
+
+                file_put_contents(
+                    $this->rootDir . '/' . $detailRelPath,
+                    json_encode($detailData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+                );
+                file_put_contents(
+                    $this->rootDir . '/' . $latestRelPath,
+                    json_encode($detailData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+                );
+
+                $summaryItem = [
+                    'version' => $ver,
+                    'channel' => $channel,
+                    'build_id' => $buildDate,
+                    'target' => $targetKey,
+                    'base_image' => $trImg['base_image'],
+                    'primary_tag' => $fullTags[1] ?? $fullTags[0],
+                    'floating_tag' => $fullTags[0],
+                    'tags' => $rawTags,
+                    'full_image_tags' => $fullTags,
+                    'details_file' => $detailRelPath,
+                    'features' => $trImg['features'] ?? [],
+                    'status' => $isVerified ? 'VERIFIED_PASS' : 'READY',
+                    'verified_at' => $isVerified ? $now : null,
+                ];
+                $catalog['images']['traefik'][] = $summaryItem;
+                if ($isVerified) {
+                    $simpleList['traefik'][$ver] = $fullTags;
+                }
+            }
+        }
+
+        // 6. Databases
         if (!empty($matrix['images']['databases'])) {
-            foreach ($matrix['images']['databases'] as $dbType => $items) {
-                foreach ($items as $dbImg) {
+            foreach ($matrix['images']['databases'] as $dbType => $dbItems) {
+                foreach ($dbItems as $dbImg) {
                     $ver = $dbImg['version'];
                     $verKey = str_replace('.', '_', $ver);
                     $targetKey = "{$dbType}-{$verKey}";
@@ -791,6 +885,91 @@ class CatalogManager
         return $result;
     }
 
+    private function ensureDir(string $dir): void
+    {
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+    }
+
+    private function writeMarkdownCatalog(array $catalog): void
+    {
+        $channel = strtoupper($catalog['channel'] ?? 'CURRENT');
+        $md = "# 🚀 Katalog Sprawdzonych Obrazów WarpPanel\n\n";
+        $md .= "> **Kanał Wydań:** `{$channel}`  \n";
+        $md .= "> **Ostatnia aktualizacja:** `{$catalog['updated_at']}`  \n";
+        $md .= "> **Aktywny Build ID:** `{$catalog['current_build_id']}`  \n";
+        $md .= "> **Rejestr Główny:** `{$catalog['registry']}`  \n\n";
+        $md .= "Centralny rejestr i katalog zweryfikowanych obrazów kontenerowych dla platformy hostingowej WarpPanel. Każdy obraz i kanał (`current`, `stable`, `dev`) posiada dedykowaną specyfikację oprogramowania w katalogu `catalog/{channel}/` z listą zainstalowanych pakietów, modułów i konfiguracji runtime.\n\n";
+
+        // 1. PHP-FPM
+        $md .= "## 1. 🐘 PHP-FPM (Alpine Linux)\n\n";
+        $md .= "| Wersja | Build ID | Typ | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+        $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+        foreach ($catalog['images']['php_fpm'] as $item) {
+            $primaryTag = $item['primary_tag'];
+            $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
+            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+            $md .= "| **PHP {$item['version']}** | `{$item['build_id']}` | `{$item['type']}` | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
+        }
+
+        // 2. FrankenPHP
+        $md .= "\n## 2. ⚡ FrankenPHP (All-in-One Caddy + PHP + Worker Mode)\n\n";
+        $md .= "| Wersja PHP | Build ID | Silnik / Serwer | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+        $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+        foreach ($catalog['images']['frankenphp'] as $item) {
+            $primaryTag = $item['primary_tag'];
+            $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
+            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+            $md .= "| **PHP {$item['php_version']}** | `{$item['build_id']}` | FrankenPHP 1.x (Caddy v2) | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
+        }
+
+        // 3. Webserwery
+        $md .= "\n## 3. 🌐 Serwery WWW (Standalone)\n\n";
+        $md .= "| Serwer | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+        $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+        foreach ($catalog['images']['webservers'] as $item) {
+            $srvName = strtoupper($item['server']);
+            $primaryTag = $item['primary_tag'];
+            $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
+            $featsStr = implode(', ', array_map(fn($f) => "`{$f}`", $item['features'] ?? []));
+            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+            $md .= "| **{$srvName}** | `{$item['build_id']}` | `{$item['base_image']}` | {$featsStr} | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
+        }
+
+        // 4. Traefik (Edge Router & Load Balancer)
+        if (!empty($catalog['images']['traefik'])) {
+            $md .= "\n## 4. 🚦 Traefik (Cloud-Native Ingress, Reverse Proxy & Load Balancer)\n\n";
+            $md .= "| Wersja | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+            $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+            foreach ($catalog['images']['traefik'] as $item) {
+                $primaryTag = $item['primary_tag'];
+                $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
+                $featsStr = implode(', ', array_map(fn($f) => "`{$f}`", $item['features'] ?? []));
+                $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+                $md .= "| **Traefik v{$item['version']}** | `{$item['build_id']}` | `{$item['base_image']}` | {$featsStr} | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
+            }
+        }
+
+        // 5. Bazy Danych
+        if (!empty($catalog['images']['databases'])) {
+            $md .= "\n## 5. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna\n\n";
+            $md .= "| Baza / Silnik | Wersja | Build ID | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+            $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+            foreach ($catalog['images']['databases'] as $item) {
+                $dbName = ucfirst($item['type']);
+                $primaryTag = $item['primary_tag'];
+                $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
+                $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+                $md .= "| **{$dbName}** | `{$item['version']}` | `{$item['build_id']}` | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
+            }
+        }
+
+        $md .= "\n---\n*Wszystkie szczegółowe specyfikacje buildów znajdują się w folderze `catalog/`.*\n";
+
+        file_put_contents($this->catalogMdFile, $md);
+    }
+
     public function promoteStableIfChanged(): array
     {
         $currentDir = $this->catalogDetailsDir . '/current';
@@ -798,7 +977,7 @@ class CatalogManager
         $this->ensureDir($stableDir);
 
         $changedImages = [];
-        $categories = ['php-fpm', 'frankenphp', 'webservers', 'databases'];
+        $categories = ['php-fpm', 'frankenphp', 'webservers', 'traefik', 'databases'];
 
         foreach ($categories as $cat) {
             $catCurrent = $currentDir . '/' . $cat;
@@ -914,77 +1093,6 @@ class CatalogManager
         return $changedImages;
     }
 
-    private function ensureDir(string $dir): void
-    {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
-        }
-    }
-
-    private function writeMarkdownCatalog(array $catalog): void
-    {
-        $channel = strtoupper($catalog['channel'] ?? 'CURRENT');
-        $md = "# 🚀 Katalog Sprawdzonych Obrazów WarpPanel\n\n";
-        $md .= "> **Kanał Wydań:** `{$channel}`  \n";
-        $md .= "> **Ostatnia aktualizacja:** `{$catalog['updated_at']}`  \n";
-        $md .= "> **Aktywny Build ID:** `{$catalog['current_build_id']}`  \n";
-        $md .= "> **Rejestr Główny:** `{$catalog['registry']}`  \n\n";
-        $md .= "Centralny rejestr i katalog zweryfikowanych obrazów kontenerowych dla platformy hostingowej WarpPanel. Każdy obraz i kanał (`current`, `stable`, `dev`) posiada dedykowaną specyfikację oprogramowania w katalogu `catalog/{channel}/` z listą zainstalowanych pakietów, modułów i konfiguracji runtime.\n\n";
-
-        // 1. PHP-FPM
-        $md .= "## 1. 🐘 PHP-FPM (Alpine Linux)\n\n";
-        $md .= "| Wersja | Build ID | Typ | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
-        $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
-        foreach ($catalog['images']['php_fpm'] as $item) {
-            $primaryTag = $item['primary_tag'];
-            $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
-            $md .= "| **PHP {$item['version']}** | `{$item['build_id']}` | `{$item['type']}` | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
-        }
-
-        // 2. FrankenPHP
-        $md .= "\n## 2. ⚡ FrankenPHP (All-in-One Caddy + PHP + Worker Mode)\n\n";
-        $md .= "| Wersja PHP | Build ID | Silnik / Serwer | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
-        $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
-        foreach ($catalog['images']['frankenphp'] as $item) {
-            $primaryTag = $item['primary_tag'];
-            $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
-            $md .= "| **PHP {$item['php_version']}** | `{$item['build_id']}` | FrankenPHP 1.x (Caddy v2) | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
-        }
-
-        // 3. Webserwery
-        $md .= "\n## 3. 🌐 Serwery WWW (Standalone)\n\n";
-        $md .= "| Serwer | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
-        $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
-        foreach ($catalog['images']['webservers'] as $item) {
-            $srvName = strtoupper($item['server']);
-            $primaryTag = $item['primary_tag'];
-            $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-            $featsStr = implode(', ', array_map(fn($f) => "`{$f}`", $item['features'] ?? []));
-            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
-            $md .= "| **{$srvName}** | `{$item['build_id']}` | `{$item['base_image']}` | {$featsStr} | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
-        }
-
-        // 4. Bazy Danych
-        if (!empty($catalog['images']['databases'])) {
-            $md .= "\n## 4. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna\n\n";
-            $md .= "| Baza / Silnik | Wersja | Build ID | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
-            $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
-            foreach ($catalog['images']['databases'] as $item) {
-                $dbName = ucfirst($item['type']);
-                $primaryTag = $item['primary_tag'];
-                $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-                $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
-                $md .= "| **{$dbName}** | `{$item['version']}` | `{$item['build_id']}` | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
-            }
-        }
-
-        $md .= "\n---\n*Wszystkie szczegółowe specyfikacje buildów znajdują się w folderze `catalog/`.*\n";
-
-        file_put_contents($this->catalogMdFile, $md);
-    }
-
     public function cleanExpiredCurrentBuilds(int $retentionDays = 30): array
     {
         $currentDir = $this->catalogDetailsDir . '/current';
@@ -994,7 +1102,7 @@ class CatalogManager
 
         $cutoffTimestamp = strtotime("-{$retentionDays} days");
         $deletedFiles = [];
-        $categories = ['php-fpm', 'frankenphp', 'webservers', 'databases'];
+        $categories = ['php-fpm', 'frankenphp', 'webservers', 'traefik', 'databases'];
 
         foreach ($categories as $cat) {
             $catDir = $currentDir . '/' . $cat;

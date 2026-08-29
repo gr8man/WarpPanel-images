@@ -1,7 +1,7 @@
 # 🚀 Katalog Sprawdzonych Obrazów WarpPanel
 
 > **Kanał Wydań:** `CURRENT`  
-> **Ostatnia aktualizacja:** `2026-08-29T23:24:22+00:00`  
+> **Ostatnia aktualizacja:** `2026-08-29T23:33:59+00:00`  
 > **Aktywny Build ID:** `20260829`  
 > **Rejestr Główny:** `ghcr.io/warppanel`  
 
@@ -40,8 +40,19 @@ Centralny rejestr i katalog zweryfikowanych obrazów kontenerowych dla platformy
 | **NGINX** | `20260829` | `nginx:1.27-alpine` | `http2`, `http3_quic`, `brotli`, `cloudflare_realip`, `waf_basic` | `ghcr.io/warppanel/nginx:nginx-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/nginx/20260829.json) | ⚡ READY |
 | **APACHE** | `20260829` | `httpd:2.4-alpine` | `mpm_event`, `mod_proxy_fcgi`, `mod_rewrite`, `remoteip`, `waf_basic` | `ghcr.io/warppanel/apache:apache-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/apache/20260829.json) | ⚡ READY |
 | **OPENLITESPEED** | `20260829` | `litespeedtech/openlitespeed:latest` | `lscache`, `quic`, `waf_rules`, `cloudflare_realip` | `ghcr.io/warppanel/openlitespeed:openlitespeed-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/openlitespeed/20260829.json) | ⚡ READY |
+| **CADDY** | `20260829` | `caddy:2.8-alpine` | `auto_https`, `http3_quic`, `zstd_gzip`, `cloudflare_realip`, `waf_basic`, `fastcgi_php` | `ghcr.io/warppanel/caddy:caddy-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/caddy/20260829.json) | ⚡ READY |
+| **LIGHTTPD** | `20260829` | `alpine:3.20` | `fastcgi_php`, `mod_rewrite`, `mod_deflate`, `cloudflare_realip`, `waf_basic` | `ghcr.io/warppanel/lighttpd:lighttpd-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/lighttpd/20260829.json) | ⚡ READY |
 
-## 4. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna
+## 4. 🚦 Traefik (Cloud-Native Ingress, Reverse Proxy & Load Balancer)
+
+| Wersja | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Traefik v2.11** | `20260829` | `traefik:v2.11` | `docker_provider`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/warppanel/traefik:traefik-2.11-20260829` | [📄 Specyfikacja 20260829](catalog/current/traefik/2.11/20260829.json) | ⚡ READY |
+| **Traefik v3.1** | `20260829` | `traefik:v3.1` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/warppanel/traefik:traefik-3.1-20260829` | [📄 Specyfikacja 20260829](catalog/current/traefik/3.1/20260829.json) | ⚡ READY |
+| **Traefik v3.2** | `20260829` | `traefik:v3.2` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/warppanel/traefik:traefik-3.2-20260829` | [📄 Specyfikacja 20260829](catalog/current/traefik/3.2/20260829.json) | ⚡ READY |
+| **Traefik v3.3** | `20260829` | `traefik:v3.3` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/warppanel/traefik:traefik-3.3-20260829` | [📄 Specyfikacja 20260829](catalog/current/traefik/3.3/20260829.json) | ⚡ READY |
+
+## 5. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna
 
 | Baza / Silnik | Wersja | Build ID | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |

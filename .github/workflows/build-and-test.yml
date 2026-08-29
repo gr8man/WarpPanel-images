@@ -30,6 +30,13 @@ jobs:
           - nginx
           - apache
           - openlitespeed
+          - caddy
+          - lighttpd
+          # Traefik (Edge Router & Load Balancer)
+          - traefik-v2_11
+          - traefik-v3_1
+          - traefik-v3_2
+          - traefik-v3_3
           # PHP-FPM Modern
           - php-fpm-8_0
           - php-fpm-8_1
@@ -126,6 +133,13 @@ jobs:
           - nginx
           - apache
           - openlitespeed
+          - caddy
+          - lighttpd
+          # Traefik (Edge Router & Load Balancer)
+          - traefik-v2_11
+          - traefik-v3_1
+          - traefik-v3_2
+          - traefik-v3_3
           # PHP-FPM Modern
           - php-fpm-8_0
           - php-fpm-8_1

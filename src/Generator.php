@@ -198,7 +198,87 @@ class Generator
             'platforms' => ['linux/amd64'],
         ];
 
-        // 5. Databases
+        // Caddy (Standalone)
+        $caddyDir = $this->buildDir . '/caddy';
+        $caddyTags = $this->expandTags($webservers['caddy']['tags'], $registry, 'caddy', $buildDate, $channel);
+        if (!$catalogOnly) {
+            $this->ensureDir($caddyDir);
+            file_put_contents(
+                "{$caddyDir}/Dockerfile",
+                $this->twig->render('caddy/Dockerfile.j2', ['image' => $webservers['caddy'], 'matrix' => $matrix, 'build_date' => $buildDate, 'channel' => $channel])
+            );
+            foreach (['Caddyfile', 'docker-entrypoint-caddy.sh'] as $f) {
+                if (file_exists($this->templatesDir . "/caddy/{$f}")) {
+                    copy($this->templatesDir . "/caddy/{$f}", "{$caddyDir}/{$f}");
+                }
+            }
+        }
+        $bakeTargets['caddy'] = [
+            'context' => './build/caddy',
+            'dockerfile' => 'Dockerfile',
+            'tags' => $caddyTags,
+            'platforms' => ['linux/amd64', 'linux/arm64'],
+        ];
+
+        // Lighttpd
+        $lighttpdDir = $this->buildDir . '/lighttpd';
+        $lighttpdTags = $this->expandTags($webservers['lighttpd']['tags'], $registry, 'lighttpd', $buildDate, $channel);
+        if (!$catalogOnly) {
+            $this->ensureDir($lighttpdDir);
+            file_put_contents(
+                "{$lighttpdDir}/Dockerfile",
+                $this->twig->render('lighttpd/Dockerfile.j2', ['image' => $webservers['lighttpd'], 'matrix' => $matrix, 'build_date' => $buildDate, 'channel' => $channel])
+            );
+            foreach (['lighttpd.conf', 'docker-entrypoint-lighttpd.sh'] as $f) {
+                if (file_exists($this->templatesDir . "/lighttpd/{$f}")) {
+                    copy($this->templatesDir . "/lighttpd/{$f}", "{$lighttpdDir}/{$f}");
+                }
+            }
+        }
+        $bakeTargets['lighttpd'] = [
+            'context' => './build/lighttpd',
+            'dockerfile' => 'Dockerfile',
+            'tags' => $lighttpdTags,
+            'platforms' => ['linux/amd64', 'linux/arm64'],
+        ];
+
+        // 5. Traefik (Edge Router & Ingress)
+        if (!empty($matrix['images']['traefik']['versions'])) {
+            foreach ($matrix['images']['traefik']['versions'] as $trImg) {
+                $ver = $trImg['version'];
+                $verKey = str_replace('.', '_', $ver);
+                $targetName = "traefik-v" . $verKey;
+                $targetDir = $this->buildDir . "/traefik/{$ver}";
+                $tags = $this->expandTags($trImg['tags'], $registry, 'traefik', $buildDate, $channel);
+
+                if (!$catalogOnly) {
+                    $this->ensureDir($targetDir);
+                    file_put_contents(
+                        "{$targetDir}/Dockerfile",
+                        $this->twig->render('traefik/Dockerfile.j2', [
+                            'image' => $trImg,
+                            'matrix' => $matrix,
+                            'build_date' => $buildDate,
+                            'channel' => $channel,
+                        ])
+                    );
+                    foreach (['traefik.yml', 'dynamic_conf.yml'] as $f) {
+                        if (file_exists($this->templatesDir . "/traefik/{$f}")) {
+                            copy($this->templatesDir . "/traefik/{$f}", "{$targetDir}/{$f}");
+                        }
+                    }
+                }
+
+                $bakeTargets[$targetName] = [
+                    'context' => "./build/traefik/{$ver}",
+                    'dockerfile' => 'Dockerfile',
+                    'tags' => $tags,
+                    'platforms' => ['linux/amd64', 'linux/arm64'],
+                ];
+            }
+        }
+
+        // 6. Databases
         if (!empty($matrix['images']['databases'])) {
             foreach ($matrix['images']['databases'] as $dbType => $dbItems) {
                 foreach ($dbItems as $dbImg) {
@@ -276,12 +356,14 @@ class Generator
         $targetNames = array_keys($targets);
         $phpTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'php-fpm')));
         $frankenTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'frankenphp')));
+        $traefikTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'traefik')));
         $dbTargets = array_values(array_filter($targetNames, fn($t) => preg_match('/^(mysql|mariadb|postgres|redis|mongodb|sqlite)-/', $t)));
-        $webTargets = ['nginx', 'apache', 'openlitespeed'];
+        $webTargets = ['nginx', 'apache', 'openlitespeed', 'caddy', 'lighttpd'];
 
         $content = "group \"default\" {\n    targets = " . json_encode($targetNames, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"php\" {\n    targets = " . json_encode($phpTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"frankenphp\" {\n    targets = " . json_encode($frankenTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
+        $content .= "group \"traefik\" {\n    targets = " . json_encode($traefikTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"webservers\" {\n    targets = " . json_encode($webTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"databases\" {\n    targets = " . json_encode($dbTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
 

@@ -1,0 +1,30 @@
+{
+    admin off
+    auto_https off
+    log {
+        output stdout
+        format json
+        level INFO
+    }
+}
+
+:80 {
+    root * {$WEB_DOCUMENT_ROOT:/var/www/html/public}
+    encode zstd gzip
+
+    # Basic WAF & Security Rules
+    @hiddenFiles path */.* *.env* *.git* *.sql* *.bak* composer.json* composer.lock*
+    respond @hiddenFiles "Access Denied by WarpPanel WAF" 403
+
+    # FastCGI PHP-FPM support
+    @phpFiles path *.php
+    handle @phpFiles {
+        php_fastcgi {$PHP_FPM_UPSTREAM:php:9000}
+    }
+
+    # Static file routing fallback to index.php or index.html
+    handle {
+        try_files {path} {path}/ /index.php?{query} /index.html
+        file_server
+    }
+}

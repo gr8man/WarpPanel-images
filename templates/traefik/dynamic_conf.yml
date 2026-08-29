@@ -1,0 +1,23 @@
+http:
+  middlewares:
+    # Security Headers Middleware
+    security-headers:
+      headers:
+        frameDeny: true
+        sslRedirect: false
+        browserXssFilter: true
+        contentTypeNosniff: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 31536000
+        customFrameOptionsValue: "SAMEORIGIN"
+
+    # Gzip & Brotli Compression Middleware
+    compress:
+      compress: {}
+
+    # Basic Rate Limiting Middleware
+    rate-limit:
+      rateLimit:
+        average: 100
+        burst: 50

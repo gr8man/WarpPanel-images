@@ -1,5 +1,5 @@
 group "default" {
-    targets = ["php-fpm-8_0","php-fpm-8_1","php-fpm-8_2","php-fpm-8_3","php-fpm-8_4","php-fpm-8_5","php-fpm-5_6","php-fpm-7_0","php-fpm-7_1","php-fpm-7_2","php-fpm-7_3","php-fpm-7_4","frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5","nginx","apache","openlitespeed","mysql-8_4","mysql-8_0","mariadb-11_4","mariadb-10_11","postgres-17","postgres-16","redis-7_4","redis-7_2","mongodb-7_0","mongodb-8_0"]
+    targets = ["php-fpm-8_0","php-fpm-8_1","php-fpm-8_2","php-fpm-8_3","php-fpm-8_4","php-fpm-8_5","php-fpm-5_6","php-fpm-7_0","php-fpm-7_1","php-fpm-7_2","php-fpm-7_3","php-fpm-7_4","frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5","nginx","apache","openlitespeed","caddy","lighttpd","traefik-v2_11","traefik-v3_1","traefik-v3_2","traefik-v3_3","mysql-8_4","mysql-8_0","mariadb-11_4","mariadb-10_11","postgres-17","postgres-16","redis-7_4","redis-7_2","mongodb-7_0","mongodb-8_0"]
 }
 
 group "php" {
@@ -10,8 +10,12 @@ group "frankenphp" {
     targets = ["frankenphp-8_2","frankenphp-8_3","frankenphp-8_4","frankenphp-8_5"]
 }
 
+group "traefik" {
+    targets = ["traefik-v2_11","traefik-v3_1","traefik-v3_2","traefik-v3_3"]
+}
+
 group "webservers" {
-    targets = ["nginx","apache","openlitespeed"]
+    targets = ["nginx","apache","openlitespeed","caddy","lighttpd"]
 }
 
 group "databases" {
@@ -149,6 +153,48 @@ target "openlitespeed" {
     dockerfile = "Dockerfile"
     tags = ["ghcr.io/warppanel/openlitespeed:openlitespeed-alpine","ghcr.io/warppanel/openlitespeed:openlitespeed-alpine-20260829","ghcr.io/warppanel/openlitespeed:openlitespeed-alpine-current","ghcr.io/warppanel/openlitespeed:openlitespeed-latest","ghcr.io/warppanel/openlitespeed:openlitespeed-latest-20260829","ghcr.io/warppanel/openlitespeed:openlitespeed-latest-current","ghcr.io/warppanel/openlitespeed:ols-latest","ghcr.io/warppanel/openlitespeed:ols-latest-20260829","ghcr.io/warppanel/openlitespeed:ols-latest-current"]
     platforms = ["linux/amd64"]
+}
+
+target "caddy" {
+    context = "./build/caddy"
+    dockerfile = "Dockerfile"
+    tags = ["ghcr.io/warppanel/caddy:caddy-alpine","ghcr.io/warppanel/caddy:caddy-alpine-20260829","ghcr.io/warppanel/caddy:caddy-alpine-current","ghcr.io/warppanel/caddy:caddy-latest","ghcr.io/warppanel/caddy:caddy-latest-20260829","ghcr.io/warppanel/caddy:caddy-latest-current","ghcr.io/warppanel/caddy:caddy-2.8","ghcr.io/warppanel/caddy:caddy-2.8-20260829","ghcr.io/warppanel/caddy:caddy-2.8-current"]
+    platforms = ["linux/amd64","linux/arm64"]
+}
+
+target "lighttpd" {
+    context = "./build/lighttpd"
+    dockerfile = "Dockerfile"
+    tags = ["ghcr.io/warppanel/lighttpd:lighttpd-alpine","ghcr.io/warppanel/lighttpd:lighttpd-alpine-20260829","ghcr.io/warppanel/lighttpd:lighttpd-alpine-current","ghcr.io/warppanel/lighttpd:lighttpd-latest","ghcr.io/warppanel/lighttpd:lighttpd-latest-20260829","ghcr.io/warppanel/lighttpd:lighttpd-latest-current"]
+    platforms = ["linux/amd64","linux/arm64"]
+}
+
+target "traefik-v2_11" {
+    context = "./build/traefik/2.11"
+    dockerfile = "Dockerfile"
+    tags = ["ghcr.io/warppanel/traefik:traefik-2.11","ghcr.io/warppanel/traefik:traefik-2.11-20260829","ghcr.io/warppanel/traefik:traefik-2.11-current","ghcr.io/warppanel/traefik:traefik-v2.11","ghcr.io/warppanel/traefik:traefik-v2.11-20260829","ghcr.io/warppanel/traefik:traefik-v2.11-current","ghcr.io/warppanel/traefik:traefik-v2","ghcr.io/warppanel/traefik:traefik-v2-20260829","ghcr.io/warppanel/traefik:traefik-v2-current"]
+    platforms = ["linux/amd64","linux/arm64"]
+}
+
+target "traefik-v3_1" {
+    context = "./build/traefik/3.1"
+    dockerfile = "Dockerfile"
+    tags = ["ghcr.io/warppanel/traefik:traefik-3.1","ghcr.io/warppanel/traefik:traefik-3.1-20260829","ghcr.io/warppanel/traefik:traefik-3.1-current","ghcr.io/warppanel/traefik:traefik-v3.1","ghcr.io/warppanel/traefik:traefik-v3.1-20260829","ghcr.io/warppanel/traefik:traefik-v3.1-current"]
+    platforms = ["linux/amd64","linux/arm64"]
+}
+
+target "traefik-v3_2" {
+    context = "./build/traefik/3.2"
+    dockerfile = "Dockerfile"
+    tags = ["ghcr.io/warppanel/traefik:traefik-3.2","ghcr.io/warppanel/traefik:traefik-3.2-20260829","ghcr.io/warppanel/traefik:traefik-3.2-current","ghcr.io/warppanel/traefik:traefik-v3.2","ghcr.io/warppanel/traefik:traefik-v3.2-20260829","ghcr.io/warppanel/traefik:traefik-v3.2-current"]
+    platforms = ["linux/amd64","linux/arm64"]
+}
+
+target "traefik-v3_3" {
+    context = "./build/traefik/3.3"
+    dockerfile = "Dockerfile"
+    tags = ["ghcr.io/warppanel/traefik:traefik-3.3","ghcr.io/warppanel/traefik:traefik-3.3-20260829","ghcr.io/warppanel/traefik:traefik-3.3-current","ghcr.io/warppanel/traefik:traefik-v3.3","ghcr.io/warppanel/traefik:traefik-v3.3-20260829","ghcr.io/warppanel/traefik:traefik-v3.3-current","ghcr.io/warppanel/traefik:traefik-v3","ghcr.io/warppanel/traefik:traefik-v3-20260829","ghcr.io/warppanel/traefik:traefik-v3-current","ghcr.io/warppanel/traefik:traefik-latest","ghcr.io/warppanel/traefik:traefik-latest-20260829","ghcr.io/warppanel/traefik:traefik-latest-current"]
+    platforms = ["linux/amd64","linux/arm64"]
 }
 
 target "mysql-8_4" {
