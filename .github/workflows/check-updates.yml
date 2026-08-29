@@ -45,7 +45,7 @@ jobs:
 
       - name: Create Pull Request with Updates
         if: steps.git-check.outputs.changes_detected == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore(deps): automated daily upstream containers update"
