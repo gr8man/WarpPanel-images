@@ -309,33 +309,41 @@ try {
         $cName = "test-{$dbType}-" . uniqid();
 
         echo "[*] Testing Database {$dbType} {$ver} ({$image})...\n";
-        if ($dbType === 'mysql') {
-            runCmd("docker run -d --name {$cName} -e MYSQL_ROOT_PASSWORD=test {$image}");
-            sleep(4);
-            $out = runCmd("docker exec {$cName} mysqld --version");
-            echo "  ✓ MySQL Version: {$out}\n";
-        } elseif ($dbType === 'mariadb') {
-            runCmd("docker run -d --name {$cName} -e MARIADB_ROOT_PASSWORD=test {$image}");
-            sleep(4);
-            $out = runCmd("docker exec {$cName} mariadbd --version || docker exec {$cName} mysqld --version");
-            echo "  ✓ MariaDB Version: {$out}\n";
-        } elseif ($dbType === 'postgres') {
-            runCmd("docker run -d --name {$cName} -e POSTGRES_PASSWORD=test {$image}");
-            sleep(3);
-            $out = runCmd("docker exec {$cName} postgres --version");
-            echo "  ✓ PostgreSQL Version: {$out}\n";
-        } elseif ($dbType === 'redis') {
-            runCmd("docker run -d --name {$cName} {$image}");
-            sleep(2);
-            $out = runCmd("docker exec {$cName} redis-server -v");
-            echo "  ✓ Redis Version: {$out}\n";
-        } elseif ($dbType === 'mongodb') {
-            runCmd("docker run -d --name {$cName} {$image}");
-            sleep(3);
-            $out = runCmd("docker exec {$cName} mongod --version");
-            echo "  ✓ MongoDB Version:\n" . explode("\n", $out)[0] . "\n";
+        try {
+            if ($dbType === 'mysql') {
+                runCmd("docker run -d --name {$cName} -e MYSQL_ROOT_PASSWORD=test {$image}");
+                sleep(4);
+                $out = runCmd("docker exec {$cName} mysqld --version");
+                echo "  ✓ MySQL Version: {$out}\n";
+            } elseif ($dbType === 'mariadb') {
+                runCmd("docker run -d --name {$cName} -e MARIADB_ROOT_PASSWORD=test {$image}");
+                sleep(4);
+                $out = runCmd("docker exec {$cName} mariadbd --version || docker exec {$cName} mysqld --version");
+                echo "  ✓ MariaDB Version: {$out}\n";
+            } elseif ($dbType === 'postgres') {
+                runCmd("docker run -d --name {$cName} -e POSTGRES_PASSWORD=test {$image}");
+                sleep(3);
+                $out = runCmd("docker exec {$cName} postgres --version");
+                echo "  ✓ PostgreSQL Version: {$out}\n";
+            } elseif ($dbType === 'redis') {
+                runCmd("docker run -d --name {$cName} {$image}");
+                sleep(2);
+                $out = runCmd("docker exec {$cName} redis-server -v");
+                echo "  ✓ Redis Version: {$out}\n";
+            } elseif ($dbType === 'mongodb') {
+                runCmd("docker run -d --name {$cName} {$image}");
+                sleep(3);
+                $out = runCmd("docker exec {$cName} mongod --version");
+                echo "  ✓ MongoDB Version:\n" . explode("\n", $out)[0] . "\n";
+            }
+        } catch (\Throwable $e) {
+            echo "  [*] {$dbType} container logs:\n";
+            system("docker logs {$cName} 2>&1 | tail -n 25");
+            throw $e;
+        } finally {
+            runCmd("docker stop {$cName} >/dev/null 2>&1 || true", false);
+            runCmd("docker rm {$cName} >/dev/null 2>&1 || true", false);
         }
-        runCmd("docker stop {$cName} && docker rm {$cName} >/dev/null 2>&1", false);
         $catalogManager->recordVerification($target, 'VERIFIED_PASS');
 
     } else {

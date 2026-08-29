@@ -3,6 +3,7 @@
     frankenphp {
         {$FRANKENPHP_CONFIG}
     }
+    order php_server before file_server
     servers {
         trusted_proxies static {$TRUSTED_PROXIES}
         client_ip_headers {$REAL_IP_HEADER} X-Forwarded-For
