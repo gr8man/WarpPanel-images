@@ -35,6 +35,7 @@ fi
 
 # 2. Dynamic PHP Configuration Generation from Environment Variables
 if command -v php >/dev/null 2>&1; then
+    PHP_MAJOR_MINOR=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;' 2>/dev/null || echo "8.3")
     PHP_INI_DIR=$(php -r 'echo ini_get("cfg_file_path") ? dirname(ini_get("cfg_file_path")) : "/usr/local/etc/php/conf.d";' 2>/dev/null || echo "/usr/local/etc/php/conf.d")
     [ -d "/etc/php/conf.d" ] && PHP_INI_DIR="/etc/php/conf.d"
     [ -d "/etc/php84/conf.d" ] && PHP_INI_DIR="/etc/php84/conf.d"
@@ -106,13 +107,33 @@ EOF
 fi
 
 # 3. Dynamic PHP-FPM Pool Configuration Generation
-if [ -d "/usr/local/etc/php-fpm.d" ] || [ -d "/etc/php-fpm.d" ] || [ -d "/etc/php84/php-fpm.d" ] || [ -d "/etc/php83/php-fpm.d" ] || [ -d "/etc/php7/php-fpm.d" ]; then
+if [ -d "/usr/local/etc/php-fpm.d" ] || [ -d "/etc/php-fpm.d" ] || [ -d "/etc/php84/php-fpm.d" ] || [ -d "/etc/php83/php-fpm.d" ] || [ -d "/etc/php7/php-fpm.d" ] || [ -f "/usr/local/etc/php-fpm.conf" ]; then
     FPM_DIR="/usr/local/etc/php-fpm.d"
     [ -d "/etc/php-fpm.d" ] && FPM_DIR="/etc/php-fpm.d"
     [ -d "/etc/php84/php-fpm.d" ] && FPM_DIR="/etc/php84/php-fpm.d"
     [ -d "/etc/php83/php-fpm.d" ] && FPM_DIR="/etc/php83/php-fpm.d"
     [ -d "/etc/php7/php-fpm.d" ] && FPM_DIR="/etc/php7/php-fpm.d"
     [ -d "/etc/php5/php-fpm.d" ] && FPM_DIR="/etc/php5/php-fpm.d"
+
+    mkdir -p "$FPM_DIR"
+
+    # Ensure main php-fpm.conf includes pool directory (critical for legacy PHP 5.6/7.0)
+    if [ -f "/usr/local/etc/php-fpm.conf" ]; then
+        if ! grep -q "php-fpm.d" "/usr/local/etc/php-fpm.conf"; then
+            echo "include=/usr/local/etc/php-fpm.d/*.conf" >> "/usr/local/etc/php-fpm.conf"
+        fi
+    fi
+
+    # decorate_workers_output is only supported in PHP >= 7.3
+    DECORATE_LINE=""
+    case "$PHP_MAJOR_MINOR" in
+        5.*|7.0|7.1|7.2)
+            DECORATE_LINE="# decorate_workers_output not supported in PHP <= 7.2"
+            ;;
+        *)
+            DECORATE_LINE="decorate_workers_output = no"
+            ;;
+    esac
 
     cat <<EOF > "$FPM_DIR/zz-warppanel-pool.conf"
 [www]
@@ -134,7 +155,7 @@ ping.path = /fpm-ping
 
 request_terminate_timeout = ${FPM_REQUEST_TERMINATE_TIMEOUT:-60s}
 catch_workers_output = yes
-decorate_workers_output = no
+$DECORATE_LINE
 clear_env = no
 EOF
 fi
