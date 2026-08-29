@@ -1,7 +1,7 @@
 # 🚀 Katalog Sprawdzonych Obrazów WarpPanel
 
 > **Kanał Wydań:** `CURRENT`  
-> **Ostatnia aktualizacja:** `2026-08-29T23:33:59+00:00`  
+> **Ostatnia aktualizacja:** `2026-08-29T23:40:16+00:00`  
 > **Aktywny Build ID:** `20260829`  
 > **Rejestr Główny:** `ghcr.io/warppanel`  
 
