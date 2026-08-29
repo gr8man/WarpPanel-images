@@ -1,6 +1,6 @@
 # Katalog Sprawdzonych Obrazów WarpPanel
 
-> **Ostatnia aktualizacja:** `2026-08-29T22:00:15+00:00`
+> **Ostatnia aktualizacja:** `2026-08-29T22:17:44+00:00`
 > **Rejestr:** `ghcr.io/warppanel`
 
 Automatycznie generowana lista przetestowanych, zweryfikowanych i gotowych do użycia obrazów dla panelu hostingowego WarpPanel.
