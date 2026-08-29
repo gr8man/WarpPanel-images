@@ -39,6 +39,8 @@ class Generator
         $matrix = Yaml::parseFile($this->matrixFile);
         $envRegistry = getenv('IMAGE_REGISTRY');
         $registry = ($envRegistry !== false && $envRegistry !== '') ? $envRegistry : ($matrix['registry'] ?? 'ghcr.io/warppanel');
+        $buildDate = getenv('BUILD_DATE') ?: date('Ymd');
+        $channel = getenv('BUILD_CHANNEL') ?: 'current';
         $bakeTargets = [];
 
         if (!$catalogOnly) {
@@ -49,7 +51,7 @@ class Generator
         foreach ($matrix['images']['php_fpm']['modern'] as $img) {
             $ver = $img['version'];
             $targetDir = $this->buildDir . "/php-fpm/{$ver}";
-            $tags = array_map(fn($t) => "{$registry}/php:{$t}", $img['tags']);
+            $tags = $this->expandTags($img['tags'], $registry, 'php', $buildDate, $channel);
             $targetName = "php-fpm-" . str_replace('.', '_', $ver);
 
             if (!$catalogOnly) {
@@ -57,6 +59,8 @@ class Generator
                 $content = $this->twig->render('php-fpm/Dockerfile.alpine-modern.j2', [
                     'image' => $img,
                     'matrix' => $matrix,
+                    'build_date' => $buildDate,
+                    'channel' => $channel,
                 ]);
                 file_put_contents("{$targetDir}/Dockerfile", $content);
                 copy($this->templatesDir . '/common/docker-entrypoint.sh', "{$targetDir}/docker-entrypoint.sh");
@@ -74,7 +78,7 @@ class Generator
         foreach ($matrix['images']['php_fpm']['legacy'] as $img) {
             $ver = $img['version'];
             $targetDir = $this->buildDir . "/php-fpm/{$ver}";
-            $tags = array_map(fn($t) => "{$registry}/php:{$t}", $img['tags']);
+            $tags = $this->expandTags($img['tags'], $registry, 'php', $buildDate, $channel);
             $targetName = "php-fpm-" . str_replace('.', '_', $ver);
 
             if (!$catalogOnly) {
@@ -82,6 +86,8 @@ class Generator
                 $content = $this->twig->render('php-fpm/Dockerfile.alpine-legacy.j2', [
                     'image' => $img,
                     'matrix' => $matrix,
+                    'build_date' => $buildDate,
+                    'channel' => $channel,
                 ]);
                 file_put_contents("{$targetDir}/Dockerfile", $content);
                 copy($this->templatesDir . '/common/docker-entrypoint.sh', "{$targetDir}/docker-entrypoint.sh");
@@ -99,7 +105,7 @@ class Generator
         foreach ($matrix['images']['frankenphp']['versions'] as $img) {
             $ver = $img['php_version'];
             $targetDir = $this->buildDir . "/frankenphp/{$ver}";
-            $tags = array_map(fn($t) => "{$registry}/frankenphp:{$t}", $img['tags']);
+            $tags = $this->expandTags($img['tags'], $registry, 'frankenphp', $buildDate, $channel);
             $targetName = "frankenphp-" . str_replace('.', '_', $ver);
 
             if (!$catalogOnly) {
@@ -107,6 +113,8 @@ class Generator
                 $content = $this->twig->render('frankenphp/Dockerfile.j2', [
                     'image' => $img,
                     'matrix' => $matrix,
+                    'build_date' => $buildDate,
+                    'channel' => $channel,
                 ]);
                 file_put_contents("{$targetDir}/Dockerfile", $content);
                 copy($this->templatesDir . '/frankenphp/Caddyfile', "{$targetDir}/Caddyfile");
@@ -126,12 +134,12 @@ class Generator
 
         // Nginx
         $nginxDir = $this->buildDir . '/nginx';
-        $nginxTags = array_map(fn($t) => "{$registry}/nginx:{$t}", $webservers['nginx']['tags']);
+        $nginxTags = $this->expandTags($webservers['nginx']['tags'], $registry, 'nginx', $buildDate, $channel);
         if (!$catalogOnly) {
             $this->ensureDir($nginxDir);
             file_put_contents(
                 "{$nginxDir}/Dockerfile",
-                $this->twig->render('nginx/Dockerfile.j2', ['image' => $webservers['nginx'], 'matrix' => $matrix])
+                $this->twig->render('nginx/Dockerfile.j2', ['image' => $webservers['nginx'], 'matrix' => $matrix, 'build_date' => $buildDate, 'channel' => $channel])
             );
             foreach (['nginx.conf', 'default.conf.template', 'waf-rules.conf', 'docker-entrypoint-nginx.sh'] as $f) {
                 copy($this->templatesDir . "/nginx/{$f}", "{$nginxDir}/{$f}");
@@ -147,15 +155,17 @@ class Generator
 
         // Apache
         $apacheDir = $this->buildDir . '/apache';
-        $apacheTags = array_map(fn($t) => "{$registry}/apache:{$t}", $webservers['apache']['tags']);
+        $apacheTags = $this->expandTags($webservers['apache']['tags'], $registry, 'apache', $buildDate, $channel);
         if (!$catalogOnly) {
             $this->ensureDir($apacheDir);
             file_put_contents(
                 "{$apacheDir}/Dockerfile",
-                $this->twig->render('apache/Dockerfile.j2', ['image' => $webservers['apache'], 'matrix' => $matrix])
+                $this->twig->render('apache/Dockerfile.j2', ['image' => $webservers['apache'], 'matrix' => $matrix, 'build_date' => $buildDate, 'channel' => $channel])
             );
             foreach (['httpd.conf', 'vhost.conf.template', 'waf-rules.conf', 'docker-entrypoint-apache.sh'] as $f) {
-                copy($this->templatesDir . "/apache/{$f}", "{$apacheDir}/{$f}");
+                if (file_exists($this->templatesDir . "/apache/{$f}")) {
+                    copy($this->templatesDir . "/apache/{$f}", "{$apacheDir}/{$f}");
+                }
             }
             copy($this->templatesDir . '/common/cloudflare-ips.txt', "{$apacheDir}/cloudflare-ips.txt");
         }
@@ -168,13 +178,18 @@ class Generator
 
         // OpenLiteSpeed
         $olsDir = $this->buildDir . '/openlitespeed';
-        $olsTags = array_map(fn($t) => "{$registry}/openlitespeed:{$t}", $webservers['openlitespeed']['tags']);
+        $olsTags = $this->expandTags($webservers['openlitespeed']['tags'], $registry, 'openlitespeed', $buildDate, $channel);
         if (!$catalogOnly) {
             $this->ensureDir($olsDir);
             file_put_contents(
                 "{$olsDir}/Dockerfile",
-                $this->twig->render('openlitespeed/Dockerfile.j2', ['image' => $webservers['openlitespeed'], 'matrix' => $matrix])
+                $this->twig->render('openlitespeed/Dockerfile.j2', ['image' => $webservers['openlitespeed'], 'matrix' => $matrix, 'build_date' => $buildDate, 'channel' => $channel])
             );
+            foreach (['httpd_config.conf', 'vhost.conf', 'docker-entrypoint-ols.sh'] as $f) {
+                if (file_exists($this->templatesDir . "/openlitespeed/{$f}")) {
+                    copy($this->templatesDir . "/openlitespeed/{$f}", "{$olsDir}/{$f}");
+                }
+            }
         }
         $bakeTargets['openlitespeed'] = [
             'context' => './build/openlitespeed',
@@ -184,14 +199,14 @@ class Generator
         ];
 
         // 5. Databases
-        if (isset($matrix['images']['databases'])) {
-            foreach ($matrix['images']['databases'] as $dbType => $items) {
-                foreach ($items as $dbImg) {
+        if (!empty($matrix['images']['databases'])) {
+            foreach ($matrix['images']['databases'] as $dbType => $dbItems) {
+                foreach ($dbItems as $dbImg) {
                     $ver = $dbImg['version'];
                     $verKey = str_replace('.', '_', $ver);
                     $targetName = "{$dbType}-{$verKey}";
                     $targetDir = $this->buildDir . "/databases/{$dbType}/{$ver}";
-                    $tags = array_map(fn($t) => "{$registry}/{$dbType}:{$t}", $dbImg['tags']);
+                    $tags = $this->expandTags($dbImg['tags'], $registry, $dbType, $buildDate, $channel);
 
                     if (!$catalogOnly) {
                         $this->ensureDir($targetDir);
@@ -200,6 +215,8 @@ class Generator
                             $this->twig->render("databases/{$dbType}/Dockerfile.j2", [
                                 'image' => $dbImg,
                                 'matrix' => $matrix,
+                                'build_date' => $buildDate,
+                                'channel' => $channel,
                             ])
                         );
                         // Copy support configs if exist
@@ -232,6 +249,26 @@ class Generator
         }
 
         $this->catalogManager->generateCatalog($verifiedImages);
+    }
+
+    private function expandTags(array $tags, string $registry, string $repoName, string $buildDate, string $channel = 'current'): array
+    {
+        $expanded = [];
+        foreach ($tags as $t) {
+            if ($channel === 'dev') {
+                $expanded[] = "{$registry}/{$repoName}:{$t}-dev";
+                $expanded[] = "{$registry}/{$repoName}:{$t}-dev-{$buildDate}";
+            } elseif ($channel === 'stable') {
+                $expanded[] = "{$registry}/{$repoName}:{$t}-stable";
+                $expanded[] = "{$registry}/{$repoName}:{$t}-stable-{$buildDate}";
+            } else {
+                // current (default)
+                $expanded[] = "{$registry}/{$repoName}:{$t}";
+                $expanded[] = "{$registry}/{$repoName}:{$t}-{$buildDate}";
+                $expanded[] = "{$registry}/{$repoName}:{$t}-current";
+            }
+        }
+        return array_values(array_unique($expanded));
     }
 
     private function writeBakeFile(array $targets): void

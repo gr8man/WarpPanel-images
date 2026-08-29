@@ -1,55 +1,60 @@
-# Katalog Sprawdzonych Obrazów WarpPanel
+# 🚀 Katalog Sprawdzonych Obrazów WarpPanel
 
-> **Ostatnia aktualizacja:** `2026-08-29T22:14:04+00:00`
-> **Rejestr:** `ghcr.io/gr8man`
+> **Kanał Wydań:** `CURRENT`  
+> **Ostatnia aktualizacja:** `2026-08-29T22:54:32+00:00`  
+> **Aktywny Build ID:** `20260829`  
+> **Rejestr Główny:** `ghcr.io/warppanel`  
 
-Automatycznie generowana lista przetestowanych, zweryfikowanych i gotowych do użycia obrazów dla panelu hostingowego WarpPanel.
+Centralny rejestr i katalog zweryfikowanych obrazów kontenerowych dla platformy hostingowej WarpPanel. Każdy obraz i kanał (`current`, `stable`, `dev`) posiada dedykowaną specyfikację oprogramowania w katalogu `catalog/{channel}/` z listą zainstalowanych pakietów, modułów i konfiguracji runtime.
 
-## 1. PHP-FPM (Alpine Linux)
+## 1. 🐘 PHP-FPM (Alpine Linux)
 
-| Wersja | Typ | Baza Docker | Dostępne Tagi | Główny Tag Rejestru | Status Weryfikacji |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **PHP 8.0** | `modern` | `php:8.0-fpm-alpine` | `8.0-fpm-alpine`, `8.0-fpm` | `ghcr.io/gr8man/php:8.0-fpm-alpine` | ⚡ READY |
-| **PHP 8.1** | `modern` | `php:8.1-fpm-alpine` | `8.1-fpm-alpine`, `8.1-fpm` | `ghcr.io/gr8man/php:8.1-fpm-alpine` | ⚡ READY |
-| **PHP 8.2** | `modern` | `php:8.2-fpm-alpine` | `8.2-fpm-alpine`, `8.2-fpm` | `ghcr.io/gr8man/php:8.2-fpm-alpine` | ⚡ READY |
-| **PHP 8.3** | `modern` | `php:8.3-fpm-alpine` | `8.3-fpm-alpine`, `8.3-fpm`, `latest-fpm` | `ghcr.io/gr8man/php:8.3-fpm-alpine` | ⚡ READY |
-| **PHP 8.4** | `modern` | `php:8.4.25-fpm-alpine3.23` | `8.4-fpm-alpine`, `8.4-fpm` | `ghcr.io/gr8man/php:8.4-fpm-alpine` | ⚡ READY |
-| **PHP 8.5** | `modern` | `php:8.5-fpm-alpine` | `8.5-fpm-alpine`, `8.5-fpm-dev` | `ghcr.io/gr8man/php:8.5-fpm-alpine` | ⚡ READY |
-| **PHP 5.6** | `legacy` | `php:5.6-fpm-alpine` | `5.6-fpm-alpine`, `5.6-fpm` | `ghcr.io/gr8man/php:5.6-fpm-alpine` | ⚡ READY |
-| **PHP 7.0** | `legacy` | `php:7.0-fpm-alpine` | `7.0-fpm-alpine`, `7.0-fpm` | `ghcr.io/gr8man/php:7.0-fpm-alpine` | ⚡ READY |
-| **PHP 7.1** | `legacy` | `php:7.1-fpm-alpine` | `7.1-fpm-alpine`, `7.1-fpm` | `ghcr.io/gr8man/php:7.1-fpm-alpine` | ⚡ READY |
-| **PHP 7.2** | `legacy` | `php:7.2-fpm-alpine` | `7.2-fpm-alpine`, `7.2-fpm` | `ghcr.io/gr8man/php:7.2-fpm-alpine` | ⚡ READY |
-| **PHP 7.3** | `legacy` | `php:7.3-fpm-alpine` | `7.3-fpm-alpine`, `7.3-fpm` | `ghcr.io/gr8man/php:7.3-fpm-alpine` | ⚡ READY |
-| **PHP 7.4** | `legacy` | `php:7.4-fpm-alpine` | `7.4-fpm-alpine`, `7.4-fpm` | `ghcr.io/gr8man/php:7.4-fpm-alpine` | ⚡ READY |
-
-## 2. FrankenPHP (Caddy + PHP Runtime & Worker Mode)
-
-| Wersja PHP | Baza Docker | Dostępne Tagi | Główny Tag Rejestru | Status Weryfikacji |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **FrankenPHP (PHP 8.2)** | `dunglas/frankenphp:1-php8.2-alpine` | `frankenphp-8.2-alpine`, `frankenphp-8.2` | `ghcr.io/gr8man/frankenphp:frankenphp-8.2-alpine` | ⚡ READY |
-| **FrankenPHP (PHP 8.3)** | `dunglas/frankenphp:1-php8.3-alpine` | `frankenphp-8.3-alpine`, `frankenphp-8.3`, `frankenphp-latest` | `ghcr.io/gr8man/frankenphp:frankenphp-8.3-alpine` | ⚡ READY |
-| **FrankenPHP (PHP 8.4)** | `dunglas/frankenphp:1-php8.4-alpine` | `frankenphp-8.4-alpine`, `frankenphp-8.4` | `ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine` | ⚡ READY |
-| **FrankenPHP (PHP 8.5)** | `dunglas/frankenphp:latest-alpine` | `frankenphp-8.5-alpine`, `frankenphp-dev` | `ghcr.io/gr8man/frankenphp:frankenphp-8.5-alpine` | ⚡ READY |
-
-## 3. Webserwery Standalone
-
-| Serwer | Baza Docker | Kluczowe Moduły / Cechy | Główny Tag Rejestru | Status Weryfikacji |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **NGINX** | `nginx:1.27-alpine` | `http2`, `http3_quic`, `brotli`, `cloudflare_realip`, `waf_basic` | `ghcr.io/gr8man/nginx:nginx-alpine` | ⚡ READY |
-| **APACHE** | `httpd:2.4-alpine` | `mpm_event`, `mod_proxy_fcgi`, `mod_rewrite`, `remoteip`, `waf_basic` | `ghcr.io/gr8man/apache:apache-alpine` | ⚡ READY |
-| **OPENLITESPEED** | `litespeedtech/openlitespeed:latest` | `lscache`, `quic`, `waf_rules`, `cloudflare_realip` | `ghcr.io/gr8man/openlitespeed:openlitespeed-alpine` | ⚡ READY |
-
-## 4. Silniki Baz Danych
-
-| Silnik | Wersja | Baza Docker | Dostępne Tagi | Główny Tag Rejestru | Status Weryfikacji |
+| Wersja | Build ID | Typ | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Mysql** | `8.4` | `mysql:8.4` | `mysql-8.4`, `mysql-lts`, `mysql-latest` | `ghcr.io/gr8man/mysql:mysql-8.4` | ⚡ READY |
-| **Mysql** | `8.0` | `mysql:8.0` | `mysql-8.0` | `ghcr.io/gr8man/mysql:mysql-8.0` | ⚡ READY |
-| **Mariadb** | `11.4` | `mariadb:11.4` | `mariadb-11.4`, `mariadb-lts`, `mariadb-latest` | `ghcr.io/gr8man/mariadb:mariadb-11.4` | ⚡ READY |
-| **Mariadb** | `10.11` | `mariadb:10.11` | `mariadb-10.11`, `mariadb-10.11-lts` | `ghcr.io/gr8man/mariadb:mariadb-10.11` | ⚡ READY |
-| **Postgres** | `17` | `postgres:17-alpine` | `postgres-17-alpine`, `postgres-17`, `postgres-latest` | `ghcr.io/gr8man/postgres:postgres-17-alpine` | ⚡ READY |
-| **Postgres** | `16` | `postgres:16-alpine` | `postgres-16-alpine`, `postgres-16` | `ghcr.io/gr8man/postgres:postgres-16-alpine` | ⚡ READY |
-| **Redis** | `7.4` | `redis:7.4-alpine` | `redis-7.4-alpine`, `redis-7.4`, `redis-latest` | `ghcr.io/gr8man/redis:redis-7.4-alpine` | ⚡ READY |
-| **Redis** | `7.2` | `redis:7.2-alpine` | `redis-7.2-alpine`, `redis-7.2` | `ghcr.io/gr8man/redis:redis-7.2-alpine` | ⚡ READY |
-| **Mongodb** | `7.0` | `mongo:7.0` | `mongo-7.0`, `mongodb-7.0`, `mongo-latest` | `ghcr.io/gr8man/mongodb:mongo-7.0` | ⚡ READY |
-| **Mongodb** | `8.0` | `mongo:8.0` | `mongo-8.0`, `mongodb-8.0` | `ghcr.io/gr8man/mongodb:mongo-8.0` | ⚡ READY |
+| **PHP 8.0** | `20260829` | `PHP-FPM Modern` | `php:8.0-fpm-alpine` | `ghcr.io/warppanel/php:8.0-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/8.0/20260829.json) | ⚡ READY |
+| **PHP 8.1** | `20260829` | `PHP-FPM Modern` | `php:8.1-fpm-alpine` | `ghcr.io/warppanel/php:8.1-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/8.1/20260829.json) | ⚡ READY |
+| **PHP 8.2** | `20260829` | `PHP-FPM Modern` | `php:8.2-fpm-alpine` | `ghcr.io/warppanel/php:8.2-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/8.2/20260829.json) | ⚡ READY |
+| **PHP 8.3** | `20260829` | `PHP-FPM Modern` | `php:8.3-fpm-alpine` | `ghcr.io/warppanel/php:8.3-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/8.3/20260829.json) | ⚡ READY |
+| **PHP 8.4** | `20260829` | `PHP-FPM Modern` | `php:8.4.25-fpm-alpine3.23` | `ghcr.io/warppanel/php:8.4-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/8.4/20260829.json) | ⚡ READY |
+| **PHP 8.5** | `20260829` | `PHP-FPM Modern` | `php:8.5-fpm-alpine` | `ghcr.io/warppanel/php:8.5-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/8.5/20260829.json) | ⚡ READY |
+| **PHP 5.6** | `20260829` | `PHP-FPM Legacy` | `php:5.6-fpm-alpine` | `ghcr.io/warppanel/php:5.6-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/5.6/20260829.json) | ⚡ READY |
+| **PHP 7.0** | `20260829` | `PHP-FPM Legacy` | `php:7.0-fpm-alpine` | `ghcr.io/warppanel/php:7.0-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/7.0/20260829.json) | ⚡ READY |
+| **PHP 7.1** | `20260829` | `PHP-FPM Legacy` | `php:7.1-fpm-alpine` | `ghcr.io/warppanel/php:7.1-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/7.1/20260829.json) | ⚡ READY |
+| **PHP 7.2** | `20260829` | `PHP-FPM Legacy` | `php:7.2-fpm-alpine` | `ghcr.io/warppanel/php:7.2-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/7.2/20260829.json) | ⚡ READY |
+| **PHP 7.3** | `20260829` | `PHP-FPM Legacy` | `php:7.3-fpm-alpine` | `ghcr.io/warppanel/php:7.3-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/7.3/20260829.json) | ⚡ READY |
+| **PHP 7.4** | `20260829` | `PHP-FPM Legacy` | `php:7.4-fpm-alpine` | `ghcr.io/warppanel/php:7.4-fpm-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/php-fpm/7.4/20260829.json) | ⚡ READY |
+
+## 2. ⚡ FrankenPHP (All-in-One Caddy + PHP + Worker Mode)
+
+| Wersja PHP | Build ID | Silnik / Serwer | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **PHP 8.2** | `20260829` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.2-alpine` | `ghcr.io/warppanel/frankenphp:frankenphp-8.2-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/frankenphp/8.2/20260829.json) | ⚡ READY |
+| **PHP 8.3** | `20260829` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.3-alpine` | `ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/frankenphp/8.3/20260829.json) | ⚡ READY |
+| **PHP 8.4** | `20260829` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.4-alpine` | `ghcr.io/warppanel/frankenphp:frankenphp-8.4-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/frankenphp/8.4/20260829.json) | ⚡ READY |
+| **PHP 8.5** | `20260829` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:latest-alpine` | `ghcr.io/warppanel/frankenphp:frankenphp-8.5-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/frankenphp/8.5/20260829.json) | ⚡ READY |
+
+## 3. 🌐 Serwery WWW (Standalone)
+
+| Serwer | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **NGINX** | `20260829` | `nginx:1.27-alpine` | `http2`, `http3_quic`, `brotli`, `cloudflare_realip`, `waf_basic` | `ghcr.io/warppanel/nginx:nginx-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/nginx/20260829.json) | ⚡ READY |
+| **APACHE** | `20260829` | `httpd:2.4-alpine` | `mpm_event`, `mod_proxy_fcgi`, `mod_rewrite`, `remoteip`, `waf_basic` | `ghcr.io/warppanel/apache:apache-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/apache/20260829.json) | ⚡ READY |
+| **OPENLITESPEED** | `20260829` | `litespeedtech/openlitespeed:latest` | `lscache`, `quic`, `waf_rules`, `cloudflare_realip` | `ghcr.io/warppanel/openlitespeed:openlitespeed-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/webservers/openlitespeed/20260829.json) | ⚡ READY |
+
+## 4. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna
+
+| Baza / Silnik | Wersja | Build ID | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Mysql** | `8.4` | `20260829` | `mysql:8.4` | `ghcr.io/warppanel/mysql:mysql-8.4-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/mysql-8.4/20260829.json) | ⚡ READY |
+| **Mysql** | `8.0` | `20260829` | `mysql:8.0` | `ghcr.io/warppanel/mysql:mysql-8.0-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/mysql-8.0/20260829.json) | ⚡ READY |
+| **Mariadb** | `11.4` | `20260829` | `mariadb:11.4` | `ghcr.io/warppanel/mariadb:mariadb-11.4-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/mariadb-11.4/20260829.json) | ⚡ READY |
+| **Mariadb** | `10.11` | `20260829` | `mariadb:10.11` | `ghcr.io/warppanel/mariadb:mariadb-10.11-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/mariadb-10.11/20260829.json) | ⚡ READY |
+| **Postgres** | `17` | `20260829` | `postgres:17-alpine` | `ghcr.io/warppanel/postgres:postgres-17-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/postgres-17/20260829.json) | ⚡ READY |
+| **Postgres** | `16` | `20260829` | `postgres:16-alpine` | `ghcr.io/warppanel/postgres:postgres-16-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/postgres-16/20260829.json) | ⚡ READY |
+| **Redis** | `7.4` | `20260829` | `redis:7.4-alpine` | `ghcr.io/warppanel/redis:redis-7.4-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/redis-7.4/20260829.json) | ⚡ READY |
+| **Redis** | `7.2` | `20260829` | `redis:7.2-alpine` | `ghcr.io/warppanel/redis:redis-7.2-alpine-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/redis-7.2/20260829.json) | ⚡ READY |
+| **Mongodb** | `7.0` | `20260829` | `mongo:7.0` | `ghcr.io/warppanel/mongodb:mongo-7.0-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/mongodb-7.0/20260829.json) | ⚡ READY |
+| **Mongodb** | `8.0` | `20260829` | `mongo:8.0` | `ghcr.io/warppanel/mongodb:mongo-8.0-20260829` | [📄 Specyfikacja 20260829](catalog/current/databases/mongodb-8.0/20260829.json) | ⚡ READY |
+
+---
+*Wszystkie szczegółowe specyfikacje buildów znajdują się w folderze `catalog/`.*

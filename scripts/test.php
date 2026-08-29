@@ -272,15 +272,27 @@ try {
     if ($target && str_starts_with($target, 'php-fpm-')) {
         $ver = str_replace(['php-fpm-', '_'], ['', '.'], $target);
         echo "[*] Running end-to-end integration test for PHP-FPM {$ver} with Nginx and Apache...\n";
-        testStackIntegration('nginx', $ver, $registry, $matrix, $fixturesDir, $portCounter++);
+        $resNginx = testStackIntegration('nginx', $ver, $registry, $matrix, $fixturesDir, $portCounter++);
         testStackIntegration('apache', $ver, $registry, $matrix, $fixturesDir, $portCounter++);
-        $catalogManager->recordVerification($target, 'VERIFIED_PASS');
+        $catalogManager->recordVerification($target, 'VERIFIED_PASS', [
+            'php_version' => $resNginx['php_version'] ?? $ver,
+            'php_extensions' => $resNginx['php_extensions'] ?? [],
+            'system_packages' => $resNginx['system_packages'] ?? [],
+            'runtime_defaults' => $resNginx['runtime_defaults'] ?? [],
+            'php_ini' => $resNginx['php_ini'] ?? [],
+        ]);
 
     } elseif ($target && str_starts_with($target, 'frankenphp-')) {
         $ver = str_replace(['frankenphp-', '_'], ['', '.'], $target);
         echo "[*] Running integration test for FrankenPHP {$ver}...\n";
-        testFrankenPhpStack($ver, $registry, $matrix, $fixturesDir, $portCounter++);
-        $catalogManager->recordVerification($target, 'VERIFIED_PASS');
+        $resFranken = testFrankenPhpStack($ver, $registry, $matrix, $fixturesDir, $portCounter++);
+        $catalogManager->recordVerification($target, 'VERIFIED_PASS', [
+            'php_version' => $resFranken['php_version'] ?? $ver,
+            'php_extensions' => $resFranken['php_extensions'] ?? [],
+            'system_packages' => $resFranken['system_packages'] ?? [],
+            'runtime_defaults' => $resFranken['runtime_defaults'] ?? [],
+            'php_ini' => $resFranken['php_ini'] ?? [],
+        ]);
 
     } elseif ($target === 'nginx') {
         echo "[*] Running integration test for Nginx...\n";

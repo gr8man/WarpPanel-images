@@ -21,6 +21,7 @@ composer.phar
 CATALOG.md
 catalog.json
 available-images.json
+catalog/
 verifications/
 downloaded-verifications/
 
