@@ -21,9 +21,9 @@ RUN apk add --no-cache \
 # Add official Docker PHP extension installer
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 
-# Install full suite of WarpPanel hosting extensions
+# Install full suite of WarpPanel hosting extensions (parallel multi-core compilation)
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions \
+    MAKEFLAGS="-j$(nproc)" install-php-extensions \
     bcmath \
     bz2 \
     calendar \
@@ -42,12 +42,14 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     pdo \
     pdo_mysql \
     pdo_pgsql \
+    pdo_sqlite \
     pgsql \
     posix \
     redis \
     soap \
     sockets \
     sodium \
+    sqlite3 \
     sysvmsg \
     sysvsem \
     sysvshm \

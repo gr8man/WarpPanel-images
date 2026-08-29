@@ -48,15 +48,22 @@ class CatalogManager
     {
         $verifiedTargets = [];
         if (is_dir($dir)) {
-            $files = glob("{$dir}/**/verification-*.json") ?: glob("{$dir}/verification-*.json") ?: [];
-            foreach ($files as $file) {
-                $json = json_decode(file_get_contents($file), true);
-                if (!empty($json['target']) && ($json['status'] ?? '') === 'VERIFIED_PASS') {
-                    $verifiedTargets[] = $json['target'];
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS)
+            );
+
+            foreach ($iterator as $file) {
+                if ($file->isFile() && str_starts_with($file->getFilename(), 'verification-') && $file->getExtension() === 'json') {
+                    $json = json_decode(file_get_contents($file->getRealPath()), true);
+                    if (!empty($json['target']) && ($json['status'] ?? '') === 'VERIFIED_PASS') {
+                        $verifiedTargets[] = $json['target'];
+                        echo "  [+] Found verified target: {$json['target']} (from {$file->getFilename()})\n";
+                    }
                 }
             }
         }
 
+        $verifiedTargets = array_unique($verifiedTargets);
         return $this->generateCatalog($verifiedTargets);
     }
 
@@ -67,6 +74,13 @@ class CatalogManager
         $registry = ($envRegistry !== false && $envRegistry !== '') ? $envRegistry : ($matrix['registry'] ?? 'ghcr.io/warppanel');
         $now = date('c');
 
+        $totalDatabases = 0;
+        if (!empty($matrix['images']['databases'])) {
+            foreach ($matrix['images']['databases'] as $dbItems) {
+                $totalDatabases += count($dbItems);
+            }
+        }
+
         $catalog = [
             'version' => '1.0',
             'generated_at' => $now,
@@ -75,12 +89,14 @@ class CatalogManager
                 'total_php_versions' => count($matrix['images']['php_fpm']['legacy']) + count($matrix['images']['php_fpm']['modern']),
                 'total_frankenphp_versions' => count($matrix['images']['frankenphp']['versions']),
                 'total_webservers' => count($matrix['images']['webservers']),
+                'total_databases' => $totalDatabases,
                 'verified_count' => count($verifiedTargets),
             ],
             'images' => [
                 'php_fpm' => [],
                 'frankenphp' => [],
                 'webservers' => [],
+                'databases' => [],
             ],
         ];
 
@@ -90,6 +106,7 @@ class CatalogManager
             'php' => [],
             'frankenphp' => [],
             'webservers' => [],
+            'databases' => [],
         ];
 
         // 1. PHP-FPM Modern
@@ -111,7 +128,7 @@ class CatalogManager
                 'php_extensions' => $matrix['defaults']['php_extensions'] ?? [],
             ];
             $catalog['images']['php_fpm'][] = $item;
-            if ($isVerified || empty($verifiedTargets)) {
+            if ($isVerified) {
                 $simpleList['php'][$ver] = $fullTags;
             }
         }
@@ -132,10 +149,10 @@ class CatalogManager
                 'full_image_tags' => $fullTags,
                 'status' => $isVerified ? 'VERIFIED_PASS' : 'READY',
                 'verified_at' => $isVerified ? $now : null,
-                'php_extensions' => ['pdo_mysql', 'mysqli', 'gd', 'opcache', 'curl', 'zip', 'intl', 'mbstring'],
+                'php_extensions' => ['pdo_mysql', 'pdo_sqlite', 'sqlite3', 'mysqli', 'gd', 'opcache', 'curl', 'zip', 'intl', 'mbstring'],
             ];
             $catalog['images']['php_fpm'][] = $item;
-            if ($isVerified || empty($verifiedTargets)) {
+            if ($isVerified) {
                 $simpleList['php'][$ver] = $fullTags;
             }
         }
@@ -158,7 +175,7 @@ class CatalogManager
                 'features' => ['caddy', 'worker_mode', 'http3', 'https_auto'],
             ];
             $catalog['images']['frankenphp'][] = $item;
-            if ($isVerified || empty($verifiedTargets)) {
+            if ($isVerified) {
                 $simpleList['frankenphp'][$ver] = $fullTags;
             }
         }
@@ -180,8 +197,36 @@ class CatalogManager
                 'verified_at' => $isVerified ? $now : null,
             ];
             $catalog['images']['webservers'][] = $item;
-            if ($isVerified || empty($verifiedTargets)) {
+            if ($isVerified) {
                 $simpleList['webservers'][$srvName] = $fullTags;
+            }
+        }
+
+        // 5. Databases
+        if (!empty($matrix['images']['databases'])) {
+            foreach ($matrix['images']['databases'] as $dbType => $items) {
+                foreach ($items as $dbImg) {
+                    $ver = $dbImg['version'];
+                    $verKey = str_replace('.', '_', $ver);
+                    $targetKey = "{$dbType}-{$verKey}";
+                    $fullTags = array_map(fn($t) => "{$registry}/{$dbType}:{$t}", $dbImg['tags']);
+                    $isVerified = in_array($targetKey, $verifiedTargets, true) || in_array("{$dbType}:{$ver}", $verifiedTargets, true);
+
+                    $item = [
+                        'type' => $dbType,
+                        'version' => $ver,
+                        'target' => $targetKey,
+                        'base_image' => $dbImg['base_image'],
+                        'tags' => $dbImg['tags'],
+                        'full_image_tags' => $fullTags,
+                        'status' => $isVerified ? 'VERIFIED_PASS' : 'READY',
+                        'verified_at' => $isVerified ? $now : null,
+                    ];
+                    $catalog['images']['databases'][] = $item;
+                    if ($isVerified) {
+                        $simpleList['databases']["{$dbType}:{$ver}"] = $fullTags;
+                    }
+                }
             }
         }
 
@@ -239,6 +284,19 @@ class CatalogManager
             $srvName = strtoupper($item['server']);
             $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
             $md .= "| **{$srvName}** | `{$item['base_image']}` | {$featsStr} | `{$primaryTag}` | {$statusBadge} |\n";
+        }
+
+        if (!empty($catalog['images']['databases'])) {
+            $md .= "\n## 4. Silniki Baz Danych\n\n";
+            $md .= "| Silnik | Wersja | Baza Docker | Dostępne Tagi | Główny Tag Rejestru | Status Weryfikacji |\n";
+            $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
+            foreach ($catalog['images']['databases'] as $item) {
+                $tagsStr = implode(', ', array_map(fn($t) => "`{$t}`", $item['tags']));
+                $primaryTag = $item['full_image_tags'][0];
+                $dbName = ucfirst($item['type']);
+                $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
+                $md .= "| **{$dbName}** | `{$item['version']}` | `{$item['base_image']}` | {$tagsStr} | `{$primaryTag}` | {$statusBadge} |\n";
+            }
         }
 
         file_put_contents($this->catalogMdFile, $md);

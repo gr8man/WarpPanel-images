@@ -29,12 +29,14 @@ defaults:
     - pdo
     - pdo_mysql
     - pdo_pgsql
+    - pdo_sqlite
     - pgsql
     - posix
     - redis
     - soap
     - sockets
     - sodium
+    - sqlite3
     - sysvmsg
     - sysvsem
     - sysvshm
@@ -137,3 +139,40 @@ images:
       base_image: "litespeedtech/openlitespeed:latest"
       tags: ["openlitespeed-alpine", "openlitespeed-latest", "ols-latest"]
       features: ["lscache", "quic", "waf_rules", "cloudflare_realip"]
+
+  databases:
+    mysql:
+      - version: "8.4"
+        base_image: "mysql:8.4"
+        tags: ["mysql-8.4", "mysql-lts", "mysql-latest"]
+      - version: "8.0"
+        base_image: "mysql:8.0"
+        tags: ["mysql-8.0"]
+    mariadb:
+      - version: "11.4"
+        base_image: "mariadb:11.4-alpine"
+        tags: ["mariadb-11.4-alpine", "mariadb-11.4", "mariadb-lts", "mariadb-latest"]
+      - version: "10.11"
+        base_image: "mariadb:10.11-alpine"
+        tags: ["mariadb-10.11-alpine", "mariadb-10.11"]
+    postgres:
+      - version: "17"
+        base_image: "postgres:17-alpine"
+        tags: ["postgres-17-alpine", "postgres-17", "postgres-latest"]
+      - version: "16"
+        base_image: "postgres:16-alpine"
+        tags: ["postgres-16-alpine", "postgres-16"]
+    redis:
+      - version: "7.4"
+        base_image: "redis:7.4-alpine"
+        tags: ["redis-7.4-alpine", "redis-7.4", "redis-latest"]
+      - version: "7.2"
+        base_image: "redis:7.2-alpine"
+        tags: ["redis-7.2-alpine", "redis-7.2"]
+    mongodb:
+      - version: "7.0"
+        base_image: "mongo:7.0"
+        tags: ["mongo-7.0", "mongodb-7.0", "mongo-latest"]
+      - version: "8.0"
+        base_image: "mongo:8.0"
+        tags: ["mongo-8.0", "mongodb-8.0"]

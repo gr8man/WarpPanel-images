@@ -1,0 +1,9 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel PostgreSQL {{ image.version }} (Alpine)"
+LABEL org.opencontainers.image.description="Optimized PostgreSQL container for WarpPanel web hosting"
+
+EXPOSE 5432
+
+CMD ["postgres", "-c", "shared_buffers=128MB", "-c", "max_connections=200", "-c", "work_mem=4MB"]

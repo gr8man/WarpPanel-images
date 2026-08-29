@@ -1,14 +1,15 @@
-name: Build, Test and Publish WarpPanel Images
+name: Build, Test & Publish Matrix
 
 on:
   push:
-    branches: [main, master]
-    tags: ['v*']
+    branches:
+      - master
+      - main
   pull_request:
-    branches: [main, master]
+    branches:
+      - master
+      - main
   workflow_dispatch:
-  schedule:
-    - cron: '0 3 * * 1' # Co poniedziałek o 03:00 UTC
 
 permissions:
   contents: write
@@ -50,6 +51,17 @@ jobs:
           - frankenphp-8_3
           - frankenphp-8_4
           - frankenphp-8_5
+          # Bazy Danych Sieciowe
+          - mysql-8_4
+          - mysql-8_0
+          - mariadb-11_4
+          - mariadb-10_11
+          - postgres-17
+          - postgres-16
+          - redis-7_4
+          - redis-7_2
+          - mongodb-7_0
+          - mongodb-8_0
 
     steps:
       - name: Checkout repository
@@ -103,8 +115,9 @@ jobs:
       - name: Run Verification Test [${{ matrix.target }}]
         run: php scripts/test.php --target=${{ matrix.target }}
 
-      # Zapisanie wyniku weryfikacji jako artefaktu
+      # Zapisanie wyniku weryfikacji jako artefaktu (TYLKO JEŚLI TEST PRZESZEDŁ)
       - name: Upload Target Verification Record
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: verification-${{ matrix.target }}
@@ -121,6 +134,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup PHP and Composer
         uses: shivammathur/setup-php@v2
@@ -147,3 +163,17 @@ jobs:
             CATALOG.md
             catalog.json
             available-images.json
+
+      - name: Commit and Push Verified Catalog to Repository
+        if: github.event_name != 'pull_request'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f catalog.json available-images.json CATALOG.md
+          if ! git diff --staged --quiet; then
+            echo "[*] Committing verified catalog updates..."
+            git commit -m "chore(catalog): auto-update verified images catalog [skip ci]"
+            git push origin HEAD:${{ github.ref_name }} || true
+          else
+            echo "[*] No catalog changes to commit."
+          fi

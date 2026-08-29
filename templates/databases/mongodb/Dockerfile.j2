@@ -1,0 +1,9 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel MongoDB {{ image.version }}"
+LABEL org.opencontainers.image.description="NoSQL document database optimized for WarpPanel hosting"
+
+EXPOSE 27017
+
+CMD ["mongod", "--bind_ip_all"]

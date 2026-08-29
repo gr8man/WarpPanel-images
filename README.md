@@ -9,13 +9,20 @@ Automated build, testing, and distribution system for lightweight, high-performa
 - **Ultra-Lightweight Alpine Base**: Minimal image footprint (tens of MBs instead of hundreds of MBs), fast boot times, and hardened security.
 - **Full PHP Version Matrix (5.6 – 8.5)**:
   - **Legacy PHP (5.6, 7.0, 7.1, 7.2, 7.3, 7.4)** with Composer 2.2 LTS.
-  - **Modern PHP (8.0, 8.1, 8.2, 8.3, 8.4, 8.5)** with latest Composer 2.x and pre-installed hosting extensions (`pdo_mysql`, `gd`, `opcache`, `redis`, `imagick`, `zip`, `intl`, `xdebug`, etc.).
+  - **Modern PHP (8.0, 8.1, 8.2, 8.3, 8.4, 8.5)** with latest Composer 2.x and pre-installed hosting extensions (`pdo_mysql`, `pdo_pgsql`, `pdo_sqlite`, `sqlite3`, `mysqli`, `pgsql`, `redis`, `imagick`, `igbinary`, `imap`, `intl`, `pcntl`, `posix`, `soap`, `sockets`, `xdebug`, `zip`, etc.).
 - **Built-in Xdebug Support**:
-  - Pre-installed and ready for step debugging, profiling, and coverage.
+  - Pre-installed across all PHP versions and ready for step debugging, profiling, and coverage.
   - Disabled by default for zero performance overhead in production (`PHP_XDEBUG_ENABLED=0`).
   - Easily activated on demand with `PHP_XDEBUG_ENABLED=1`.
+- **Comprehensive Database Engines**:
+  - **MySQL**: 8.0 & 8.4 LTS with utf8mb4 and hosting-optimized buffer pools.
+  - **MariaDB**: 10.11 & 11.4 LTS (Alpine) with InnoDB tuning.
+  - **PostgreSQL**: 16 & 17 (Alpine) with tuning for concurrent hosting workloads.
+  - **Redis**: 7.2 & 7.4 (Alpine) with LRU memory management and AOF/RDB persistence.
+  - **MongoDB**: 7.0 & 8.0 document datastore.
+  - **SQLite 3**: Embedded and supported out-of-the-box in all PHP runtimes via `pdo_sqlite` and `sqlite3` without extra database containers!
 - **Versatile Web Servers**:
-  - **Nginx**: FastCGI proxying (TCP/Unix socket), HTTP/2, HTTP/3 (QUIC), and Brotli compression.
+  - **Nginx**: FastCGI proxying (TCP/Unix socket) with dynamic DNS resolver, HTTP/2, HTTP/3 (QUIC), and Brotli compression.
   - **Apache HTTPD**: `mpm_event` + `mod_proxy_fcgi` with full `.htaccess` & `mod_rewrite` support.
   - **OpenLiteSpeed**: High-performance HTTP/3 web server with LSCache support.
   - **FrankenPHP**: All-in-one modern PHP runtime (Caddy + PHP) supporting Classic and Worker Mode (Laravel Octane, Symfony Runtime).
@@ -34,7 +41,7 @@ Automated build, testing, and distribution system for lightweight, high-performa
 - **Automated Verified Catalog Manifests**:
   - Generates machine-readable `catalog.json` and `available-images.json` alongside [CATALOG.md](CATALOG.md) only after integration tests pass.
 - **Daily Automated Upstream Version Checks**:
-  - Daily GitHub Actions cron checks for newer Alpine/PHP/Nginx/Apache releases and triggers automatic pull requests.
+  - Daily GitHub Actions cron checks for newer upstream releases and triggers automatic pull requests.
 
 ---
 
@@ -93,6 +100,13 @@ docker pull ghcr.io/warppanel/openlitespeed:openlitespeed-alpine
 
 # FrankenPHP
 docker pull ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine
+
+# Network Databases
+docker pull ghcr.io/warppanel/mysql:mysql-8.4
+docker pull ghcr.io/warppanel/mariadb:mariadb-11.4-alpine
+docker pull ghcr.io/warppanel/postgres:postgres-17-alpine
+docker pull ghcr.io/warppanel/redis:redis-7.4-alpine
+docker pull ghcr.io/warppanel/mongodb:mongo-7.0
 ```
 
 ---

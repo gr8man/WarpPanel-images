@@ -1,0 +1,12 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel MySQL {{ image.version }}"
+LABEL org.opencontainers.image.description="Hardened and tuned MySQL server for WarpPanel hosting"
+
+COPY custom.cnf /etc/mysql/conf.d/99-warppanel.cnf
+RUN chmod 644 /etc/mysql/conf.d/99-warppanel.cnf
+
+EXPOSE 3306 33060
+
+CMD ["mysqld"]

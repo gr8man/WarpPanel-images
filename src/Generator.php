@@ -183,6 +183,50 @@ class Generator
             'platforms' => ['linux/amd64'],
         ];
 
+        // 5. Databases
+        if (isset($matrix['images']['databases'])) {
+            foreach ($matrix['images']['databases'] as $dbType => $items) {
+                foreach ($items as $dbImg) {
+                    $ver = $dbImg['version'];
+                    $verKey = str_replace('.', '_', $ver);
+                    $targetName = "{$dbType}-{$verKey}";
+                    $targetDir = $this->buildDir . "/databases/{$dbType}/{$ver}";
+                    $tags = array_map(fn($t) => "{$registry}/{$dbType}:{$t}", $dbImg['tags']);
+
+                    if (!$catalogOnly) {
+                        $this->ensureDir($targetDir);
+                        file_put_contents(
+                            "{$targetDir}/Dockerfile",
+                            $this->twig->render("databases/{$dbType}/Dockerfile.j2", [
+                                'image' => $dbImg,
+                                'matrix' => $matrix,
+                            ])
+                        );
+                        // Copy support configs if exist
+                        $customCnf = $this->templatesDir . "/databases/{$dbType}/custom.cnf";
+                        if (file_exists($customCnf)) {
+                            copy($customCnf, "{$targetDir}/custom.cnf");
+                        }
+                        $redisConf = $this->templatesDir . "/databases/{$dbType}/redis.conf";
+                        if (file_exists($redisConf)) {
+                            copy($redisConf, "{$targetDir}/redis.conf");
+                        }
+                        $entrypoint = $this->templatesDir . "/databases/{$dbType}/docker-entrypoint-sqlite.sh";
+                        if (file_exists($entrypoint)) {
+                            copy($entrypoint, "{$targetDir}/docker-entrypoint-sqlite.sh");
+                        }
+                    }
+
+                    $bakeTargets[$targetName] = [
+                        'context' => "./build/databases/{$dbType}/{$ver}",
+                        'dockerfile' => 'Dockerfile',
+                        'tags' => $tags,
+                        'platforms' => ['linux/amd64', 'linux/arm64'],
+                    ];
+                }
+            }
+        }
+
         if (!$catalogOnly) {
             $this->writeBakeFile($bakeTargets);
         }
@@ -195,11 +239,14 @@ class Generator
         $targetNames = array_keys($targets);
         $phpTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'php-fpm')));
         $frankenTargets = array_values(array_filter($targetNames, fn($t) => str_starts_with($t, 'frankenphp')));
+        $dbTargets = array_values(array_filter($targetNames, fn($t) => preg_match('/^(mysql|mariadb|postgres|redis|mongodb|sqlite)-/', $t)));
+        $webTargets = ['nginx', 'apache', 'openlitespeed'];
 
         $content = "group \"default\" {\n    targets = " . json_encode($targetNames, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"php\" {\n    targets = " . json_encode($phpTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
         $content .= "group \"frankenphp\" {\n    targets = " . json_encode($frankenTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
-        $content .= "group \"webservers\" {\n    targets = [\"nginx\", \"apache\", \"openlitespeed\"]\n}\n\n";
+        $content .= "group \"webservers\" {\n    targets = " . json_encode($webTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
+        $content .= "group \"databases\" {\n    targets = " . json_encode($dbTargets, JSON_UNESCAPED_SLASHES) . "\n}\n\n";
 
         foreach ($targets as $name => $cfg) {
             $content .= "target \"{$name}\" {\n";

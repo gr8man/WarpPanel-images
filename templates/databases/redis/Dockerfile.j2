@@ -1,0 +1,11 @@
+FROM {{ image.base_image }}
+
+LABEL maintainer="WarpPanel Team"
+LABEL org.opencontainers.image.title="WarpPanel Redis (Alpine)"
+LABEL org.opencontainers.image.description="High-performance in-memory cache and datastore for WarpPanel"
+
+COPY redis.conf /usr/local/etc/redis/redis.conf
+
+EXPOSE 6379
+
+CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]

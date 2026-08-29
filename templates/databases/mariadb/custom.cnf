@@ -1,0 +1,14 @@
+[mariadb]
+character_set_server = utf8mb4
+collation_server = utf8mb4_unicode_ci
+
+max_connections = 250
+max_allowed_packet = 64M
+innodb_buffer_pool_size = 256M
+innodb_file_per_table = 1
+innodb_flush_log_at_trx_commit = 2
+
+skip_name_resolve = 1
+
+[client-mariadb]
+default-character-set = utf8mb4
