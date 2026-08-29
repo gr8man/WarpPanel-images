@@ -150,11 +150,11 @@ images:
         tags: ["mysql-8.0"]
     mariadb:
       - version: "11.4"
-        base_image: "mariadb:11.4-alpine"
-        tags: ["mariadb-11.4-alpine", "mariadb-11.4", "mariadb-lts", "mariadb-latest"]
+        base_image: "mariadb:11.4"
+        tags: ["mariadb-11.4", "mariadb-lts", "mariadb-latest"]
       - version: "10.11"
-        base_image: "mariadb:10.11-alpine"
-        tags: ["mariadb-10.11-alpine", "mariadb-10.11"]
+        base_image: "mariadb:10.11"
+        tags: ["mariadb-10.11", "mariadb-10.11-lts"]
     postgres:
       - version: "17"
         base_image: "postgres:17-alpine"

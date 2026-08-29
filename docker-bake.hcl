@@ -168,14 +168,14 @@ target "mysql-8_0" {
 target "mariadb-11_4" {
     context = "./build/databases/mariadb/11.4"
     dockerfile = "Dockerfile"
-    tags = ["ghcr.io/warppanel/mariadb:mariadb-11.4-alpine","ghcr.io/warppanel/mariadb:mariadb-11.4","ghcr.io/warppanel/mariadb:mariadb-lts","ghcr.io/warppanel/mariadb:mariadb-latest"]
+    tags = ["ghcr.io/warppanel/mariadb:mariadb-11.4","ghcr.io/warppanel/mariadb:mariadb-lts","ghcr.io/warppanel/mariadb:mariadb-latest"]
     platforms = ["linux/amd64","linux/arm64"]
 }
 
 target "mariadb-10_11" {
     context = "./build/databases/mariadb/10.11"
     dockerfile = "Dockerfile"
-    tags = ["ghcr.io/warppanel/mariadb:mariadb-10.11-alpine","ghcr.io/warppanel/mariadb:mariadb-10.11"]
+    tags = ["ghcr.io/warppanel/mariadb:mariadb-10.11","ghcr.io/warppanel/mariadb:mariadb-10.11-lts"]
     platforms = ["linux/amd64","linux/arm64"]
 }
 
