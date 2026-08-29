@@ -96,9 +96,17 @@ function resolveCandidate(string $type, string $tagOrVer, string $registry, arra
 
     // Try pull from registry
     $primary = $candidates[0];
-    echo "  [*] Pulling candidate: {$primary}...\n";
+    echo "  [*] Image not found locally. Pulling candidate: {$primary}...\n";
     exec("docker pull {$primary} 2>&1", $pOut, $pCode);
-    return $primary;
+    if ($pCode === 0) {
+        return $primary;
+    }
+
+    $pullError = implode("\n", $pOut);
+    throw new RuntimeException(
+        "Candidate image '{$primary}' is not available locally and could not be pulled from registry:\n{$pullError}\n" .
+        "Tip: Build images locally with 'composer build' (or 'docker buildx bake') before running tests."
+    );
 }
 
 function testStackIntegration(
