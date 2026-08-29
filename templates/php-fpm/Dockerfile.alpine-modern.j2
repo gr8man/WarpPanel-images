@@ -21,7 +21,7 @@ RUN apk add --no-cache \
 # Add official Docker PHP extension installer
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 
-# Install standard WarpPanel hosting extensions including Xdebug
+# Install full suite of WarpPanel hosting extensions
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions \
     bcmath \
@@ -33,14 +33,17 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     gmp \
     igbinary \
     imagick \
+    imap \
     intl \
     mbstring \
     mysqli \
     opcache \
+    pcntl \
     pdo \
     pdo_mysql \
     pdo_pgsql \
     pgsql \
+    posix \
     redis \
     soap \
     sockets \

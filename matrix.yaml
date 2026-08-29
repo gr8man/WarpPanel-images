@@ -25,10 +25,12 @@ defaults:
     - mbstring
     - mysqli
     - opcache
+    - pcntl
     - pdo
     - pdo_mysql
     - pdo_pgsql
     - pgsql
+    - posix
     - redis
     - soap
     - sockets
