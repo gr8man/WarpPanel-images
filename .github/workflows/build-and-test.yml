@@ -17,10 +17,10 @@ permissions:
 
 jobs:
   # ============================================================================
-  # 1. RÓWNOLEGŁE BUDOWANIE, TESTOWANIE I PUBLIKACJA KAŻDEGO OBRAZU
+  # ETAP 1: RÓWNOLEGŁE BUDOWANIE I PUBLIKACJA WSZYSTKICH OBRAZÓW (GHCR)
   # ============================================================================
-  build-image:
-    name: Build & Test [${{ matrix.target }}]
+  build-images:
+    name: Build & Push [${{ matrix.target }}]
     runs-on: ubuntu-latest
     env:
       IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
@@ -99,7 +99,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Budowanie i publikacja konkretnego celu z macierzy
       - name: Build & Push [${{ matrix.target }}]
         uses: docker/bake-action@v6
         with:
@@ -111,8 +110,77 @@ jobs:
             *.cache-from=type=gha,scope=${{ matrix.target }}
             *.cache-to=type=gha,scope=${{ matrix.target }},mode=max
 
-      # Uruchomienie testu weryfikacyjnego dla tego celu
-      - name: Run Verification Test [${{ matrix.target }}]
+  # ============================================================================
+  # ETAP 2: TESTY INTEGRACYJNE (PO ZBUDOWANIU WSZYSTKICH KONTENERÓW)
+  # ============================================================================
+  test-images:
+    name: Integration Test [${{ matrix.target }}]
+    needs: build-images
+    if: always()
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          # Webserwery
+          - nginx
+          - apache
+          - openlitespeed
+          # PHP-FPM Modern
+          - php-fpm-8_0
+          - php-fpm-8_1
+          - php-fpm-8_2
+          - php-fpm-8_3
+          - php-fpm-8_4
+          - php-fpm-8_5
+          # PHP-FPM Legacy
+          - php-fpm-5_6
+          - php-fpm-7_0
+          - php-fpm-7_1
+          - php-fpm-7_2
+          - php-fpm-7_3
+          - php-fpm-7_4
+          # FrankenPHP
+          - frankenphp-8_2
+          - frankenphp-8_3
+          - frankenphp-8_4
+          - frankenphp-8_5
+          # Bazy Danych
+          - mysql-8_4
+          - mysql-8_0
+          - mariadb-11_4
+          - mariadb-10_11
+          - postgres-17
+          - postgres-16
+          - redis-7_4
+          - redis-7_2
+          - mongodb-7_0
+          - mongodb-8_0
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Log in to GitHub Container Registry (GHCR)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Uruchomienie testu integracyjnego (pobiera zbudowane obrazy z GHCR)
+      - name: Run Integration Test [${{ matrix.target }}]
         run: php scripts/test.php --target=${{ matrix.target }}
 
       # Zapisanie wyniku weryfikacji jako artefaktu (TYLKO JEŚLI TEST PRZESZEDŁ)
@@ -124,11 +192,11 @@ jobs:
           path: verifications/verification-${{ matrix.target }}.json
 
   # ============================================================================
-  # 2. FINALIZACJA I AGREGACJA KATALOGU SPRAWDZONYCH OBRAZÓW (catalog.json)
+  # ETAP 3: FINALIZACJA I AGREGACJA KATALOGU SPRAWDZONYCH OBRAZÓW (catalog.json)
   # ============================================================================
   finalize-catalog:
     name: Aggregate & Finalize Catalog
-    needs: build-image
+    needs: [build-images, test-images]
     if: always()
     runs-on: ubuntu-latest
     steps:
