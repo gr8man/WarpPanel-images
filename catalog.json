@@ -1,0 +1,829 @@
+{
+    "version": "1.0",
+    "generated_at": "2026-08-29T22:00:15+00:00",
+    "registry": "ghcr.io/warppanel",
+    "summary": {
+        "total_php_versions": 12,
+        "total_frankenphp_versions": 4,
+        "total_webservers": 3,
+        "total_databases": 10,
+        "verified_count": 29
+    },
+    "images": {
+        "php_fpm": [
+            {
+                "version": "8.0",
+                "target": "php-fpm-8_0",
+                "type": "modern",
+                "base_image": "php:8.0-fpm-alpine",
+                "tags": [
+                    "8.0-fpm-alpine",
+                    "8.0-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:8.0-fpm-alpine",
+                    "ghcr.io/warppanel/php:8.0-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "curl",
+                    "exif",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "igbinary",
+                    "imagick",
+                    "imap",
+                    "intl",
+                    "mbstring",
+                    "mysqli",
+                    "opcache",
+                    "pcntl",
+                    "pdo",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "posix",
+                    "redis",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "sqlite3",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "xdebug",
+                    "xml",
+                    "xsl",
+                    "zip"
+                ]
+            },
+            {
+                "version": "8.1",
+                "target": "php-fpm-8_1",
+                "type": "modern",
+                "base_image": "php:8.1-fpm-alpine",
+                "tags": [
+                    "8.1-fpm-alpine",
+                    "8.1-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:8.1-fpm-alpine",
+                    "ghcr.io/warppanel/php:8.1-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "curl",
+                    "exif",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "igbinary",
+                    "imagick",
+                    "imap",
+                    "intl",
+                    "mbstring",
+                    "mysqli",
+                    "opcache",
+                    "pcntl",
+                    "pdo",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "posix",
+                    "redis",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "sqlite3",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "xdebug",
+                    "xml",
+                    "xsl",
+                    "zip"
+                ]
+            },
+            {
+                "version": "8.2",
+                "target": "php-fpm-8_2",
+                "type": "modern",
+                "base_image": "php:8.2-fpm-alpine",
+                "tags": [
+                    "8.2-fpm-alpine",
+                    "8.2-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:8.2-fpm-alpine",
+                    "ghcr.io/warppanel/php:8.2-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "curl",
+                    "exif",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "igbinary",
+                    "imagick",
+                    "imap",
+                    "intl",
+                    "mbstring",
+                    "mysqli",
+                    "opcache",
+                    "pcntl",
+                    "pdo",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "posix",
+                    "redis",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "sqlite3",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "xdebug",
+                    "xml",
+                    "xsl",
+                    "zip"
+                ]
+            },
+            {
+                "version": "8.3",
+                "target": "php-fpm-8_3",
+                "type": "modern",
+                "base_image": "php:8.3-fpm-alpine",
+                "tags": [
+                    "8.3-fpm-alpine",
+                    "8.3-fpm",
+                    "latest-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:8.3-fpm-alpine",
+                    "ghcr.io/warppanel/php:8.3-fpm",
+                    "ghcr.io/warppanel/php:latest-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "curl",
+                    "exif",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "igbinary",
+                    "imagick",
+                    "imap",
+                    "intl",
+                    "mbstring",
+                    "mysqli",
+                    "opcache",
+                    "pcntl",
+                    "pdo",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "posix",
+                    "redis",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "sqlite3",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "xdebug",
+                    "xml",
+                    "xsl",
+                    "zip"
+                ]
+            },
+            {
+                "version": "8.4",
+                "target": "php-fpm-8_4",
+                "type": "modern",
+                "base_image": "php:8.4-fpm-alpine",
+                "tags": [
+                    "8.4-fpm-alpine",
+                    "8.4-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:8.4-fpm-alpine",
+                    "ghcr.io/warppanel/php:8.4-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "curl",
+                    "exif",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "igbinary",
+                    "imagick",
+                    "imap",
+                    "intl",
+                    "mbstring",
+                    "mysqli",
+                    "opcache",
+                    "pcntl",
+                    "pdo",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "posix",
+                    "redis",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "sqlite3",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "xdebug",
+                    "xml",
+                    "xsl",
+                    "zip"
+                ]
+            },
+            {
+                "version": "8.5",
+                "target": "php-fpm-8_5",
+                "type": "modern",
+                "base_image": "php:8.5-fpm-alpine",
+                "tags": [
+                    "8.5-fpm-alpine",
+                    "8.5-fpm-dev"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:8.5-fpm-alpine",
+                    "ghcr.io/warppanel/php:8.5-fpm-dev"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "bcmath",
+                    "bz2",
+                    "calendar",
+                    "curl",
+                    "exif",
+                    "gd",
+                    "gettext",
+                    "gmp",
+                    "igbinary",
+                    "imagick",
+                    "imap",
+                    "intl",
+                    "mbstring",
+                    "mysqli",
+                    "opcache",
+                    "pcntl",
+                    "pdo",
+                    "pdo_mysql",
+                    "pdo_pgsql",
+                    "pdo_sqlite",
+                    "pgsql",
+                    "posix",
+                    "redis",
+                    "soap",
+                    "sockets",
+                    "sodium",
+                    "sqlite3",
+                    "sysvmsg",
+                    "sysvsem",
+                    "sysvshm",
+                    "xdebug",
+                    "xml",
+                    "xsl",
+                    "zip"
+                ]
+            },
+            {
+                "version": "5.6",
+                "target": "php-fpm-5_6",
+                "type": "legacy",
+                "base_image": "php:5.6-fpm-alpine",
+                "tags": [
+                    "5.6-fpm-alpine",
+                    "5.6-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:5.6-fpm-alpine",
+                    "ghcr.io/warppanel/php:5.6-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "pdo_mysql",
+                    "pdo_sqlite",
+                    "sqlite3",
+                    "mysqli",
+                    "gd",
+                    "opcache",
+                    "curl",
+                    "zip",
+                    "intl",
+                    "mbstring"
+                ]
+            },
+            {
+                "version": "7.0",
+                "target": "php-fpm-7_0",
+                "type": "legacy",
+                "base_image": "php:7.0-fpm-alpine",
+                "tags": [
+                    "7.0-fpm-alpine",
+                    "7.0-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:7.0-fpm-alpine",
+                    "ghcr.io/warppanel/php:7.0-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "pdo_mysql",
+                    "pdo_sqlite",
+                    "sqlite3",
+                    "mysqli",
+                    "gd",
+                    "opcache",
+                    "curl",
+                    "zip",
+                    "intl",
+                    "mbstring"
+                ]
+            },
+            {
+                "version": "7.1",
+                "target": "php-fpm-7_1",
+                "type": "legacy",
+                "base_image": "php:7.1-fpm-alpine",
+                "tags": [
+                    "7.1-fpm-alpine",
+                    "7.1-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:7.1-fpm-alpine",
+                    "ghcr.io/warppanel/php:7.1-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "pdo_mysql",
+                    "pdo_sqlite",
+                    "sqlite3",
+                    "mysqli",
+                    "gd",
+                    "opcache",
+                    "curl",
+                    "zip",
+                    "intl",
+                    "mbstring"
+                ]
+            },
+            {
+                "version": "7.2",
+                "target": "php-fpm-7_2",
+                "type": "legacy",
+                "base_image": "php:7.2-fpm-alpine",
+                "tags": [
+                    "7.2-fpm-alpine",
+                    "7.2-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:7.2-fpm-alpine",
+                    "ghcr.io/warppanel/php:7.2-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "pdo_mysql",
+                    "pdo_sqlite",
+                    "sqlite3",
+                    "mysqli",
+                    "gd",
+                    "opcache",
+                    "curl",
+                    "zip",
+                    "intl",
+                    "mbstring"
+                ]
+            },
+            {
+                "version": "7.3",
+                "target": "php-fpm-7_3",
+                "type": "legacy",
+                "base_image": "php:7.3-fpm-alpine",
+                "tags": [
+                    "7.3-fpm-alpine",
+                    "7.3-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:7.3-fpm-alpine",
+                    "ghcr.io/warppanel/php:7.3-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "pdo_mysql",
+                    "pdo_sqlite",
+                    "sqlite3",
+                    "mysqli",
+                    "gd",
+                    "opcache",
+                    "curl",
+                    "zip",
+                    "intl",
+                    "mbstring"
+                ]
+            },
+            {
+                "version": "7.4",
+                "target": "php-fpm-7_4",
+                "type": "legacy",
+                "base_image": "php:7.4-fpm-alpine",
+                "tags": [
+                    "7.4-fpm-alpine",
+                    "7.4-fpm"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/php:7.4-fpm-alpine",
+                    "ghcr.io/warppanel/php:7.4-fpm"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "php_extensions": [
+                    "pdo_mysql",
+                    "pdo_sqlite",
+                    "sqlite3",
+                    "mysqli",
+                    "gd",
+                    "opcache",
+                    "curl",
+                    "zip",
+                    "intl",
+                    "mbstring"
+                ]
+            }
+        ],
+        "frankenphp": [
+            {
+                "php_version": "8.2",
+                "target": "frankenphp-8_2",
+                "base_image": "dunglas/frankenphp:1-php8.2-alpine",
+                "tags": [
+                    "frankenphp-8.2-alpine",
+                    "frankenphp-8.2"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.2-alpine",
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.2"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "features": [
+                    "caddy",
+                    "worker_mode",
+                    "http3",
+                    "https_auto"
+                ]
+            },
+            {
+                "php_version": "8.3",
+                "target": "frankenphp-8_3",
+                "base_image": "dunglas/frankenphp:1-php8.3-alpine",
+                "tags": [
+                    "frankenphp-8.3-alpine",
+                    "frankenphp-8.3",
+                    "frankenphp-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine",
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.3",
+                    "ghcr.io/warppanel/frankenphp:frankenphp-latest"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "features": [
+                    "caddy",
+                    "worker_mode",
+                    "http3",
+                    "https_auto"
+                ]
+            },
+            {
+                "php_version": "8.4",
+                "target": "frankenphp-8_4",
+                "base_image": "dunglas/frankenphp:1-php8.4-alpine",
+                "tags": [
+                    "frankenphp-8.4-alpine",
+                    "frankenphp-8.4"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.4-alpine",
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.4"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "features": [
+                    "caddy",
+                    "worker_mode",
+                    "http3",
+                    "https_auto"
+                ]
+            },
+            {
+                "php_version": "8.5",
+                "target": "frankenphp-8_5",
+                "base_image": "dunglas/frankenphp:latest-alpine",
+                "tags": [
+                    "frankenphp-8.5-alpine",
+                    "frankenphp-dev"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/frankenphp:frankenphp-8.5-alpine",
+                    "ghcr.io/warppanel/frankenphp:frankenphp-dev"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00",
+                "features": [
+                    "caddy",
+                    "worker_mode",
+                    "http3",
+                    "https_auto"
+                ]
+            }
+        ],
+        "webservers": [
+            {
+                "server": "nginx",
+                "target": "nginx",
+                "base_image": "nginx:1.27-alpine",
+                "tags": [
+                    "nginx-alpine",
+                    "nginx-latest",
+                    "nginx-1.27"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/nginx:nginx-alpine",
+                    "ghcr.io/warppanel/nginx:nginx-latest",
+                    "ghcr.io/warppanel/nginx:nginx-1.27"
+                ],
+                "features": [
+                    "http2",
+                    "http3_quic",
+                    "brotli",
+                    "cloudflare_realip",
+                    "waf_basic"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "server": "apache",
+                "target": "apache",
+                "base_image": "httpd:2.4-alpine",
+                "tags": [
+                    "apache-alpine",
+                    "apache-latest",
+                    "httpd-2.4"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/apache:apache-alpine",
+                    "ghcr.io/warppanel/apache:apache-latest",
+                    "ghcr.io/warppanel/apache:httpd-2.4"
+                ],
+                "features": [
+                    "mpm_event",
+                    "mod_proxy_fcgi",
+                    "mod_rewrite",
+                    "remoteip",
+                    "waf_basic"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "server": "openlitespeed",
+                "target": "openlitespeed",
+                "base_image": "litespeedtech/openlitespeed:latest",
+                "tags": [
+                    "openlitespeed-alpine",
+                    "openlitespeed-latest",
+                    "ols-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/openlitespeed:openlitespeed-alpine",
+                    "ghcr.io/warppanel/openlitespeed:openlitespeed-latest",
+                    "ghcr.io/warppanel/openlitespeed:ols-latest"
+                ],
+                "features": [
+                    "lscache",
+                    "quic",
+                    "waf_rules",
+                    "cloudflare_realip"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            }
+        ],
+        "databases": [
+            {
+                "type": "mysql",
+                "version": "8.4",
+                "target": "mysql-8_4",
+                "base_image": "mysql:8.4",
+                "tags": [
+                    "mysql-8.4",
+                    "mysql-lts",
+                    "mysql-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/mysql:mysql-8.4",
+                    "ghcr.io/warppanel/mysql:mysql-lts",
+                    "ghcr.io/warppanel/mysql:mysql-latest"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "mysql",
+                "version": "8.0",
+                "target": "mysql-8_0",
+                "base_image": "mysql:8.0",
+                "tags": [
+                    "mysql-8.0"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/mysql:mysql-8.0"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "mariadb",
+                "version": "11.4",
+                "target": "mariadb-11_4",
+                "base_image": "mariadb:11.4",
+                "tags": [
+                    "mariadb-11.4",
+                    "mariadb-lts",
+                    "mariadb-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/mariadb:mariadb-11.4",
+                    "ghcr.io/warppanel/mariadb:mariadb-lts",
+                    "ghcr.io/warppanel/mariadb:mariadb-latest"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "mariadb",
+                "version": "10.11",
+                "target": "mariadb-10_11",
+                "base_image": "mariadb:10.11",
+                "tags": [
+                    "mariadb-10.11",
+                    "mariadb-10.11-lts"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/mariadb:mariadb-10.11",
+                    "ghcr.io/warppanel/mariadb:mariadb-10.11-lts"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "postgres",
+                "version": "17",
+                "target": "postgres-17",
+                "base_image": "postgres:17-alpine",
+                "tags": [
+                    "postgres-17-alpine",
+                    "postgres-17",
+                    "postgres-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/postgres:postgres-17-alpine",
+                    "ghcr.io/warppanel/postgres:postgres-17",
+                    "ghcr.io/warppanel/postgres:postgres-latest"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "postgres",
+                "version": "16",
+                "target": "postgres-16",
+                "base_image": "postgres:16-alpine",
+                "tags": [
+                    "postgres-16-alpine",
+                    "postgres-16"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/postgres:postgres-16-alpine",
+                    "ghcr.io/warppanel/postgres:postgres-16"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "redis",
+                "version": "7.4",
+                "target": "redis-7_4",
+                "base_image": "redis:7.4-alpine",
+                "tags": [
+                    "redis-7.4-alpine",
+                    "redis-7.4",
+                    "redis-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/redis:redis-7.4-alpine",
+                    "ghcr.io/warppanel/redis:redis-7.4",
+                    "ghcr.io/warppanel/redis:redis-latest"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "redis",
+                "version": "7.2",
+                "target": "redis-7_2",
+                "base_image": "redis:7.2-alpine",
+                "tags": [
+                    "redis-7.2-alpine",
+                    "redis-7.2"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/redis:redis-7.2-alpine",
+                    "ghcr.io/warppanel/redis:redis-7.2"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "mongodb",
+                "version": "7.0",
+                "target": "mongodb-7_0",
+                "base_image": "mongo:7.0",
+                "tags": [
+                    "mongo-7.0",
+                    "mongodb-7.0",
+                    "mongo-latest"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/mongodb:mongo-7.0",
+                    "ghcr.io/warppanel/mongodb:mongodb-7.0",
+                    "ghcr.io/warppanel/mongodb:mongo-latest"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            },
+            {
+                "type": "mongodb",
+                "version": "8.0",
+                "target": "mongodb-8_0",
+                "base_image": "mongo:8.0",
+                "tags": [
+                    "mongo-8.0",
+                    "mongodb-8.0"
+                ],
+                "full_image_tags": [
+                    "ghcr.io/warppanel/mongodb:mongo-8.0",
+                    "ghcr.io/warppanel/mongodb:mongodb-8.0"
+                ],
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-29T22:00:15+00:00"
+            }
+        ]
+    }
+}
