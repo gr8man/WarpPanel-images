@@ -30,11 +30,15 @@ foreach ($changed as $img) {
     echo "      * Stable Tags:  " . implode(', ', $img['stable_tags']) . "\n";
 
     if (!empty($src) && !empty($img['stable_tags']) && (getenv('GITHUB_ACTIONS') || getenv('CI'))) {
-        exec("docker pull " . escapeshellarg($src) . " 2>&1");
         foreach ($img['stable_tags'] as $stTag) {
-            echo "      [+] Tagging & Pushing: {$stTag}\n";
-            exec("docker tag " . escapeshellarg($src) . " " . escapeshellarg($stTag) . " 2>&1");
-            exec("docker push " . escapeshellarg($stTag) . " 2>&1");
+            echo "      [+] Promoting Multi-Arch Image -> {$stTag}\n";
+            exec("docker buildx imagetools create --tag " . escapeshellarg($stTag) . " " . escapeshellarg($src) . " 2>&1", $out, $code);
+            if ($code !== 0) {
+                echo "      [!] Fallback to standard tag & push for {$stTag}\n";
+                exec("docker pull " . escapeshellarg($src) . " 2>&1");
+                exec("docker tag " . escapeshellarg($src) . " " . escapeshellarg($stTag) . " 2>&1");
+                exec("docker push " . escapeshellarg($stTag) . " 2>&1");
+            }
         }
     }
 }
