@@ -1,0 +1,36 @@
+{
+    "name": "WarpPanel Postgres 17 (stable)",
+    "type": "postgres",
+    "channel": "stable",
+    "version": "17",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "postgres-17",
+    "base_image": "postgres:17-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/postgres-17:postgres-17-alpine-stable-20260830",
+    "tags": [
+        "postgres-17-alpine-stable",
+        "postgres-17-alpine-stable-20260830",
+        "postgres-17-stable",
+        "postgres-17-stable-20260830",
+        "postgres-latest-stable",
+        "postgres-latest-stable-20260830"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/postgres-17:postgres-17-alpine-stable",
+        "ghcr.io/gr8man/postgres-17:postgres-17-alpine-stable-20260830",
+        "ghcr.io/gr8man/postgres-17:postgres-17-stable",
+        "ghcr.io/gr8man/postgres-17:postgres-17-stable-20260830",
+        "ghcr.io/gr8man/postgres-17:postgres-latest-stable",
+        "ghcr.io/gr8man/postgres-17:postgres-latest-stable-20260830"
+    ],
+    "software_stack": {
+        "engine": "PostgreSQL Database Server (Alpine Linux)",
+        "version": "17",
+        "default_port": 5432
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

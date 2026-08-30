@@ -1,0 +1,44 @@
+{
+    "name": "WarpPanel Redis 7.4 (current)",
+    "type": "redis",
+    "channel": "current",
+    "version": "7.4",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "redis-7_4",
+    "base_image": "redis:7.4-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/redis:redis-7.4-alpine-20260830",
+    "tags": [
+        "redis-7.4-alpine",
+        "redis-7.4-alpine-20260830",
+        "redis-7.4-alpine-current",
+        "redis-7.4",
+        "redis-7.4-20260830",
+        "redis-7.4-current",
+        "redis-latest",
+        "redis-latest-20260830",
+        "redis-latest-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/redis:redis-7.4-alpine",
+        "ghcr.io/gr8man/redis:redis-7.4-alpine-20260830",
+        "ghcr.io/gr8man/redis:redis-7.4-alpine-current",
+        "ghcr.io/gr8man/redis:redis-7.4",
+        "ghcr.io/gr8man/redis:redis-7.4-20260830",
+        "ghcr.io/gr8man/redis:redis-7.4-current",
+        "ghcr.io/gr8man/redis:redis-latest",
+        "ghcr.io/gr8man/redis:redis-latest-20260830",
+        "ghcr.io/gr8man/redis:redis-latest-current"
+    ],
+    "software_stack": {
+        "engine": "Redis In-Memory Key-Value Data Store (Alpine Linux)",
+        "version": "7.4",
+        "cache_policy": "allkeys-lru (Automatic LRU Cache Eviction)",
+        "persistence": "AOF (Append-Only File) + RDB snapshots",
+        "default_port": 6379
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

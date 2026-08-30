@@ -1,0 +1,66 @@
+{
+    "name": "WarpPanel NGINX Web Server (current)",
+    "server": "nginx",
+    "channel": "current",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "nginx",
+    "base_image": "nginx:1.27-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/nginx:nginx-alpine-20260830",
+    "tags": [
+        "nginx-alpine",
+        "nginx-alpine-20260830",
+        "nginx-alpine-current",
+        "nginx-latest",
+        "nginx-latest-20260830",
+        "nginx-latest-current",
+        "nginx-1.27",
+        "nginx-1.27-20260830",
+        "nginx-1.27-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/nginx:nginx-alpine",
+        "ghcr.io/gr8man/nginx:nginx-alpine-20260830",
+        "ghcr.io/gr8man/nginx:nginx-alpine-current",
+        "ghcr.io/gr8man/nginx:nginx-latest",
+        "ghcr.io/gr8man/nginx:nginx-latest-20260830",
+        "ghcr.io/gr8man/nginx:nginx-latest-current",
+        "ghcr.io/gr8man/nginx:nginx-1.27",
+        "ghcr.io/gr8man/nginx:nginx-1.27-20260830",
+        "ghcr.io/gr8man/nginx:nginx-1.27-current"
+    ],
+    "software_stack": {
+        "software": "Nginx Mainline (Alpine Linux)",
+        "protocols": [
+            "HTTP/1.1",
+            "HTTP/2",
+            "HTTP/3 (QUIC)"
+        ],
+        "compression": [
+            "Gzip",
+            "Brotli"
+        ],
+        "upstream": "FastCGI Support (PHP-FPM :9000)",
+        "security": [
+            "Cloudflare Real-IP (CF-Connecting-IP)",
+            "WAF Rules (.env, .git, .sql blocking)",
+            "Security Headers"
+        ],
+        "ports": [
+            80,
+            443,
+            "443/udp"
+        ]
+    },
+    "features": [
+        "http2",
+        "http3_quic",
+        "brotli",
+        "cloudflare_realip",
+        "waf_basic"
+    ],
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

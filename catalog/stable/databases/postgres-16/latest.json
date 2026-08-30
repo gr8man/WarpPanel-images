@@ -1,0 +1,32 @@
+{
+    "name": "WarpPanel Postgres 16 (stable)",
+    "type": "postgres",
+    "channel": "stable",
+    "version": "16",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "postgres-16",
+    "base_image": "postgres:16-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/postgres-16:postgres-16-alpine-stable-20260830",
+    "tags": [
+        "postgres-16-alpine-stable",
+        "postgres-16-alpine-stable-20260830",
+        "postgres-16-stable",
+        "postgres-16-stable-20260830"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/postgres-16:postgres-16-alpine-stable",
+        "ghcr.io/gr8man/postgres-16:postgres-16-alpine-stable-20260830",
+        "ghcr.io/gr8man/postgres-16:postgres-16-stable",
+        "ghcr.io/gr8man/postgres-16:postgres-16-stable-20260830"
+    ],
+    "software_stack": {
+        "engine": "PostgreSQL Database Server (Alpine Linux)",
+        "version": "16",
+        "default_port": 5432
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

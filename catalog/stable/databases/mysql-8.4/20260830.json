@@ -1,0 +1,39 @@
+{
+    "name": "WarpPanel Mysql 8.4 (stable)",
+    "type": "mysql",
+    "channel": "stable",
+    "version": "8.4",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "mysql-8_4",
+    "base_image": "mysql:8.4",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/mysql-8.4:mysql-8.4-stable-20260830",
+    "tags": [
+        "mysql-8.4-stable",
+        "mysql-8.4-stable-20260830",
+        "mysql-lts-stable",
+        "mysql-lts-stable-20260830",
+        "mysql-latest-stable",
+        "mysql-latest-stable-20260830"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/mysql-8.4:mysql-8.4-stable",
+        "ghcr.io/gr8man/mysql-8.4:mysql-8.4-stable-20260830",
+        "ghcr.io/gr8man/mysql-8.4:mysql-lts-stable",
+        "ghcr.io/gr8man/mysql-8.4:mysql-lts-stable-20260830",
+        "ghcr.io/gr8man/mysql-8.4:mysql-latest-stable",
+        "ghcr.io/gr8man/mysql-8.4:mysql-latest-stable-20260830"
+    ],
+    "software_stack": {
+        "engine": "MySQL Community Server",
+        "version": "8.4",
+        "charset": "utf8mb4 (utf8mb4_unicode_ci)",
+        "storage_engine": "InnoDB (Buffer Pool 256MB, Barracuda per-table)",
+        "network": "skip-name-resolve (Fast container networking)",
+        "default_port": 3306
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

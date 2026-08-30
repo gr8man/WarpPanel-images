@@ -1,0 +1,39 @@
+{
+    "name": "WarpPanel Mariadb 10.11 (current)",
+    "type": "mariadb",
+    "channel": "current",
+    "version": "10.11",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "mariadb-10_11",
+    "base_image": "mariadb:10.11",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/mariadb:mariadb-10.11-20260830",
+    "tags": [
+        "mariadb-10.11",
+        "mariadb-10.11-20260830",
+        "mariadb-10.11-current",
+        "mariadb-10.11-lts",
+        "mariadb-10.11-lts-20260830",
+        "mariadb-10.11-lts-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/mariadb:mariadb-10.11",
+        "ghcr.io/gr8man/mariadb:mariadb-10.11-20260830",
+        "ghcr.io/gr8man/mariadb:mariadb-10.11-current",
+        "ghcr.io/gr8man/mariadb:mariadb-10.11-lts",
+        "ghcr.io/gr8man/mariadb:mariadb-10.11-lts-20260830",
+        "ghcr.io/gr8man/mariadb:mariadb-10.11-lts-current"
+    ],
+    "software_stack": {
+        "engine": "MariaDB Server (Alpine Linux)",
+        "version": "10.11",
+        "charset": "utf8mb4 (utf8mb4_unicode_ci)",
+        "storage_engine": "Aria / InnoDB tuned",
+        "network": "skip-name-resolve",
+        "default_port": 3306
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

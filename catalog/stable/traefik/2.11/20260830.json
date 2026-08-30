@@ -1,0 +1,51 @@
+{
+    "name": "WarpPanel Traefik v2.11 Edge Router (stable)",
+    "product": "Traefik",
+    "channel": "stable",
+    "version": "2.11",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "traefik-v2_11",
+    "base_image": "traefik:v2.11",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/2.11:traefik-2.11-stable-20260830",
+    "tags": [
+        "traefik-2.11-stable",
+        "traefik-2.11-stable-20260830",
+        "traefik-v2.11-stable",
+        "traefik-v2.11-stable-20260830",
+        "traefik-v2-stable",
+        "traefik-v2-stable-20260830"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/2.11:traefik-2.11-stable",
+        "ghcr.io/gr8man/2.11:traefik-2.11-stable-20260830",
+        "ghcr.io/gr8man/2.11:traefik-v2.11-stable",
+        "ghcr.io/gr8man/2.11:traefik-v2.11-stable-20260830",
+        "ghcr.io/gr8man/2.11:traefik-v2-stable",
+        "ghcr.io/gr8man/2.11:traefik-v2-stable-20260830"
+    ],
+    "software_stack": {
+        "software": "Traefik v2.11 Cloud-Native Ingress & Reverse Proxy",
+        "providers": [
+            "Docker Provider (auto-discovery)",
+            "File Provider (dynamic middleware)"
+        ],
+        "features": [
+            "docker_provider",
+            "acme_letsencrypt",
+            "cloudflare_realip",
+            "http_to_https",
+            "dashboard"
+        ],
+        "ports": [
+            80,
+            443,
+            "443/udp (HTTP/3)",
+            8080
+        ]
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}

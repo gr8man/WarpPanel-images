@@ -1,0 +1,42 @@
+{
+    "name": "WarpPanel Postgres 17 (current)",
+    "type": "postgres",
+    "channel": "current",
+    "version": "17",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "target": "postgres-17",
+    "base_image": "postgres:17-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/postgres:postgres-17-alpine-20260830",
+    "tags": [
+        "postgres-17-alpine",
+        "postgres-17-alpine-20260830",
+        "postgres-17-alpine-current",
+        "postgres-17",
+        "postgres-17-20260830",
+        "postgres-17-current",
+        "postgres-latest",
+        "postgres-latest-20260830",
+        "postgres-latest-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/postgres:postgres-17-alpine",
+        "ghcr.io/gr8man/postgres:postgres-17-alpine-20260830",
+        "ghcr.io/gr8man/postgres:postgres-17-alpine-current",
+        "ghcr.io/gr8man/postgres:postgres-17",
+        "ghcr.io/gr8man/postgres:postgres-17-20260830",
+        "ghcr.io/gr8man/postgres:postgres-17-current",
+        "ghcr.io/gr8man/postgres:postgres-latest",
+        "ghcr.io/gr8man/postgres:postgres-latest-20260830",
+        "ghcr.io/gr8man/postgres:postgres-latest-current"
+    ],
+    "software_stack": {
+        "engine": "PostgreSQL Database Server (Alpine Linux)",
+        "version": "17",
+        "default_port": 5432
+    },
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:38:30+00:00"
+}
