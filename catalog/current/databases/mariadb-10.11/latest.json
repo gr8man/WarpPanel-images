@@ -5,7 +5,7 @@
     "version": "10.11",
     "build_id": "20260830",
     "build_date": "20260830",
-    "build_timestamp": "2026-08-30T01:04:29+00:00",
+    "build_timestamp": "2026-08-30T03:51:03+00:00",
     "target": "mariadb-10_11",
     "base_image": "mariadb:10.11",
     "registry": "ghcr.io/gr8man",
