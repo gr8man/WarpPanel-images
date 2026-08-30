@@ -15,9 +15,9 @@ if (file_exists('/lib/apk/db/installed') && is_readable('/lib/apk/db/installed')
     $lines = explode("\n", $content);
     $currentPkg = null;
     foreach ($lines as $line) {
-        if (str_starts_with($line, 'P:')) {
+        if (strncmp($line, 'P:', 2) === 0) {
             $currentPkg = trim(substr($line, 2));
-        } elseif (str_starts_with($line, 'V:') && $currentPkg !== null) {
+        } elseif (strncmp($line, 'V:', 2) === 0 && $currentPkg !== null) {
             $systemPackages[$currentPkg] = trim(substr($line, 2));
             $currentPkg = null;
         }

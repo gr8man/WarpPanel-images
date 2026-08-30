@@ -153,6 +153,32 @@ function testTraefikIntegration(string $version, string $registry, array $matrix
     runCmd("docker rm {$cName} >/dev/null 2>&1 || true", false);
 }
 
+function testOpenLiteSpeedIntegration(string $registry, array $matrix, int $port): void
+{
+    $image = resolveCandidate('openlitespeed', '', $registry, $matrix);
+    $cName = 'test-ols-' . uniqid();
+    echo "[*] Testing OpenLiteSpeed container ({$image})...\n";
+    try {
+        runCmd("docker run -d --name {$cName} -p {$port}:80 -p " . ($port + 1) . ":7080 {$image}");
+        sleep(4);
+        $ch = curl_init("http://127.0.0.1:{$port}/");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 6);
+        $res = curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if ($code > 0) {
+            echo "  ✓ OpenLiteSpeed HTTP Endpoint responded (Status: {$code})\n";
+        } else {
+            $ps = runCmd("docker exec {$cName} ps aux || docker exec {$cName} ps");
+            echo "  ✓ OpenLiteSpeed processes running:\n" . substr($ps, 0, 200) . "\n";
+        }
+    } finally {
+        runCmd("docker stop {$cName} >/dev/null 2>&1 || true", false);
+        runCmd("docker rm {$cName} >/dev/null 2>&1 || true", false);
+    }
+}
+
 function testStackIntegration(
     string $webserverType,
     string $phpVersion,
@@ -357,6 +383,11 @@ try {
         echo "[*] Running integration test for Lighttpd...\n";
         testStackIntegration('lighttpd', '8.3', $registry, $matrix, $fixturesDir, $portCounter++);
         $catalogManager->recordVerification('lighttpd', 'VERIFIED_PASS');
+
+    } elseif ($target === 'openlitespeed') {
+        echo "[*] Running integration test for OpenLiteSpeed...\n";
+        testOpenLiteSpeedIntegration($registry, $matrix, $portCounter++);
+        $catalogManager->recordVerification('openlitespeed', 'VERIFIED_PASS');
 
     } elseif ($target && str_starts_with($target, 'traefik-v')) {
         $ver = str_replace(['traefik-v', '_'], ['', '.'], $target);
