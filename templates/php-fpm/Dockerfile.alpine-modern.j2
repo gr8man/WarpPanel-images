@@ -21,17 +21,8 @@ RUN apk add --no-cache \
 # Add official Docker PHP extension installer
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 
-ARG TARGETARCH
-
 # Install full suite of WarpPanel hosting extensions (parallel multi-core compilation)
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    ARCH="$(uname -m)" && \
-    IONCUBE_EXT="" && \
-{% if image.version != '8.0' %}
-    if [ "$ARCH" = "x86_64" ] || [ "$TARGETARCH" = "amd64" ]; then \
-        IONCUBE_EXT="ioncube_loader"; \
-    fi && \
-{% endif %}
     MAKEFLAGS="-j$(nproc)" install-php-extensions \
     bcmath \
     bz2 \
@@ -42,7 +33,9 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     gmp \
     igbinary \
     imagick \
+{% if image.version not in ['8.4', '8.5'] %}
     imap \
+{% endif %}
     intl \
     mbstring \
     mysqli \
@@ -64,8 +57,13 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     sysvshm \
     xdebug \
     xsl \
-    zip \
-    $IONCUBE_EXT
+    zip && \
+{% if image.version in ['8.1', '8.2', '8.3'] %}
+    if [ "$(uname -m)" = "x86_64" ]; then \
+        install-php-extensions ioncube_loader || true; \
+    fi && \
+{% endif %}
+    rm -rf /tmp/*
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer

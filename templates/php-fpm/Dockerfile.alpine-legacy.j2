@@ -20,15 +20,8 @@ RUN apk add --no-cache \
 # Add official Docker PHP extension installer
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/
 
-ARG TARGETARCH
-
 # Install standard WarpPanel extensions (parallel multi-core compilation)
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    ARCH="$(uname -m)" && \
-    IONCUBE_EXT="" && \
-    if [ "$ARCH" = "x86_64" ] || [ "$TARGETARCH" = "amd64" ]; then \
-        IONCUBE_EXT="ioncube_loader"; \
-    fi && \
     MAKEFLAGS="-j$(nproc)" install-php-extensions \
     bcmath \
     bz2 \
@@ -54,8 +47,11 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     sockets \
     sqlite3 \
     xdebug \
-    zip \
-    $IONCUBE_EXT
+    zip && \
+    if [ "$(uname -m)" = "x86_64" ]; then \
+        install-php-extensions ioncube_loader || true; \
+    fi && \
+    rm -rf /tmp/*
 
 # Install Composer (Composer 2.2 LTS for PHP 5.6-7.1, Composer latest for PHP 7.2+)
 {% if image.version in ['5.6', '7.0', '7.1'] %}
