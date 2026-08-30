@@ -1,7 +1,7 @@
 {
     "version": "1.0",
     "channel": "current",
-    "updated_at": "2026-08-30T18:39:40+00:00",
+    "updated_at": "2026-08-30T19:25:54+00:00",
     "current_build_id": "20260830",
     "available_builds": [
         "20260829",
@@ -14,7 +14,7 @@
         "total_webservers": 5,
         "total_traefik_versions": 4,
         "total_databases": 10,
-        "verified_count": 0
+        "verified_count": 26
     },
     "images": {
         "php_fpm": [
@@ -44,8 +44,8 @@
                     "ghcr.io/gr8man/php:8.0-fpm-current"
                 ],
                 "details_file": "catalog/current/php-fpm/8.0/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "8.1",
@@ -73,8 +73,8 @@
                     "ghcr.io/gr8man/php:8.1-fpm-current"
                 ],
                 "details_file": "catalog/current/php-fpm/8.1/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "8.2",
@@ -102,8 +102,8 @@
                     "ghcr.io/gr8man/php:8.2-fpm-current"
                 ],
                 "details_file": "catalog/current/php-fpm/8.2/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "8.3",
@@ -137,8 +137,8 @@
                     "ghcr.io/gr8man/php:latest-fpm-current"
                 ],
                 "details_file": "catalog/current/php-fpm/8.3/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "8.4",
@@ -166,8 +166,8 @@
                     "ghcr.io/gr8man/php:8.4-fpm-current"
                 ],
                 "details_file": "catalog/current/php-fpm/8.4/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "8.5",
@@ -195,8 +195,8 @@
                     "ghcr.io/gr8man/php:8.5-fpm-dev-current"
                 ],
                 "details_file": "catalog/current/php-fpm/8.5/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "5.6",
@@ -400,8 +400,8 @@
                     "ghcr.io/gr8man/frankenphp:frankenphp-8.2-current"
                 ],
                 "details_file": "catalog/current/frankenphp/8.2/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "php_version": "8.3",
@@ -435,8 +435,8 @@
                     "ghcr.io/gr8man/frankenphp:frankenphp-latest-current"
                 ],
                 "details_file": "catalog/current/frankenphp/8.3/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "php_version": "8.4",
@@ -464,8 +464,8 @@
                     "ghcr.io/gr8man/frankenphp:frankenphp-8.4-current"
                 ],
                 "details_file": "catalog/current/frankenphp/8.4/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "php_version": "8.5",
@@ -493,8 +493,8 @@
                     "ghcr.io/gr8man/frankenphp:frankenphp-dev-current"
                 ],
                 "details_file": "catalog/current/frankenphp/8.5/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             }
         ],
         "webservers": [
@@ -536,8 +536,8 @@
                     "cloudflare_realip",
                     "waf_basic"
                 ],
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "server": "apache",
@@ -577,8 +577,8 @@
                     "remoteip",
                     "waf_basic"
                 ],
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "server": "openlitespeed",
@@ -737,8 +737,8 @@
                     "http_to_https",
                     "dashboard"
                 ],
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "3.1",
@@ -773,8 +773,8 @@
                     "http_to_https",
                     "dashboard"
                 ],
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "3.2",
@@ -809,8 +809,8 @@
                     "http_to_https",
                     "dashboard"
                 ],
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "version": "3.3",
@@ -857,8 +857,8 @@
                     "http_to_https",
                     "dashboard"
                 ],
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             }
         ],
         "databases": [
@@ -894,8 +894,8 @@
                     "ghcr.io/gr8man/mysql:mysql-latest-current"
                 ],
                 "details_file": "catalog/current/databases/mysql-8.4/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "mysql",
@@ -917,8 +917,8 @@
                     "ghcr.io/gr8man/mysql:mysql-8.0-current"
                 ],
                 "details_file": "catalog/current/databases/mysql-8.0/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "mariadb",
@@ -952,8 +952,8 @@
                     "ghcr.io/gr8man/mariadb:mariadb-latest-current"
                 ],
                 "details_file": "catalog/current/databases/mariadb-11.4/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "mariadb",
@@ -981,8 +981,8 @@
                     "ghcr.io/gr8man/mariadb:mariadb-10.11-lts-current"
                 ],
                 "details_file": "catalog/current/databases/mariadb-10.11/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "postgres",
@@ -1016,8 +1016,8 @@
                     "ghcr.io/gr8man/postgres:postgres-latest-current"
                 ],
                 "details_file": "catalog/current/databases/postgres-17/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "postgres",
@@ -1045,8 +1045,8 @@
                     "ghcr.io/gr8man/postgres:postgres-16-current"
                 ],
                 "details_file": "catalog/current/databases/postgres-16/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "redis",
@@ -1080,8 +1080,8 @@
                     "ghcr.io/gr8man/redis:redis-latest-current"
                 ],
                 "details_file": "catalog/current/databases/redis-7.4/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "redis",
@@ -1109,8 +1109,8 @@
                     "ghcr.io/gr8man/redis:redis-7.2-current"
                 ],
                 "details_file": "catalog/current/databases/redis-7.2/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "mongodb",
@@ -1144,8 +1144,8 @@
                     "ghcr.io/gr8man/mongodb:mongo-latest-current"
                 ],
                 "details_file": "catalog/current/databases/mongodb-7.0/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             },
             {
                 "type": "mongodb",
@@ -1173,8 +1173,8 @@
                     "ghcr.io/gr8man/mongodb:mongodb-8.0-current"
                 ],
                 "details_file": "catalog/current/databases/mongodb-8.0/20260830.json",
-                "status": "READY",
-                "verified_at": null
+                "status": "VERIFIED_PASS",
+                "verified_at": "2026-08-30T19:25:54+00:00"
             }
         ]
     }

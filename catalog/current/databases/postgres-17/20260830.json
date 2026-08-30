@@ -5,7 +5,7 @@
     "version": "17",
     "build_id": "20260830",
     "build_date": "20260830",
-    "build_timestamp": "2026-08-30T18:39:40+00:00",
+    "build_timestamp": "2026-08-30T19:25:54+00:00",
     "target": "postgres-17",
     "base_image": "postgres:17-alpine",
     "registry": "ghcr.io/gr8man",
@@ -37,6 +37,6 @@
         "version": "17",
         "default_port": 5432
     },
-    "status": "READY",
-    "verified_at": null
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-30T19:25:54+00:00"
 }
