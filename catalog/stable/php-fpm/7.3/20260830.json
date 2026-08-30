@@ -5,7 +5,7 @@
     "version": "7.3",
     "build_id": "20260830",
     "build_date": "20260830",
-    "build_timestamp": "2026-08-30T19:51:48+00:00",
+    "build_timestamp": "2026-08-30T20:47:02+00:00",
     "exact_php_version": "7.3.33",
     "target": "php-fpm-7_3",
     "type": "legacy",
@@ -25,7 +25,7 @@
         "ghcr.io/gr8man/php:7.3-fpm-stable-20260830"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-30T19:51:48+00:00",
+    "verified_at": "2026-08-30T20:47:02+00:00",
     "software_stack": {
         "php": {
             "version": "7.3.33",
