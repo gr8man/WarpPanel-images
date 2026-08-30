@@ -25,8 +25,18 @@ foreach ($changed as $img) {
     foreach ($img['reasons'] as $r) {
         echo "      * {$r}\n";
     }
-    echo "      * Source Image: {$img['source_image']}\n";
+    $src = $img['source_image'];
+    echo "      * Source Image: {$src}\n";
     echo "      * Stable Tags:  " . implode(', ', $img['stable_tags']) . "\n";
+
+    if (!empty($src) && !empty($img['stable_tags']) && (getenv('GITHUB_ACTIONS') || getenv('CI'))) {
+        exec("docker pull " . escapeshellarg($src) . " 2>&1");
+        foreach ($img['stable_tags'] as $stTag) {
+            echo "      [+] Tagging & Pushing: {$stTag}\n";
+            exec("docker tag " . escapeshellarg($src) . " " . escapeshellarg($stTag) . " 2>&1");
+            exec("docker push " . escapeshellarg($stTag) . " 2>&1");
+        }
+    }
 }
 
 // Write GitHub Actions step output if running in CI

@@ -1055,16 +1055,31 @@ class CatalogManager
                     $stableData['build_date'] = $buildDate;
                     $stableData['build_timestamp'] = $now;
 
+                    // Determine exact image repository name
+                    $repoName = match($cat) {
+                        'php-fpm' => 'php',
+                        'frankenphp' => 'frankenphp',
+                        'webservers' => $item,
+                        'traefik' => 'traefik',
+                        'databases' => $currentData['type'] ?? explode('-', $item)[0],
+                        default => $item
+                    };
+
+                    $cleanTags = array_filter(
+                        $currentData['tags'],
+                        fn($t) => !str_ends_with($t, '-current') && !preg_match('/-\d{8}$/', $t)
+                    );
+
                     // Convert tags to stable tags
                     $stableData['tags'] = $this->expandRawTags(
-                        array_filter($currentData['tags'], fn($t) => !str_ends_with($t, '-current') && !preg_match('/-\d{8}$/', $t)),
+                        $cleanTags,
                         $buildDate,
                         'stable'
                     );
                     $stableData['full_image_tags'] = $this->expandTags(
-                        array_filter($currentData['tags'], fn($t) => !str_ends_with($t, '-current') && !preg_match('/-\d{8}$/', $t)),
+                        $cleanTags,
                         $currentData['registry'] ?? 'ghcr.io/warppanel',
-                        $currentData['category'] ?? $item,
+                        $repoName,
                         $buildDate,
                         'stable'
                     );

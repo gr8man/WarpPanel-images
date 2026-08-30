@@ -9,7 +9,9 @@ RUN apk add --no-cache bash curl ca-certificates tzdata shadow
 ENV PUID=1000 \
     PGID=1000 \
     WEB_DOCUMENT_ROOT=/var/www/html/public \
-    PHP_FPM_UPSTREAM=php:9000 \
+    PHP_FPM_HOST=php-fpm \
+    PHP_FPM_PORT=9000 \
+    PHP_FPM_UPSTREAM=php-fpm:9000 \
     CLOUDFLARE_REAL_IP=1 \
     SECURITY_WAF_ENABLED=1
 

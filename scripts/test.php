@@ -216,6 +216,7 @@ function testStackIntegration(
                "-e WEB_DOCUMENT_ROOT=/var/www/html/public " .
                "-e PHP_FPM_HOST={$fpmContainer} " .
                "-e PHP_FPM_PORT=9000 " .
+               "-e PHP_FPM_UPSTREAM={$fpmContainer}:9000 " .
                "{$webImage}");
 
         sleep(3);

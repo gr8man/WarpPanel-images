@@ -22,8 +22,11 @@ if [ -z "$WEB_DOCUMENT_ROOT" ] || [ ! -d "$WEB_DOCUMENT_ROOT" ]; then
     fi
 fi
 
-PHP_FPM_HOST=${PHP_FPM_HOST:-php-fpm}
-PHP_FPM_PORT=${PHP_FPM_PORT:-9000}
-export PHP_FPM_UPSTREAM="${PHP_FPM_UPSTREAM:-$PHP_FPM_HOST:$PHP_FPM_PORT}"
+if [ -n "$PHP_FPM_HOST" ]; then
+    PHP_FPM_PORT=${PHP_FPM_PORT:-9000}
+    export PHP_FPM_UPSTREAM="$PHP_FPM_HOST:$PHP_FPM_PORT"
+elif [ -z "$PHP_FPM_UPSTREAM" ]; then
+    export PHP_FPM_UPSTREAM="php-fpm:9000"
+fi
 
 exec "$@"
