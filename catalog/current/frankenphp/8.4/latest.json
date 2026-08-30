@@ -1,0 +1,120 @@
+{
+    "name": "WarpPanel FrankenPHP (PHP 8.4) All-in-One Runtime (current)",
+    "category": "frankenphp",
+    "channel": "current",
+    "php_version": "8.4",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T01:04:29+00:00",
+    "exact_php_version": "8.4",
+    "target": "frankenphp-8_4",
+    "base_image": "dunglas/frankenphp:1-php8.4-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine-20260830",
+    "tags": [
+        "frankenphp-8.4-alpine",
+        "frankenphp-8.4-alpine-20260830",
+        "frankenphp-8.4-alpine-current",
+        "frankenphp-8.4",
+        "frankenphp-8.4-20260830",
+        "frankenphp-8.4-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine",
+        "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine-20260830",
+        "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine-current",
+        "ghcr.io/gr8man/frankenphp:frankenphp-8.4",
+        "ghcr.io/gr8man/frankenphp:frankenphp-8.4-20260830",
+        "ghcr.io/gr8man/frankenphp:frankenphp-8.4-current"
+    ],
+    "status": "READY",
+    "verified_at": null,
+    "software_stack": {
+        "engine": "FrankenPHP (Go / Caddy Module)",
+        "webserver": "Caddy v2 with Automatic HTTPS",
+        "php": {
+            "version": "8.4",
+            "worker_mode": "supported (Octane, Laravel, Symfony, Custom)"
+        },
+        "protocols": [
+            "HTTP/1.1",
+            "HTTP/2",
+            "HTTP/3 (QUIC)"
+        ],
+        "composer": {
+            "version": "2.x (Latest)",
+            "binary": "/usr/local/bin/composer"
+        },
+        "xdebug": {
+            "version": "3.x",
+            "default_state": "disabled",
+            "toggle_variable": "PHP_XDEBUG_ENABLED=1"
+        },
+        "sqlite": {
+            "support": "built-in",
+            "pdo_sqlite": "enabled",
+            "sqlite3": "enabled"
+        },
+        "security_layer": "Cloudflare Real-IP Restoration + WAF Rules",
+        "system_packages": {
+            "bash": "5.2.x (Alpine)",
+            "ca-certificates": "20240705.x",
+            "curl": "8.9.x (Alpine)",
+            "git": "2.45.x",
+            "msmtp": "1.8.x",
+            "shadow": "4.15.x",
+            "tzdata": "2024a.x",
+            "unzip": "6.0.x",
+            "zip": "3.0.x"
+        }
+    },
+    "php_extensions": {
+        "bcmath": "8.4",
+        "bz2": "8.4",
+        "calendar": "8.4",
+        "curl": "8.4",
+        "exif": "8.4",
+        "gd": "8.4",
+        "gettext": "8.4",
+        "gmp": "8.4",
+        "igbinary": "3.2.16",
+        "imagick": "3.7.0",
+        "imap": "8.4",
+        "intl": "8.4",
+        "ioncube_loader": "13.3.0",
+        "mbstring": "8.4",
+        "mysqli": "8.4",
+        "opcache": "8.4",
+        "pcntl": "8.4",
+        "pdo": "8.4",
+        "pdo_mysql": "8.4",
+        "pdo_pgsql": "8.4",
+        "pdo_sqlite": "8.4",
+        "pgsql": "8.4",
+        "posix": "8.4",
+        "redis": "6.0.2",
+        "soap": "8.4",
+        "sockets": "8.4",
+        "sodium": "8.4",
+        "sqlite3": "8.4",
+        "sysvmsg": "8.4",
+        "sysvsem": "8.4",
+        "sysvshm": "8.4",
+        "xdebug": "3.3.2",
+        "xml": "8.4",
+        "xsl": "8.4",
+        "zip": "8.4"
+    },
+    "runtime_defaults": {
+        "user": "www-data",
+        "puid": 1000,
+        "pgid": 1000,
+        "app_dir": "/var/www/html",
+        "document_root": "/var/www/html/public",
+        "ports": [
+            80,
+            443,
+            "443/udp"
+        ]
+    }
+}

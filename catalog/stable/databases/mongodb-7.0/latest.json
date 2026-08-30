@@ -1,0 +1,36 @@
+{
+    "name": "WarpPanel Mongodb 7.0 (stable)",
+    "type": "mongodb",
+    "channel": "stable",
+    "version": "7.0",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T01:04:29+00:00",
+    "target": "mongodb-7_0",
+    "base_image": "mongo:7.0",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/mongodb-7.0:mongo-7.0-stable-20260830",
+    "tags": [
+        "mongo-7.0-stable",
+        "mongo-7.0-stable-20260830",
+        "mongodb-7.0-stable",
+        "mongodb-7.0-stable-20260830",
+        "mongo-latest-stable",
+        "mongo-latest-stable-20260830"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/mongodb-7.0:mongo-7.0-stable",
+        "ghcr.io/gr8man/mongodb-7.0:mongo-7.0-stable-20260830",
+        "ghcr.io/gr8man/mongodb-7.0:mongodb-7.0-stable",
+        "ghcr.io/gr8man/mongodb-7.0:mongodb-7.0-stable-20260830",
+        "ghcr.io/gr8man/mongodb-7.0:mongo-latest-stable",
+        "ghcr.io/gr8man/mongodb-7.0:mongo-latest-stable-20260830"
+    ],
+    "software_stack": {
+        "engine": "MongoDB Document Database",
+        "version": "7.0",
+        "default_port": 27017
+    },
+    "status": "READY",
+    "verified_at": null
+}

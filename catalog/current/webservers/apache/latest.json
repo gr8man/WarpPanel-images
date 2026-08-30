@@ -1,0 +1,63 @@
+{
+    "name": "WarpPanel APACHE Web Server (current)",
+    "server": "apache",
+    "channel": "current",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T01:04:29+00:00",
+    "target": "apache",
+    "base_image": "httpd:2.4-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/apache:apache-alpine-20260830",
+    "tags": [
+        "apache-alpine",
+        "apache-alpine-20260830",
+        "apache-alpine-current",
+        "apache-latest",
+        "apache-latest-20260830",
+        "apache-latest-current",
+        "httpd-2.4",
+        "httpd-2.4-20260830",
+        "httpd-2.4-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/apache:apache-alpine",
+        "ghcr.io/gr8man/apache:apache-alpine-20260830",
+        "ghcr.io/gr8man/apache:apache-alpine-current",
+        "ghcr.io/gr8man/apache:apache-latest",
+        "ghcr.io/gr8man/apache:apache-latest-20260830",
+        "ghcr.io/gr8man/apache:apache-latest-current",
+        "ghcr.io/gr8man/apache:httpd-2.4",
+        "ghcr.io/gr8man/apache:httpd-2.4-20260830",
+        "ghcr.io/gr8man/apache:httpd-2.4-current"
+    ],
+    "software_stack": {
+        "software": "Apache HTTP Server (httpd 2.4 Alpine)",
+        "mpm": "mpm_event (High Concurrency Multi-Processing)",
+        "modules": [
+            "mod_proxy_fcgi",
+            "mod_rewrite",
+            "mod_remoteip (Cloudflare)",
+            "mod_headers",
+            "mod_deflate",
+            "mod_ssl",
+            "mod_http2"
+        ],
+        "security": [
+            "WAF Rules (.env, .git, .sql blocking)"
+        ],
+        "ports": [
+            80,
+            443
+        ]
+    },
+    "features": [
+        "mpm_event",
+        "mod_proxy_fcgi",
+        "mod_rewrite",
+        "remoteip",
+        "waf_basic"
+    ],
+    "status": "READY",
+    "verified_at": null
+}

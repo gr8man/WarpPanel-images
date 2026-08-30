@@ -1,0 +1,38 @@
+{
+    "name": "WarpPanel Redis 7.4 (stable)",
+    "type": "redis",
+    "channel": "stable",
+    "version": "7.4",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T01:04:29+00:00",
+    "target": "redis-7_4",
+    "base_image": "redis:7.4-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/redis-7.4:redis-7.4-alpine-stable-20260830",
+    "tags": [
+        "redis-7.4-alpine-stable",
+        "redis-7.4-alpine-stable-20260830",
+        "redis-7.4-stable",
+        "redis-7.4-stable-20260830",
+        "redis-latest-stable",
+        "redis-latest-stable-20260830"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/redis-7.4:redis-7.4-alpine-stable",
+        "ghcr.io/gr8man/redis-7.4:redis-7.4-alpine-stable-20260830",
+        "ghcr.io/gr8man/redis-7.4:redis-7.4-stable",
+        "ghcr.io/gr8man/redis-7.4:redis-7.4-stable-20260830",
+        "ghcr.io/gr8man/redis-7.4:redis-latest-stable",
+        "ghcr.io/gr8man/redis-7.4:redis-latest-stable-20260830"
+    ],
+    "software_stack": {
+        "engine": "Redis In-Memory Key-Value Data Store (Alpine Linux)",
+        "version": "7.4",
+        "cache_policy": "allkeys-lru (Automatic LRU Cache Eviction)",
+        "persistence": "AOF (Append-Only File) + RDB snapshots",
+        "default_port": 6379
+    },
+    "status": "READY",
+    "verified_at": null
+}

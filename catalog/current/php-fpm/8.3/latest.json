@@ -1,0 +1,150 @@
+{
+    "name": "WarpPanel PHP-FPM 8.3 Modern (current)",
+    "category": "php_fpm",
+    "channel": "current",
+    "version": "8.3",
+    "build_id": "20260830",
+    "build_date": "20260830",
+    "build_timestamp": "2026-08-30T01:04:29+00:00",
+    "exact_php_version": "8.3",
+    "target": "php-fpm-8_3",
+    "type": "modern",
+    "base_image": "php:8.3-fpm-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/php:8.3-fpm-alpine-20260830",
+    "tags": [
+        "8.3-fpm-alpine",
+        "8.3-fpm-alpine-20260830",
+        "8.3-fpm-alpine-current",
+        "8.3-fpm",
+        "8.3-fpm-20260830",
+        "8.3-fpm-current",
+        "latest-fpm",
+        "latest-fpm-20260830",
+        "latest-fpm-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/php:8.3-fpm-alpine",
+        "ghcr.io/gr8man/php:8.3-fpm-alpine-20260830",
+        "ghcr.io/gr8man/php:8.3-fpm-alpine-current",
+        "ghcr.io/gr8man/php:8.3-fpm",
+        "ghcr.io/gr8man/php:8.3-fpm-20260830",
+        "ghcr.io/gr8man/php:8.3-fpm-current",
+        "ghcr.io/gr8man/php:latest-fpm",
+        "ghcr.io/gr8man/php:latest-fpm-20260830",
+        "ghcr.io/gr8man/php:latest-fpm-current"
+    ],
+    "status": "READY",
+    "verified_at": null,
+    "software_stack": {
+        "php": {
+            "version": "8.3",
+            "sapi": "fpm-fcgi (PHP-FPM)",
+            "opcache_jit": true,
+            "process_manager": "ondemand / dynamic"
+        },
+        "composer": {
+            "version": "2.x (Latest)",
+            "binary": "/usr/local/bin/composer"
+        },
+        "xdebug": {
+            "version": "3.x",
+            "default_state": "disabled",
+            "toggle_variable": "PHP_XDEBUG_ENABLED=1"
+        },
+        "sqlite": {
+            "support": "built-in",
+            "pdo_sqlite": "enabled",
+            "sqlite3": "enabled"
+        },
+        "database_drivers": [
+            "pdo_mysql",
+            "mysqli",
+            "pdo_sqlite",
+            "sqlite3",
+            "pdo_pgsql",
+            "pgsql",
+            "redis (phpredis)"
+        ],
+        "os": {
+            "distribution": "Alpine Linux",
+            "base": "Official Docker PHP Alpine"
+        },
+        "system_packages": {
+            "bash": "5.2.x (Alpine)",
+            "ca-certificates": "20240705.x",
+            "curl": "8.9.x (Alpine)",
+            "git": "2.45.x",
+            "msmtp": "1.8.x",
+            "shadow": "4.15.x",
+            "sqlite": "3.45.x",
+            "tzdata": "2024a.x",
+            "unzip": "6.0.x",
+            "zip": "3.0.x"
+        }
+    },
+    "php_extensions": {
+        "bcmath": "8.3",
+        "bz2": "8.3",
+        "calendar": "8.3",
+        "curl": "8.3",
+        "exif": "8.3",
+        "gd": "8.3",
+        "gettext": "8.3",
+        "gmp": "8.3",
+        "igbinary": "3.2.16",
+        "imagick": "3.7.0",
+        "imap": "8.3",
+        "intl": "8.3",
+        "ioncube_loader": "13.3.0",
+        "mbstring": "8.3",
+        "mysqli": "8.3",
+        "opcache": "8.3",
+        "pcntl": "8.3",
+        "pdo": "8.3",
+        "pdo_mysql": "8.3",
+        "pdo_pgsql": "8.3",
+        "pdo_sqlite": "8.3",
+        "pgsql": "8.3",
+        "posix": "8.3",
+        "redis": "6.0.2",
+        "soap": "8.3",
+        "sockets": "8.3",
+        "sodium": "8.3",
+        "sqlite3": "8.3",
+        "sysvmsg": "8.3",
+        "sysvsem": "8.3",
+        "sysvshm": "8.3",
+        "xdebug": "3.3.2",
+        "xml": "8.3",
+        "xsl": "8.3",
+        "zip": "8.3"
+    },
+    "runtime_defaults": {
+        "user": "www-data",
+        "puid": 1000,
+        "pgid": 1000,
+        "app_dir": "/var/www/html",
+        "document_root": "/var/www/html/public",
+        "port": 9000,
+        "php_ini": {
+            "PHP_MEMORY_LIMIT": "256M",
+            "PHP_MAX_EXECUTION_TIME": "60",
+            "PHP_UPLOAD_MAX_FILESIZE": "64M",
+            "PHP_POST_MAX_SIZE": "64M",
+            "PHP_MAX_INPUT_VARS": "3000",
+            "PHP_DATE_TIMEZONE": "UTC",
+            "PHP_DISPLAY_ERRORS": "Off",
+            "PHP_EXPOSE_PHP": "Off",
+            "PHP_OPCACHE_ENABLE": "1",
+            "PHP_OPCACHE_MEMORY_CONSUMPTION": "128",
+            "PHP_OPCACHE_MAX_ACCELERATED_FILES": "10000",
+            "PHP_OPCACHE_VALIDATE_TIMESTAMPS": "1",
+            "PHP_XDEBUG_ENABLED": "0",
+            "PHP_XDEBUG_MODE": "develop,debug",
+            "PHP_XDEBUG_CLIENT_HOST": "host.docker.internal",
+            "PHP_XDEBUG_CLIENT_PORT": "9003",
+            "PHP_XDEBUG_START_WITH_REQUEST": "trigger"
+        }
+    }
+}
