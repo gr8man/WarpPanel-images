@@ -185,6 +185,7 @@ function testStackIntegration(
                "{$fpmImage}");
 
         // Start Web server container
+        runCmd("docker run -d --name {$webContainer} --network {$netName} -p {$port}:80 " .
                "-v " . escapeshellarg($fixturesDir) . ":/var/www/html " .
                "-e WEB_DOCUMENT_ROOT=/var/www/html/public " .
                "-e PHP_FPM_HOST={$fpmContainer} " .
