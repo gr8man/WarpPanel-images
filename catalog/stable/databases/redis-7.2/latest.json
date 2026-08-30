@@ -5,11 +5,11 @@
     "version": "7.2",
     "build_id": "20260830",
     "build_date": "20260830",
-    "build_timestamp": "2026-08-30T19:38:30+00:00",
+    "build_timestamp": "2026-08-30T19:48:19+00:00",
     "target": "redis-7_2",
     "base_image": "redis:7.2-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/redis-7.2:redis-7.2-alpine-stable-20260830",
+    "primary_tag": "ghcr.io/gr8man/redis:redis-7.2-alpine-stable-20260830",
     "tags": [
         "redis-7.2-alpine-stable",
         "redis-7.2-alpine-stable-20260830",
@@ -17,10 +17,10 @@
         "redis-7.2-stable-20260830"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/redis-7.2:redis-7.2-alpine-stable",
-        "ghcr.io/gr8man/redis-7.2:redis-7.2-alpine-stable-20260830",
-        "ghcr.io/gr8man/redis-7.2:redis-7.2-stable",
-        "ghcr.io/gr8man/redis-7.2:redis-7.2-stable-20260830"
+        "ghcr.io/gr8man/redis:redis-7.2-alpine-stable",
+        "ghcr.io/gr8man/redis:redis-7.2-alpine-stable-20260830",
+        "ghcr.io/gr8man/redis:redis-7.2-stable",
+        "ghcr.io/gr8man/redis:redis-7.2-stable-20260830"
     ],
     "software_stack": {
         "engine": "Redis In-Memory Key-Value Data Store (Alpine Linux)",
@@ -30,5 +30,5 @@
         "default_port": 6379
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-30T19:38:30+00:00"
+    "verified_at": "2026-08-30T19:48:19+00:00"
 }
