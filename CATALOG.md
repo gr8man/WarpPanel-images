@@ -1,7 +1,7 @@
 # 🚀 Katalog Sprawdzonych Obrazów WarpPanel
 
 > **Kanał Wydań:** `CURRENT`  
-> **Ostatnia aktualizacja:** `2026-08-31T03:54:15+00:00`  
+> **Ostatnia aktualizacja:** `2026-08-31T20:41:09+00:00`  
 > **Aktywny Build ID:** `20260831`  
 > **Rejestr Główny:** `ghcr.io/gr8man`  
 
@@ -28,44 +28,44 @@ Centralny rejestr i katalog zweryfikowanych obrazów kontenerowych dla platformy
 
 | Wersja PHP | Build ID | Silnik / Serwer | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **PHP 8.2** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.2-alpine` | `ghcr.io/gr8man/frankenphp:frankenphp-8.2-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.2/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **PHP 8.3** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.3-alpine` | `ghcr.io/gr8man/frankenphp:frankenphp-8.3-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.3/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **PHP 8.4** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.4-alpine` | `ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.4/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **PHP 8.5** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:latest-alpine` | `ghcr.io/gr8man/frankenphp:frankenphp-8.5-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.5/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **PHP 8.2** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.2-alpine` | `ghcr.io/gr8man/frankenphp:8.2-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.2/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **PHP 8.3** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.3-alpine` | `ghcr.io/gr8man/frankenphp:8.3-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.3/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **PHP 8.4** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:1-php8.4-alpine` | `ghcr.io/gr8man/frankenphp:8.4-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.4/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **PHP 8.5** | `20260831` | FrankenPHP 1.x (Caddy v2) | `dunglas/frankenphp:latest-alpine` | `ghcr.io/gr8man/frankenphp:8.5-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/frankenphp/8.5/20260831.json) | ✅ **VERIFIED (PASS)** |
 
 ## 3. 🌐 Serwery WWW (Standalone)
 
 | Serwer | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **NGINX** | `20260831` | `nginx:1.27-alpine` | `http2`, `http3_quic`, `brotli`, `cloudflare_realip`, `waf_basic` | `ghcr.io/gr8man/nginx:nginx-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/nginx/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **APACHE** | `20260831` | `httpd:2.4-alpine` | `mpm_event`, `mod_proxy_fcgi`, `mod_rewrite`, `remoteip`, `waf_basic` | `ghcr.io/gr8man/apache:apache-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/apache/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **OPENLITESPEED** | `20260831` | `litespeedtech/openlitespeed:latest` | `lscache`, `quic`, `waf_rules`, `cloudflare_realip` | `ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/openlitespeed/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **CADDY** | `20260831` | `caddy:2.8-alpine` | `auto_https`, `http3_quic`, `zstd_gzip`, `cloudflare_realip`, `waf_basic`, `fastcgi_php` | `ghcr.io/gr8man/caddy:caddy-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/caddy/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **LIGHTTPD** | `20260831` | `alpine:3.20` | `fastcgi_php`, `mod_rewrite`, `mod_deflate`, `cloudflare_realip`, `waf_basic` | `ghcr.io/gr8man/lighttpd:lighttpd-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/lighttpd/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **NGINX** | `20260831` | `nginx:1.27-alpine` | `http2`, `http3_quic`, `brotli`, `cloudflare_realip`, `waf_basic` | `ghcr.io/gr8man/nginx:1.27-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/nginx/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **APACHE** | `20260831` | `httpd:2.4-alpine` | `mpm_event`, `mod_proxy_fcgi`, `mod_rewrite`, `remoteip`, `waf_basic` | `ghcr.io/gr8man/apache:2.4-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/apache/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **OPENLITESPEED** | `20260831` | `litespeedtech/openlitespeed:latest` | `lscache`, `quic`, `waf_rules`, `cloudflare_realip` | `ghcr.io/gr8man/openlitespeed:1.8-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/openlitespeed/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **CADDY** | `20260831` | `caddy:2.8-alpine` | `auto_https`, `http3_quic`, `zstd_gzip`, `cloudflare_realip`, `waf_basic`, `fastcgi_php` | `ghcr.io/gr8man/caddy:2.8-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/caddy/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **LIGHTTPD** | `20260831` | `alpine:3.20` | `fastcgi_php`, `mod_rewrite`, `mod_deflate`, `cloudflare_realip`, `waf_basic` | `ghcr.io/gr8man/lighttpd:1.4-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/webservers/lighttpd/20260831.json) | ✅ **VERIFIED (PASS)** |
 
 ## 4. 🚦 Traefik (Cloud-Native Ingress, Reverse Proxy & Load Balancer)
 
 | Wersja | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Traefik v2.11** | `20260831` | `traefik:v2.11` | `docker_provider`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:traefik-2.11-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/2.11/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Traefik v3.1** | `20260831` | `traefik:v3.1` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:traefik-3.1-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/3.1/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Traefik v3.2** | `20260831` | `traefik:v3.2` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:traefik-3.2-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/3.2/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Traefik v3.3** | `20260831` | `traefik:v3.3` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:traefik-3.3-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/3.3/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Traefik v2.11** | `20260831` | `traefik:v2.11` | `docker_provider`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:2.11-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/2.11/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Traefik v3.1** | `20260831` | `traefik:v3.1` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:3.1-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/3.1/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Traefik v3.2** | `20260831` | `traefik:v3.2` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:3.2-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/3.2/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Traefik v3.3** | `20260831` | `traefik:v3.3` | `docker_provider`, `http3_quic`, `acme_letsencrypt`, `cloudflare_realip`, `http_to_https`, `dashboard` | `ghcr.io/gr8man/traefik:3.3-20260831` | [📄 Specyfikacja 20260831](catalog/current/traefik/3.3/20260831.json) | ✅ **VERIFIED (PASS)** |
 
 ## 5. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna
 
 | Baza / Silnik | Wersja | Build ID | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Mysql** | `8.4` | `20260831` | `mysql:8.4` | `ghcr.io/gr8man/mysql:mysql-8.4-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mysql-8.4/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Mysql** | `8.0` | `20260831` | `mysql:8.0` | `ghcr.io/gr8man/mysql:mysql-8.0-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mysql-8.0/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Mariadb** | `11.4` | `20260831` | `mariadb:11.4` | `ghcr.io/gr8man/mariadb:mariadb-11.4-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mariadb-11.4/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Mariadb** | `10.11` | `20260831` | `mariadb:10.11` | `ghcr.io/gr8man/mariadb:mariadb-10.11-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mariadb-10.11/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Postgres** | `17` | `20260831` | `postgres:17-alpine` | `ghcr.io/gr8man/postgres:postgres-17-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/postgres-17/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Postgres** | `16` | `20260831` | `postgres:16-alpine` | `ghcr.io/gr8man/postgres:postgres-16-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/postgres-16/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Redis** | `7.4` | `20260831` | `redis:7.4-alpine` | `ghcr.io/gr8man/redis:redis-7.4-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/redis-7.4/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Redis** | `7.2` | `20260831` | `redis:7.2-alpine` | `ghcr.io/gr8man/redis:redis-7.2-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/redis-7.2/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Mongodb** | `7.0` | `20260831` | `mongo:7.0` | `ghcr.io/gr8man/mongodb:mongo-7.0-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mongodb-7.0/20260831.json) | ✅ **VERIFIED (PASS)** |
-| **Mongodb** | `8.0` | `20260831` | `mongo:8.0` | `ghcr.io/gr8man/mongodb:mongo-8.0-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mongodb-8.0/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Mysql** | `8.4` | `20260831` | `mysql:8.4` | `ghcr.io/gr8man/mysql:8.4-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mysql-8.4/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Mysql** | `8.0` | `20260831` | `mysql:8.0` | `ghcr.io/gr8man/mysql:8.0-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mysql-8.0/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Mariadb** | `11.4` | `20260831` | `mariadb:11.4` | `ghcr.io/gr8man/mariadb:11.4-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mariadb-11.4/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Mariadb** | `10.11` | `20260831` | `mariadb:10.11` | `ghcr.io/gr8man/mariadb:10.11-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mariadb-10.11/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Postgres** | `17` | `20260831` | `postgres:17-alpine` | `ghcr.io/gr8man/postgres:17-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/postgres-17/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Postgres** | `16` | `20260831` | `postgres:16-alpine` | `ghcr.io/gr8man/postgres:16-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/postgres-16/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Redis** | `7.4` | `20260831` | `redis:7.4-alpine` | `ghcr.io/gr8man/redis:7.4-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/redis-7.4/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Redis** | `7.2` | `20260831` | `redis:7.2-alpine` | `ghcr.io/gr8man/redis:7.2-alpine-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/redis-7.2/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Mongodb** | `7.0` | `20260831` | `mongo:7.0` | `ghcr.io/gr8man/mongodb:7.0-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mongodb-7.0/20260831.json) | ✅ **VERIFIED (PASS)** |
+| **Mongodb** | `8.0` | `20260831` | `mongo:8.0` | `ghcr.io/gr8man/mongodb:8.0-20260831` | [📄 Specyfikacja 20260831](catalog/current/databases/mongodb-8.0/20260831.json) | ✅ **VERIFIED (PASS)** |
 
 ---
 *Wszystkie szczegółowe specyfikacje buildów znajdują się w folderze `catalog/`.*

@@ -5,31 +5,17 @@
     "version": "8.3",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "exact_php_version": "8.3.33",
     "target": "php-fpm-8_3",
     "type": "modern",
     "base_image": "php:8.3-fpm-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/php:8.3-fpm-alpine-stable-20260831",
-    "tags": [
-        "8.3-fpm-alpine-stable",
-        "8.3-fpm-alpine-stable-20260831",
-        "8.3-fpm-stable",
-        "8.3-fpm-stable-20260831",
-        "latest-fpm-stable",
-        "latest-fpm-stable-20260831"
-    ],
-    "full_image_tags": [
-        "ghcr.io/gr8man/php:8.3-fpm-alpine-stable",
-        "ghcr.io/gr8man/php:8.3-fpm-alpine-stable-20260831",
-        "ghcr.io/gr8man/php:8.3-fpm-stable",
-        "ghcr.io/gr8man/php:8.3-fpm-stable-20260831",
-        "ghcr.io/gr8man/php:latest-fpm-stable",
-        "ghcr.io/gr8man/php:latest-fpm-stable-20260831"
-    ],
+    "primary_tag": null,
+    "tags": [],
+    "full_image_tags": [],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00",
+    "verified_at": "2026-08-31T20:41:09+00:00",
     "software_stack": {
         "php": {
             "version": "8.3.33",

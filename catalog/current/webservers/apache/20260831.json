@@ -4,32 +4,30 @@
     "channel": "current",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "apache",
     "base_image": "httpd:2.4-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/apache:apache-alpine-20260831",
+    "primary_tag": "ghcr.io/gr8man/apache:2.4-alpine-20260831",
     "tags": [
-        "apache-alpine",
-        "apache-alpine-20260831",
-        "apache-alpine-current",
-        "apache-latest",
-        "apache-latest-20260831",
-        "apache-latest-current",
-        "httpd-2.4",
-        "httpd-2.4-20260831",
-        "httpd-2.4-current"
+        "2.4-alpine-current",
+        "2.4-alpine-20260831",
+        "2.4-current",
+        "2.4-20260831",
+        "alpine-current",
+        "alpine-20260831",
+        "latest-current",
+        "latest-20260831"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/apache:apache-alpine",
-        "ghcr.io/gr8man/apache:apache-alpine-20260831",
-        "ghcr.io/gr8man/apache:apache-alpine-current",
-        "ghcr.io/gr8man/apache:apache-latest",
-        "ghcr.io/gr8man/apache:apache-latest-20260831",
-        "ghcr.io/gr8man/apache:apache-latest-current",
-        "ghcr.io/gr8man/apache:httpd-2.4",
-        "ghcr.io/gr8man/apache:httpd-2.4-20260831",
-        "ghcr.io/gr8man/apache:httpd-2.4-current"
+        "ghcr.io/gr8man/apache:2.4-alpine-current",
+        "ghcr.io/gr8man/apache:2.4-alpine-20260831",
+        "ghcr.io/gr8man/apache:2.4-current",
+        "ghcr.io/gr8man/apache:2.4-20260831",
+        "ghcr.io/gr8man/apache:alpine-current",
+        "ghcr.io/gr8man/apache:alpine-20260831",
+        "ghcr.io/gr8man/apache:latest-current",
+        "ghcr.io/gr8man/apache:latest-20260831"
     ],
     "software_stack": {
         "software": "Apache HTTP Server (httpd 2.4 Alpine)",
@@ -59,5 +57,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

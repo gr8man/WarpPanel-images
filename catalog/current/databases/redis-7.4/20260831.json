@@ -5,32 +5,26 @@
     "version": "7.4",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "redis-7_4",
     "base_image": "redis:7.4-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/redis:redis-7.4-alpine-20260831",
+    "primary_tag": "ghcr.io/gr8man/redis:7.4-alpine-20260831",
     "tags": [
-        "redis-7.4-alpine",
-        "redis-7.4-alpine-20260831",
-        "redis-7.4-alpine-current",
-        "redis-7.4",
-        "redis-7.4-20260831",
-        "redis-7.4-current",
-        "redis-latest",
-        "redis-latest-20260831",
-        "redis-latest-current"
+        "7.4-alpine-current",
+        "7.4-alpine-20260831",
+        "7.4-current",
+        "7.4-20260831",
+        "latest-current",
+        "latest-20260831"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/redis:redis-7.4-alpine",
-        "ghcr.io/gr8man/redis:redis-7.4-alpine-20260831",
-        "ghcr.io/gr8man/redis:redis-7.4-alpine-current",
-        "ghcr.io/gr8man/redis:redis-7.4",
-        "ghcr.io/gr8man/redis:redis-7.4-20260831",
-        "ghcr.io/gr8man/redis:redis-7.4-current",
-        "ghcr.io/gr8man/redis:redis-latest",
-        "ghcr.io/gr8man/redis:redis-latest-20260831",
-        "ghcr.io/gr8man/redis:redis-latest-current"
+        "ghcr.io/gr8man/redis:7.4-alpine-current",
+        "ghcr.io/gr8man/redis:7.4-alpine-20260831",
+        "ghcr.io/gr8man/redis:7.4-current",
+        "ghcr.io/gr8man/redis:7.4-20260831",
+        "ghcr.io/gr8man/redis:latest-current",
+        "ghcr.io/gr8man/redis:latest-20260831"
     ],
     "software_stack": {
         "engine": "Redis In-Memory Key-Value Data Store (Alpine Linux)",
@@ -40,5 +34,5 @@
         "default_port": 6379
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

@@ -4,32 +4,26 @@
     "channel": "current",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "openlitespeed",
     "base_image": "litespeedtech/openlitespeed:latest",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-20260831",
+    "primary_tag": "ghcr.io/gr8man/openlitespeed:1.8-alpine-20260831",
     "tags": [
-        "openlitespeed-alpine",
-        "openlitespeed-alpine-20260831",
-        "openlitespeed-alpine-current",
-        "openlitespeed-latest",
-        "openlitespeed-latest-20260831",
-        "openlitespeed-latest-current",
-        "ols-latest",
-        "ols-latest-20260831",
-        "ols-latest-current"
+        "1.8-alpine-current",
+        "1.8-alpine-20260831",
+        "1.8-current",
+        "1.8-20260831",
+        "latest-current",
+        "latest-20260831"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-20260831",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-current",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-20260831",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-current",
-        "ghcr.io/gr8man/openlitespeed:ols-latest",
-        "ghcr.io/gr8man/openlitespeed:ols-latest-20260831",
-        "ghcr.io/gr8man/openlitespeed:ols-latest-current"
+        "ghcr.io/gr8man/openlitespeed:1.8-alpine-current",
+        "ghcr.io/gr8man/openlitespeed:1.8-alpine-20260831",
+        "ghcr.io/gr8man/openlitespeed:1.8-current",
+        "ghcr.io/gr8man/openlitespeed:1.8-20260831",
+        "ghcr.io/gr8man/openlitespeed:latest-current",
+        "ghcr.io/gr8man/openlitespeed:latest-20260831"
     ],
     "software_stack": {
         "software": "OpenLiteSpeed High-Performance Server",
@@ -55,5 +49,5 @@
         "cloudflare_realip"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

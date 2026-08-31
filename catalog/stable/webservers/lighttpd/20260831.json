@@ -4,23 +4,13 @@
     "channel": "stable",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "lighttpd",
     "base_image": "alpine:3.20",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/lighttpd:lighttpd-alpine-stable-20260831",
-    "tags": [
-        "lighttpd-alpine-stable",
-        "lighttpd-alpine-stable-20260831",
-        "lighttpd-latest-stable",
-        "lighttpd-latest-stable-20260831"
-    ],
-    "full_image_tags": [
-        "ghcr.io/gr8man/lighttpd:lighttpd-alpine-stable",
-        "ghcr.io/gr8man/lighttpd:lighttpd-alpine-stable-20260831",
-        "ghcr.io/gr8man/lighttpd:lighttpd-latest-stable",
-        "ghcr.io/gr8man/lighttpd:lighttpd-latest-stable-20260831"
-    ],
+    "primary_tag": null,
+    "tags": [],
+    "full_image_tags": [],
     "software_stack": {
         "software": "Lighttpd Ultra-Light Web Server (Alpine Linux)",
         "protocols": [
@@ -46,5 +36,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

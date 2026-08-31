@@ -5,32 +5,26 @@
     "version": "2.11",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "traefik-v2_11",
     "base_image": "traefik:v2.11",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/traefik:traefik-2.11-20260831",
+    "primary_tag": "ghcr.io/gr8man/traefik:2.11-20260831",
     "tags": [
-        "traefik-2.11",
-        "traefik-2.11-20260831",
-        "traefik-2.11-current",
-        "traefik-v2.11",
-        "traefik-v2.11-20260831",
-        "traefik-v2.11-current",
-        "traefik-v2",
-        "traefik-v2-20260831",
-        "traefik-v2-current"
+        "2.11-current",
+        "2.11-20260831",
+        "v2.11-current",
+        "v2.11-20260831",
+        "v2-current",
+        "v2-20260831"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/traefik:traefik-2.11",
-        "ghcr.io/gr8man/traefik:traefik-2.11-20260831",
-        "ghcr.io/gr8man/traefik:traefik-2.11-current",
-        "ghcr.io/gr8man/traefik:traefik-v2.11",
-        "ghcr.io/gr8man/traefik:traefik-v2.11-20260831",
-        "ghcr.io/gr8man/traefik:traefik-v2.11-current",
-        "ghcr.io/gr8man/traefik:traefik-v2",
-        "ghcr.io/gr8man/traefik:traefik-v2-20260831",
-        "ghcr.io/gr8man/traefik:traefik-v2-current"
+        "ghcr.io/gr8man/traefik:2.11-current",
+        "ghcr.io/gr8man/traefik:2.11-20260831",
+        "ghcr.io/gr8man/traefik:v2.11-current",
+        "ghcr.io/gr8man/traefik:v2.11-20260831",
+        "ghcr.io/gr8man/traefik:v2-current",
+        "ghcr.io/gr8man/traefik:v2-20260831"
     ],
     "software_stack": {
         "software": "Traefik v2.11 Cloud-Native Ingress & Reverse Proxy",
@@ -53,5 +47,5 @@
         ]
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

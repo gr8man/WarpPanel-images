@@ -4,32 +4,30 @@
     "channel": "current",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "caddy",
     "base_image": "caddy:2.8-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/caddy:caddy-alpine-20260831",
+    "primary_tag": "ghcr.io/gr8man/caddy:2.8-alpine-20260831",
     "tags": [
-        "caddy-alpine",
-        "caddy-alpine-20260831",
-        "caddy-alpine-current",
-        "caddy-latest",
-        "caddy-latest-20260831",
-        "caddy-latest-current",
-        "caddy-2.8",
-        "caddy-2.8-20260831",
-        "caddy-2.8-current"
+        "2.8-alpine-current",
+        "2.8-alpine-20260831",
+        "2.8-current",
+        "2.8-20260831",
+        "alpine-current",
+        "alpine-20260831",
+        "latest-current",
+        "latest-20260831"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/caddy:caddy-alpine",
-        "ghcr.io/gr8man/caddy:caddy-alpine-20260831",
-        "ghcr.io/gr8man/caddy:caddy-alpine-current",
-        "ghcr.io/gr8man/caddy:caddy-latest",
-        "ghcr.io/gr8man/caddy:caddy-latest-20260831",
-        "ghcr.io/gr8man/caddy:caddy-latest-current",
-        "ghcr.io/gr8man/caddy:caddy-2.8",
-        "ghcr.io/gr8man/caddy:caddy-2.8-20260831",
-        "ghcr.io/gr8man/caddy:caddy-2.8-current"
+        "ghcr.io/gr8man/caddy:2.8-alpine-current",
+        "ghcr.io/gr8man/caddy:2.8-alpine-20260831",
+        "ghcr.io/gr8man/caddy:2.8-current",
+        "ghcr.io/gr8man/caddy:2.8-20260831",
+        "ghcr.io/gr8man/caddy:alpine-current",
+        "ghcr.io/gr8man/caddy:alpine-20260831",
+        "ghcr.io/gr8man/caddy:latest-current",
+        "ghcr.io/gr8man/caddy:latest-20260831"
     ],
     "software_stack": {
         "software": "Caddy v2 Standalone Web Server",
@@ -64,5 +62,5 @@
         "fastcgi_php"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

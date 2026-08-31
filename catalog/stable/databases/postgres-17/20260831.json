@@ -5,32 +5,18 @@
     "version": "17",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "postgres-17",
     "base_image": "postgres:17-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/postgres:postgres-17-alpine-stable-20260831",
-    "tags": [
-        "postgres-17-alpine-stable",
-        "postgres-17-alpine-stable-20260831",
-        "postgres-17-stable",
-        "postgres-17-stable-20260831",
-        "postgres-latest-stable",
-        "postgres-latest-stable-20260831"
-    ],
-    "full_image_tags": [
-        "ghcr.io/gr8man/postgres:postgres-17-alpine-stable",
-        "ghcr.io/gr8man/postgres:postgres-17-alpine-stable-20260831",
-        "ghcr.io/gr8man/postgres:postgres-17-stable",
-        "ghcr.io/gr8man/postgres:postgres-17-stable-20260831",
-        "ghcr.io/gr8man/postgres:postgres-latest-stable",
-        "ghcr.io/gr8man/postgres:postgres-latest-stable-20260831"
-    ],
+    "primary_tag": null,
+    "tags": [],
+    "full_image_tags": [],
     "software_stack": {
         "engine": "PostgreSQL Database Server (Alpine Linux)",
         "version": "17",
         "default_port": 5432
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

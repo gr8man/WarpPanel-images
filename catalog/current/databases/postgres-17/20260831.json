@@ -5,32 +5,26 @@
     "version": "17",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "postgres-17",
     "base_image": "postgres:17-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/postgres:postgres-17-alpine-20260831",
+    "primary_tag": "ghcr.io/gr8man/postgres:17-alpine-20260831",
     "tags": [
-        "postgres-17-alpine",
-        "postgres-17-alpine-20260831",
-        "postgres-17-alpine-current",
-        "postgres-17",
-        "postgres-17-20260831",
-        "postgres-17-current",
-        "postgres-latest",
-        "postgres-latest-20260831",
-        "postgres-latest-current"
+        "17-alpine-current",
+        "17-alpine-20260831",
+        "17-current",
+        "17-20260831",
+        "latest-current",
+        "latest-20260831"
     ],
     "full_image_tags": [
-        "ghcr.io/gr8man/postgres:postgres-17-alpine",
-        "ghcr.io/gr8man/postgres:postgres-17-alpine-20260831",
-        "ghcr.io/gr8man/postgres:postgres-17-alpine-current",
-        "ghcr.io/gr8man/postgres:postgres-17",
-        "ghcr.io/gr8man/postgres:postgres-17-20260831",
-        "ghcr.io/gr8man/postgres:postgres-17-current",
-        "ghcr.io/gr8man/postgres:postgres-latest",
-        "ghcr.io/gr8man/postgres:postgres-latest-20260831",
-        "ghcr.io/gr8man/postgres:postgres-latest-current"
+        "ghcr.io/gr8man/postgres:17-alpine-current",
+        "ghcr.io/gr8man/postgres:17-alpine-20260831",
+        "ghcr.io/gr8man/postgres:17-current",
+        "ghcr.io/gr8man/postgres:17-20260831",
+        "ghcr.io/gr8man/postgres:latest-current",
+        "ghcr.io/gr8man/postgres:latest-20260831"
     ],
     "software_stack": {
         "engine": "PostgreSQL Database Server (Alpine Linux)",
@@ -38,5 +32,5 @@
         "default_port": 5432
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

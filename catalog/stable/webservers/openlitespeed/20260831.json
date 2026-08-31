@@ -4,27 +4,13 @@
     "channel": "stable",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "build_timestamp": "2026-08-31T20:41:09+00:00",
     "target": "openlitespeed",
     "base_image": "litespeedtech/openlitespeed:latest",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-stable-20260831",
-    "tags": [
-        "openlitespeed-alpine-stable",
-        "openlitespeed-alpine-stable-20260831",
-        "openlitespeed-latest-stable",
-        "openlitespeed-latest-stable-20260831",
-        "ols-latest-stable",
-        "ols-latest-stable-20260831"
-    ],
-    "full_image_tags": [
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-stable",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-stable-20260831",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-stable",
-        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-stable-20260831",
-        "ghcr.io/gr8man/openlitespeed:ols-latest-stable",
-        "ghcr.io/gr8man/openlitespeed:ols-latest-stable-20260831"
-    ],
+    "primary_tag": null,
+    "tags": [],
+    "full_image_tags": [],
     "software_stack": {
         "software": "OpenLiteSpeed High-Performance Server",
         "cache_engine": "LSCache (LiteSpeed Page Cache Engine)",
@@ -49,5 +35,5 @@
         "cloudflare_realip"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T03:54:15+00:00"
+    "verified_at": "2026-08-31T20:41:09+00:00"
 }

@@ -1,335 +1,280 @@
 {
     "registry": "ghcr.io/gr8man",
     "channel": "current",
-    "updated_at": "2026-08-31T03:54:15+00:00",
+    "updated_at": "2026-08-31T20:41:09+00:00",
     "build_date": "20260831",
     "php": {
         "8.0": [
-            "ghcr.io/gr8man/php:8.0-fpm-alpine",
-            "ghcr.io/gr8man/php:8.0-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.0-fpm-alpine-current",
-            "ghcr.io/gr8man/php:8.0-fpm",
+            "ghcr.io/gr8man/php:8.0-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:8.0-fpm-current",
             "ghcr.io/gr8man/php:8.0-fpm-20260831",
-            "ghcr.io/gr8man/php:8.0-fpm-current"
+            "ghcr.io/gr8man/php:8.0-current",
+            "ghcr.io/gr8man/php:8.0-20260831"
         ],
         "8.1": [
-            "ghcr.io/gr8man/php:8.1-fpm-alpine",
-            "ghcr.io/gr8man/php:8.1-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.1-fpm-alpine-current",
-            "ghcr.io/gr8man/php:8.1-fpm",
+            "ghcr.io/gr8man/php:8.1-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:8.1-fpm-current",
             "ghcr.io/gr8man/php:8.1-fpm-20260831",
-            "ghcr.io/gr8man/php:8.1-fpm-current"
+            "ghcr.io/gr8man/php:8.1-current",
+            "ghcr.io/gr8man/php:8.1-20260831"
         ],
         "8.2": [
-            "ghcr.io/gr8man/php:8.2-fpm-alpine",
-            "ghcr.io/gr8man/php:8.2-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.2-fpm-alpine-current",
-            "ghcr.io/gr8man/php:8.2-fpm",
+            "ghcr.io/gr8man/php:8.2-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:8.2-fpm-current",
             "ghcr.io/gr8man/php:8.2-fpm-20260831",
-            "ghcr.io/gr8man/php:8.2-fpm-current"
+            "ghcr.io/gr8man/php:8.2-current",
+            "ghcr.io/gr8man/php:8.2-20260831"
         ],
         "8.3": [
-            "ghcr.io/gr8man/php:8.3-fpm-alpine",
-            "ghcr.io/gr8man/php:8.3-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.3-fpm-alpine-current",
-            "ghcr.io/gr8man/php:8.3-fpm",
-            "ghcr.io/gr8man/php:8.3-fpm-20260831",
+            "ghcr.io/gr8man/php:8.3-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.3-fpm-current",
-            "ghcr.io/gr8man/php:latest-fpm",
-            "ghcr.io/gr8man/php:latest-fpm-20260831",
-            "ghcr.io/gr8man/php:latest-fpm-current"
+            "ghcr.io/gr8man/php:8.3-fpm-20260831",
+            "ghcr.io/gr8man/php:8.3-current",
+            "ghcr.io/gr8man/php:8.3-20260831",
+            "ghcr.io/gr8man/php:latest-fpm-current",
+            "ghcr.io/gr8man/php:latest-fpm-20260831"
         ],
         "8.4": [
-            "ghcr.io/gr8man/php:8.4-fpm-alpine",
-            "ghcr.io/gr8man/php:8.4-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.4-fpm-alpine-current",
-            "ghcr.io/gr8man/php:8.4-fpm",
+            "ghcr.io/gr8man/php:8.4-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:8.4-fpm-current",
             "ghcr.io/gr8man/php:8.4-fpm-20260831",
-            "ghcr.io/gr8man/php:8.4-fpm-current"
+            "ghcr.io/gr8man/php:8.4-current",
+            "ghcr.io/gr8man/php:8.4-20260831"
         ],
         "8.5": [
-            "ghcr.io/gr8man/php:8.5-fpm-alpine",
-            "ghcr.io/gr8man/php:8.5-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:8.5-fpm-alpine-current",
-            "ghcr.io/gr8man/php:8.5-fpm-dev",
-            "ghcr.io/gr8man/php:8.5-fpm-dev-20260831",
-            "ghcr.io/gr8man/php:8.5-fpm-dev-current"
+            "ghcr.io/gr8man/php:8.5-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:8.5-fpm-dev-current",
+            "ghcr.io/gr8man/php:8.5-fpm-dev-20260831"
         ],
         "5.6": [
-            "ghcr.io/gr8man/php:5.6-fpm-alpine",
-            "ghcr.io/gr8man/php:5.6-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:5.6-fpm-alpine-current",
-            "ghcr.io/gr8man/php:5.6-fpm",
+            "ghcr.io/gr8man/php:5.6-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:5.6-fpm-current",
             "ghcr.io/gr8man/php:5.6-fpm-20260831",
-            "ghcr.io/gr8man/php:5.6-fpm-current"
+            "ghcr.io/gr8man/php:5.6-current",
+            "ghcr.io/gr8man/php:5.6-20260831"
         ],
         "7.0": [
-            "ghcr.io/gr8man/php:7.0-fpm-alpine",
-            "ghcr.io/gr8man/php:7.0-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:7.0-fpm-alpine-current",
-            "ghcr.io/gr8man/php:7.0-fpm",
+            "ghcr.io/gr8man/php:7.0-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:7.0-fpm-current",
             "ghcr.io/gr8man/php:7.0-fpm-20260831",
-            "ghcr.io/gr8man/php:7.0-fpm-current"
+            "ghcr.io/gr8man/php:7.0-current",
+            "ghcr.io/gr8man/php:7.0-20260831"
         ],
         "7.1": [
-            "ghcr.io/gr8man/php:7.1-fpm-alpine",
-            "ghcr.io/gr8man/php:7.1-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:7.1-fpm-alpine-current",
-            "ghcr.io/gr8man/php:7.1-fpm",
+            "ghcr.io/gr8man/php:7.1-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:7.1-fpm-current",
             "ghcr.io/gr8man/php:7.1-fpm-20260831",
-            "ghcr.io/gr8man/php:7.1-fpm-current"
+            "ghcr.io/gr8man/php:7.1-current",
+            "ghcr.io/gr8man/php:7.1-20260831"
         ],
         "7.2": [
-            "ghcr.io/gr8man/php:7.2-fpm-alpine",
-            "ghcr.io/gr8man/php:7.2-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:7.2-fpm-alpine-current",
-            "ghcr.io/gr8man/php:7.2-fpm",
+            "ghcr.io/gr8man/php:7.2-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:7.2-fpm-current",
             "ghcr.io/gr8man/php:7.2-fpm-20260831",
-            "ghcr.io/gr8man/php:7.2-fpm-current"
+            "ghcr.io/gr8man/php:7.2-current",
+            "ghcr.io/gr8man/php:7.2-20260831"
         ],
         "7.3": [
-            "ghcr.io/gr8man/php:7.3-fpm-alpine",
-            "ghcr.io/gr8man/php:7.3-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:7.3-fpm-alpine-current",
-            "ghcr.io/gr8man/php:7.3-fpm",
+            "ghcr.io/gr8man/php:7.3-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:7.3-fpm-current",
             "ghcr.io/gr8man/php:7.3-fpm-20260831",
-            "ghcr.io/gr8man/php:7.3-fpm-current"
+            "ghcr.io/gr8man/php:7.3-current",
+            "ghcr.io/gr8man/php:7.3-20260831"
         ],
         "7.4": [
-            "ghcr.io/gr8man/php:7.4-fpm-alpine",
-            "ghcr.io/gr8man/php:7.4-fpm-alpine-20260831",
             "ghcr.io/gr8man/php:7.4-fpm-alpine-current",
-            "ghcr.io/gr8man/php:7.4-fpm",
+            "ghcr.io/gr8man/php:7.4-fpm-alpine-20260831",
+            "ghcr.io/gr8man/php:7.4-fpm-current",
             "ghcr.io/gr8man/php:7.4-fpm-20260831",
-            "ghcr.io/gr8man/php:7.4-fpm-current"
+            "ghcr.io/gr8man/php:7.4-current",
+            "ghcr.io/gr8man/php:7.4-20260831"
         ]
     },
     "frankenphp": {
         "8.2": [
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.2-alpine",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.2-alpine-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.2-alpine-current",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.2",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.2-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.2-current"
+            "ghcr.io/gr8man/frankenphp:8.2-alpine-current",
+            "ghcr.io/gr8man/frankenphp:8.2-alpine-20260831",
+            "ghcr.io/gr8man/frankenphp:8.2-current",
+            "ghcr.io/gr8man/frankenphp:8.2-20260831"
         ],
         "8.3": [
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.3-alpine",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.3-alpine-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.3-alpine-current",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.3",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.3-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.3-current",
-            "ghcr.io/gr8man/frankenphp:frankenphp-latest",
-            "ghcr.io/gr8man/frankenphp:frankenphp-latest-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-latest-current"
+            "ghcr.io/gr8man/frankenphp:8.3-alpine-current",
+            "ghcr.io/gr8man/frankenphp:8.3-alpine-20260831",
+            "ghcr.io/gr8man/frankenphp:8.3-current",
+            "ghcr.io/gr8man/frankenphp:8.3-20260831",
+            "ghcr.io/gr8man/frankenphp:latest-current",
+            "ghcr.io/gr8man/frankenphp:latest-20260831"
         ],
         "8.4": [
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.4-alpine-current",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.4",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.4-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.4-current"
+            "ghcr.io/gr8man/frankenphp:8.4-alpine-current",
+            "ghcr.io/gr8man/frankenphp:8.4-alpine-20260831",
+            "ghcr.io/gr8man/frankenphp:8.4-current",
+            "ghcr.io/gr8man/frankenphp:8.4-20260831"
         ],
         "8.5": [
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.5-alpine",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.5-alpine-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-8.5-alpine-current",
-            "ghcr.io/gr8man/frankenphp:frankenphp-dev",
-            "ghcr.io/gr8man/frankenphp:frankenphp-dev-20260831",
-            "ghcr.io/gr8man/frankenphp:frankenphp-dev-current"
+            "ghcr.io/gr8man/frankenphp:8.5-alpine-current",
+            "ghcr.io/gr8man/frankenphp:8.5-alpine-20260831",
+            "ghcr.io/gr8man/frankenphp:8.5-current",
+            "ghcr.io/gr8man/frankenphp:8.5-20260831",
+            "ghcr.io/gr8man/frankenphp:dev-current",
+            "ghcr.io/gr8man/frankenphp:dev-20260831"
         ]
     },
     "webservers": {
         "nginx": [
-            "ghcr.io/gr8man/nginx:nginx-alpine",
-            "ghcr.io/gr8man/nginx:nginx-alpine-20260831",
-            "ghcr.io/gr8man/nginx:nginx-alpine-current",
-            "ghcr.io/gr8man/nginx:nginx-latest",
-            "ghcr.io/gr8man/nginx:nginx-latest-20260831",
-            "ghcr.io/gr8man/nginx:nginx-latest-current",
-            "ghcr.io/gr8man/nginx:nginx-1.27",
-            "ghcr.io/gr8man/nginx:nginx-1.27-20260831",
-            "ghcr.io/gr8man/nginx:nginx-1.27-current"
+            "ghcr.io/gr8man/nginx:1.27-alpine-current",
+            "ghcr.io/gr8man/nginx:1.27-alpine-20260831",
+            "ghcr.io/gr8man/nginx:1.27-current",
+            "ghcr.io/gr8man/nginx:1.27-20260831",
+            "ghcr.io/gr8man/nginx:alpine-current",
+            "ghcr.io/gr8man/nginx:alpine-20260831",
+            "ghcr.io/gr8man/nginx:latest-current",
+            "ghcr.io/gr8man/nginx:latest-20260831"
         ],
         "apache": [
-            "ghcr.io/gr8man/apache:apache-alpine",
-            "ghcr.io/gr8man/apache:apache-alpine-20260831",
-            "ghcr.io/gr8man/apache:apache-alpine-current",
-            "ghcr.io/gr8man/apache:apache-latest",
-            "ghcr.io/gr8man/apache:apache-latest-20260831",
-            "ghcr.io/gr8man/apache:apache-latest-current",
-            "ghcr.io/gr8man/apache:httpd-2.4",
-            "ghcr.io/gr8man/apache:httpd-2.4-20260831",
-            "ghcr.io/gr8man/apache:httpd-2.4-current"
+            "ghcr.io/gr8man/apache:2.4-alpine-current",
+            "ghcr.io/gr8man/apache:2.4-alpine-20260831",
+            "ghcr.io/gr8man/apache:2.4-current",
+            "ghcr.io/gr8man/apache:2.4-20260831",
+            "ghcr.io/gr8man/apache:alpine-current",
+            "ghcr.io/gr8man/apache:alpine-20260831",
+            "ghcr.io/gr8man/apache:latest-current",
+            "ghcr.io/gr8man/apache:latest-20260831"
         ],
         "openlitespeed": [
-            "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine",
-            "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-20260831",
-            "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-current",
-            "ghcr.io/gr8man/openlitespeed:openlitespeed-latest",
-            "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-20260831",
-            "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-current",
-            "ghcr.io/gr8man/openlitespeed:ols-latest",
-            "ghcr.io/gr8man/openlitespeed:ols-latest-20260831",
-            "ghcr.io/gr8man/openlitespeed:ols-latest-current"
+            "ghcr.io/gr8man/openlitespeed:1.8-alpine-current",
+            "ghcr.io/gr8man/openlitespeed:1.8-alpine-20260831",
+            "ghcr.io/gr8man/openlitespeed:1.8-current",
+            "ghcr.io/gr8man/openlitespeed:1.8-20260831",
+            "ghcr.io/gr8man/openlitespeed:latest-current",
+            "ghcr.io/gr8man/openlitespeed:latest-20260831"
         ],
         "caddy": [
-            "ghcr.io/gr8man/caddy:caddy-alpine",
-            "ghcr.io/gr8man/caddy:caddy-alpine-20260831",
-            "ghcr.io/gr8man/caddy:caddy-alpine-current",
-            "ghcr.io/gr8man/caddy:caddy-latest",
-            "ghcr.io/gr8man/caddy:caddy-latest-20260831",
-            "ghcr.io/gr8man/caddy:caddy-latest-current",
-            "ghcr.io/gr8man/caddy:caddy-2.8",
-            "ghcr.io/gr8man/caddy:caddy-2.8-20260831",
-            "ghcr.io/gr8man/caddy:caddy-2.8-current"
+            "ghcr.io/gr8man/caddy:2.8-alpine-current",
+            "ghcr.io/gr8man/caddy:2.8-alpine-20260831",
+            "ghcr.io/gr8man/caddy:2.8-current",
+            "ghcr.io/gr8man/caddy:2.8-20260831",
+            "ghcr.io/gr8man/caddy:alpine-current",
+            "ghcr.io/gr8man/caddy:alpine-20260831",
+            "ghcr.io/gr8man/caddy:latest-current",
+            "ghcr.io/gr8man/caddy:latest-20260831"
         ],
         "lighttpd": [
-            "ghcr.io/gr8man/lighttpd:lighttpd-alpine",
-            "ghcr.io/gr8man/lighttpd:lighttpd-alpine-20260831",
-            "ghcr.io/gr8man/lighttpd:lighttpd-alpine-current",
-            "ghcr.io/gr8man/lighttpd:lighttpd-latest",
-            "ghcr.io/gr8man/lighttpd:lighttpd-latest-20260831",
-            "ghcr.io/gr8man/lighttpd:lighttpd-latest-current"
+            "ghcr.io/gr8man/lighttpd:1.4-alpine-current",
+            "ghcr.io/gr8man/lighttpd:1.4-alpine-20260831",
+            "ghcr.io/gr8man/lighttpd:1.4-current",
+            "ghcr.io/gr8man/lighttpd:1.4-20260831",
+            "ghcr.io/gr8man/lighttpd:latest-current",
+            "ghcr.io/gr8man/lighttpd:latest-20260831"
         ]
     },
     "traefik": {
         "2.11": [
-            "ghcr.io/gr8man/traefik:traefik-2.11",
-            "ghcr.io/gr8man/traefik:traefik-2.11-20260831",
-            "ghcr.io/gr8man/traefik:traefik-2.11-current",
-            "ghcr.io/gr8man/traefik:traefik-v2.11",
-            "ghcr.io/gr8man/traefik:traefik-v2.11-20260831",
-            "ghcr.io/gr8man/traefik:traefik-v2.11-current",
-            "ghcr.io/gr8man/traefik:traefik-v2",
-            "ghcr.io/gr8man/traefik:traefik-v2-20260831",
-            "ghcr.io/gr8man/traefik:traefik-v2-current"
+            "ghcr.io/gr8man/traefik:2.11-current",
+            "ghcr.io/gr8man/traefik:2.11-20260831",
+            "ghcr.io/gr8man/traefik:v2.11-current",
+            "ghcr.io/gr8man/traefik:v2.11-20260831",
+            "ghcr.io/gr8man/traefik:v2-current",
+            "ghcr.io/gr8man/traefik:v2-20260831"
         ],
         "3.1": [
-            "ghcr.io/gr8man/traefik:traefik-3.1",
-            "ghcr.io/gr8man/traefik:traefik-3.1-20260831",
-            "ghcr.io/gr8man/traefik:traefik-3.1-current",
-            "ghcr.io/gr8man/traefik:traefik-v3.1",
-            "ghcr.io/gr8man/traefik:traefik-v3.1-20260831",
-            "ghcr.io/gr8man/traefik:traefik-v3.1-current"
+            "ghcr.io/gr8man/traefik:3.1-current",
+            "ghcr.io/gr8man/traefik:3.1-20260831",
+            "ghcr.io/gr8man/traefik:v3.1-current",
+            "ghcr.io/gr8man/traefik:v3.1-20260831"
         ],
         "3.2": [
-            "ghcr.io/gr8man/traefik:traefik-3.2",
-            "ghcr.io/gr8man/traefik:traefik-3.2-20260831",
-            "ghcr.io/gr8man/traefik:traefik-3.2-current",
-            "ghcr.io/gr8man/traefik:traefik-v3.2",
-            "ghcr.io/gr8man/traefik:traefik-v3.2-20260831",
-            "ghcr.io/gr8man/traefik:traefik-v3.2-current"
+            "ghcr.io/gr8man/traefik:3.2-current",
+            "ghcr.io/gr8man/traefik:3.2-20260831",
+            "ghcr.io/gr8man/traefik:v3.2-current",
+            "ghcr.io/gr8man/traefik:v3.2-20260831"
         ],
         "3.3": [
-            "ghcr.io/gr8man/traefik:traefik-3.3",
-            "ghcr.io/gr8man/traefik:traefik-3.3-20260831",
-            "ghcr.io/gr8man/traefik:traefik-3.3-current",
-            "ghcr.io/gr8man/traefik:traefik-v3.3",
-            "ghcr.io/gr8man/traefik:traefik-v3.3-20260831",
-            "ghcr.io/gr8man/traefik:traefik-v3.3-current",
-            "ghcr.io/gr8man/traefik:traefik-v3",
-            "ghcr.io/gr8man/traefik:traefik-v3-20260831",
-            "ghcr.io/gr8man/traefik:traefik-v3-current",
-            "ghcr.io/gr8man/traefik:traefik-latest",
-            "ghcr.io/gr8man/traefik:traefik-latest-20260831",
-            "ghcr.io/gr8man/traefik:traefik-latest-current"
+            "ghcr.io/gr8man/traefik:3.3-current",
+            "ghcr.io/gr8man/traefik:3.3-20260831",
+            "ghcr.io/gr8man/traefik:v3.3-current",
+            "ghcr.io/gr8man/traefik:v3.3-20260831",
+            "ghcr.io/gr8man/traefik:v3-current",
+            "ghcr.io/gr8man/traefik:v3-20260831",
+            "ghcr.io/gr8man/traefik:latest-current",
+            "ghcr.io/gr8man/traefik:latest-20260831"
         ]
     },
     "databases": {
         "mysql:8.4": [
-            "ghcr.io/gr8man/mysql:mysql-8.4",
-            "ghcr.io/gr8man/mysql:mysql-8.4-20260831",
-            "ghcr.io/gr8man/mysql:mysql-8.4-current",
-            "ghcr.io/gr8man/mysql:mysql-lts",
-            "ghcr.io/gr8man/mysql:mysql-lts-20260831",
-            "ghcr.io/gr8man/mysql:mysql-lts-current",
-            "ghcr.io/gr8man/mysql:mysql-latest",
-            "ghcr.io/gr8man/mysql:mysql-latest-20260831",
-            "ghcr.io/gr8man/mysql:mysql-latest-current"
+            "ghcr.io/gr8man/mysql:8.4-current",
+            "ghcr.io/gr8man/mysql:8.4-20260831",
+            "ghcr.io/gr8man/mysql:lts-current",
+            "ghcr.io/gr8man/mysql:lts-20260831",
+            "ghcr.io/gr8man/mysql:latest-current",
+            "ghcr.io/gr8man/mysql:latest-20260831"
         ],
         "mysql:8.0": [
-            "ghcr.io/gr8man/mysql:mysql-8.0",
-            "ghcr.io/gr8man/mysql:mysql-8.0-20260831",
-            "ghcr.io/gr8man/mysql:mysql-8.0-current"
+            "ghcr.io/gr8man/mysql:8.0-current",
+            "ghcr.io/gr8man/mysql:8.0-20260831"
         ],
         "mariadb:11.4": [
-            "ghcr.io/gr8man/mariadb:mariadb-11.4",
-            "ghcr.io/gr8man/mariadb:mariadb-11.4-20260831",
-            "ghcr.io/gr8man/mariadb:mariadb-11.4-current",
-            "ghcr.io/gr8man/mariadb:mariadb-lts",
-            "ghcr.io/gr8man/mariadb:mariadb-lts-20260831",
-            "ghcr.io/gr8man/mariadb:mariadb-lts-current",
-            "ghcr.io/gr8man/mariadb:mariadb-latest",
-            "ghcr.io/gr8man/mariadb:mariadb-latest-20260831",
-            "ghcr.io/gr8man/mariadb:mariadb-latest-current"
+            "ghcr.io/gr8man/mariadb:11.4-current",
+            "ghcr.io/gr8man/mariadb:11.4-20260831",
+            "ghcr.io/gr8man/mariadb:lts-current",
+            "ghcr.io/gr8man/mariadb:lts-20260831",
+            "ghcr.io/gr8man/mariadb:latest-current",
+            "ghcr.io/gr8man/mariadb:latest-20260831"
         ],
         "mariadb:10.11": [
-            "ghcr.io/gr8man/mariadb:mariadb-10.11",
-            "ghcr.io/gr8man/mariadb:mariadb-10.11-20260831",
-            "ghcr.io/gr8man/mariadb:mariadb-10.11-current",
-            "ghcr.io/gr8man/mariadb:mariadb-10.11-lts",
-            "ghcr.io/gr8man/mariadb:mariadb-10.11-lts-20260831",
-            "ghcr.io/gr8man/mariadb:mariadb-10.11-lts-current"
+            "ghcr.io/gr8man/mariadb:10.11-current",
+            "ghcr.io/gr8man/mariadb:10.11-20260831",
+            "ghcr.io/gr8man/mariadb:10.11-lts-current",
+            "ghcr.io/gr8man/mariadb:10.11-lts-20260831"
         ],
         "postgres:17": [
-            "ghcr.io/gr8man/postgres:postgres-17-alpine",
-            "ghcr.io/gr8man/postgres:postgres-17-alpine-20260831",
-            "ghcr.io/gr8man/postgres:postgres-17-alpine-current",
-            "ghcr.io/gr8man/postgres:postgres-17",
-            "ghcr.io/gr8man/postgres:postgres-17-20260831",
-            "ghcr.io/gr8man/postgres:postgres-17-current",
-            "ghcr.io/gr8man/postgres:postgres-latest",
-            "ghcr.io/gr8man/postgres:postgres-latest-20260831",
-            "ghcr.io/gr8man/postgres:postgres-latest-current"
+            "ghcr.io/gr8man/postgres:17-alpine-current",
+            "ghcr.io/gr8man/postgres:17-alpine-20260831",
+            "ghcr.io/gr8man/postgres:17-current",
+            "ghcr.io/gr8man/postgres:17-20260831",
+            "ghcr.io/gr8man/postgres:latest-current",
+            "ghcr.io/gr8man/postgres:latest-20260831"
         ],
         "postgres:16": [
-            "ghcr.io/gr8man/postgres:postgres-16-alpine",
-            "ghcr.io/gr8man/postgres:postgres-16-alpine-20260831",
-            "ghcr.io/gr8man/postgres:postgres-16-alpine-current",
-            "ghcr.io/gr8man/postgres:postgres-16",
-            "ghcr.io/gr8man/postgres:postgres-16-20260831",
-            "ghcr.io/gr8man/postgres:postgres-16-current"
+            "ghcr.io/gr8man/postgres:16-alpine-current",
+            "ghcr.io/gr8man/postgres:16-alpine-20260831",
+            "ghcr.io/gr8man/postgres:16-current",
+            "ghcr.io/gr8man/postgres:16-20260831"
         ],
         "redis:7.4": [
-            "ghcr.io/gr8man/redis:redis-7.4-alpine",
-            "ghcr.io/gr8man/redis:redis-7.4-alpine-20260831",
-            "ghcr.io/gr8man/redis:redis-7.4-alpine-current",
-            "ghcr.io/gr8man/redis:redis-7.4",
-            "ghcr.io/gr8man/redis:redis-7.4-20260831",
-            "ghcr.io/gr8man/redis:redis-7.4-current",
-            "ghcr.io/gr8man/redis:redis-latest",
-            "ghcr.io/gr8man/redis:redis-latest-20260831",
-            "ghcr.io/gr8man/redis:redis-latest-current"
+            "ghcr.io/gr8man/redis:7.4-alpine-current",
+            "ghcr.io/gr8man/redis:7.4-alpine-20260831",
+            "ghcr.io/gr8man/redis:7.4-current",
+            "ghcr.io/gr8man/redis:7.4-20260831",
+            "ghcr.io/gr8man/redis:latest-current",
+            "ghcr.io/gr8man/redis:latest-20260831"
         ],
         "redis:7.2": [
-            "ghcr.io/gr8man/redis:redis-7.2-alpine",
-            "ghcr.io/gr8man/redis:redis-7.2-alpine-20260831",
-            "ghcr.io/gr8man/redis:redis-7.2-alpine-current",
-            "ghcr.io/gr8man/redis:redis-7.2",
-            "ghcr.io/gr8man/redis:redis-7.2-20260831",
-            "ghcr.io/gr8man/redis:redis-7.2-current"
+            "ghcr.io/gr8man/redis:7.2-alpine-current",
+            "ghcr.io/gr8man/redis:7.2-alpine-20260831",
+            "ghcr.io/gr8man/redis:7.2-current",
+            "ghcr.io/gr8man/redis:7.2-20260831"
         ],
         "mongodb:7.0": [
-            "ghcr.io/gr8man/mongodb:mongo-7.0",
-            "ghcr.io/gr8man/mongodb:mongo-7.0-20260831",
-            "ghcr.io/gr8man/mongodb:mongo-7.0-current",
-            "ghcr.io/gr8man/mongodb:mongodb-7.0",
-            "ghcr.io/gr8man/mongodb:mongodb-7.0-20260831",
-            "ghcr.io/gr8man/mongodb:mongodb-7.0-current",
-            "ghcr.io/gr8man/mongodb:mongo-latest",
-            "ghcr.io/gr8man/mongodb:mongo-latest-20260831",
-            "ghcr.io/gr8man/mongodb:mongo-latest-current"
+            "ghcr.io/gr8man/mongodb:7.0-current",
+            "ghcr.io/gr8man/mongodb:7.0-20260831",
+            "ghcr.io/gr8man/mongodb:latest-current",
+            "ghcr.io/gr8man/mongodb:latest-20260831"
         ],
         "mongodb:8.0": [
-            "ghcr.io/gr8man/mongodb:mongo-8.0",
-            "ghcr.io/gr8man/mongodb:mongo-8.0-20260831",
-            "ghcr.io/gr8man/mongodb:mongo-8.0-current",
-            "ghcr.io/gr8man/mongodb:mongodb-8.0",
-            "ghcr.io/gr8man/mongodb:mongodb-8.0-20260831",
-            "ghcr.io/gr8man/mongodb:mongodb-8.0-current"
+            "ghcr.io/gr8man/mongodb:8.0-current",
+            "ghcr.io/gr8man/mongodb:8.0-20260831"
         ]
     }
 }
