@@ -33,57 +33,69 @@ function runCmd(string $cmd, bool $check = true): string
 function resolveCandidate(string $type, string $tagOrVer, string $registry, array $matrix): string
 {
     $candidates = [];
+    $channel = getenv('BUILD_CHANNEL') ?: 'current';
+
+    $addCandidateVariants = function(string $repo, string $baseTag) use (&$candidates, $registry, $channel) {
+        $candidates[] = "{$registry}/{$repo}:{$baseTag}-{$channel}";
+        $candidates[] = "{$registry}/{$repo}:{$baseTag}-current";
+        $candidates[] = "{$registry}/{$repo}:{$baseTag}";
+        $candidates[] = "{$registry}/{$repo}:{$baseTag}-stable";
+        $candidates[] = "warppanel-test/{$repo}:{$baseTag}";
+        $candidates[] = "warppanel-test/{$repo}:latest";
+        $candidates[] = "warppanel-test/{$repo}";
+    };
 
     if ($type === 'nginx') {
-        $tag = $matrix['images']['webservers']['nginx']['tags'][0];
-        $candidates[] = "{$registry}/nginx:{$tag}";
-        $candidates[] = "warppanel-test/nginx:latest";
-        $candidates[] = "warppanel-test/nginx";
+        foreach ($matrix['images']['webservers']['nginx']['tags'] as $t) {
+            $addCandidateVariants('nginx', (string)$t);
+        }
     } elseif ($type === 'apache') {
-        $tag = $matrix['images']['webservers']['apache']['tags'][0];
-        $candidates[] = "{$registry}/apache:{$tag}";
-        $candidates[] = "warppanel-test/apache:latest";
-        $candidates[] = "warppanel-test/apache";
+        foreach ($matrix['images']['webservers']['apache']['tags'] as $t) {
+            $addCandidateVariants('apache', (string)$t);
+        }
     } elseif ($type === 'openlitespeed') {
-        $tag = $matrix['images']['webservers']['openlitespeed']['tags'][0];
-        $candidates[] = "{$registry}/openlitespeed:{$tag}";
-        $candidates[] = "warppanel-test/openlitespeed:latest";
-        $candidates[] = "warppanel-test/openlitespeed";
+        foreach ($matrix['images']['webservers']['openlitespeed']['tags'] as $t) {
+            $addCandidateVariants('openlitespeed', (string)$t);
+        }
     } elseif ($type === 'caddy') {
-        $candidates[] = "{$registry}/caddy:{$matrix['images']['webservers']['caddy']['tags'][0]}";
-        $candidates[] = "warppanel-test/caddy:latest";
+        foreach ($matrix['images']['webservers']['caddy']['tags'] as $t) {
+            $addCandidateVariants('caddy', (string)$t);
+        }
     } elseif ($type === 'lighttpd') {
-        $candidates[] = "{$registry}/lighttpd:{$matrix['images']['webservers']['lighttpd']['tags'][0]}";
-        $candidates[] = "warppanel-test/lighttpd:latest";
+        foreach ($matrix['images']['webservers']['lighttpd']['tags'] as $t) {
+            $addCandidateVariants('lighttpd', (string)$t);
+        }
     } elseif ($type === 'traefik') {
         $ver = str_replace(['traefik-v', 'traefik-', 'v'], '', $tagOrVer);
         $ver = str_replace('_', '.', $ver);
         if (!empty($matrix['images']['traefik']['versions'])) {
             foreach ($matrix['images']['traefik']['versions'] as $trImg) {
                 if ($trImg['version'] === $ver) {
-                    $candidates[] = "{$registry}/traefik:{$trImg['tags'][0]}";
-                    $candidates[] = "warppanel-test/traefik:{$ver}";
+                    foreach ($trImg['tags'] as $t) {
+                        $addCandidateVariants('traefik', (string)$t);
+                    }
                     break;
                 }
             }
         }
     } elseif ($type === 'php') {
-        $ver = str_replace('_', '.', $tagOrVer);
+        $ver = str_replace(['php-fpm-', '_'], ['', '.'], $tagOrVer);
         $allPhp = array_merge($matrix['images']['php_fpm']['modern'] ?? [], $matrix['images']['php_fpm']['legacy'] ?? []);
         foreach ($allPhp as $img) {
             if ($img['version'] === $ver) {
-                $candidates[] = "{$registry}/php:{$img['tags'][0]}";
-                $candidates[] = "warppanel-test/php:{$ver}";
-                $candidates[] = "warppanel-test/php-fpm-{$ver}";
+                foreach ($img['tags'] as $t) {
+                    $addCandidateVariants('php', (string)$t);
+                }
                 break;
             }
         }
     } elseif ($type === 'frankenphp') {
-        $ver = str_replace('_', '.', $tagOrVer);
+        $ver = str_replace(['frankenphp-', '_'], ['', '.'], $tagOrVer);
         foreach ($matrix['images']['frankenphp']['versions'] as $img) {
             if ($img['php_version'] === $ver) {
-                $candidates[] = "{$registry}/frankenphp:{$img['tags'][0]}";
-                $candidates[] = "warppanel-test/frankenphp:{$ver}";
+                foreach ($img['tags'] as $t) {
+                    $addCandidateVariants('frankenphp', (string)$t);
+                }
                 break;
             }
         }
@@ -92,8 +104,9 @@ function resolveCandidate(string $type, string $tagOrVer, string $registry, arra
         if (!empty($matrix['images']['databases'][$type])) {
             foreach ($matrix['images']['databases'][$type] as $dbImg) {
                 if ($dbImg['version'] === $ver) {
-                    $candidates[] = "{$registry}/{$type}:{$dbImg['tags'][0]}";
-                    $candidates[] = "warppanel-test/{$type}:{$ver}";
+                    foreach ($dbImg['tags'] as $t) {
+                        $addCandidateVariants($type, (string)$t);
+                    }
                     break;
                 }
             }
@@ -101,8 +114,10 @@ function resolveCandidate(string $type, string $tagOrVer, string $registry, arra
     }
 
     if (empty($candidates)) {
-        $candidates[] = "{$registry}/{$type}:{$tagOrVer}";
+        $addCandidateVariants($type, $tagOrVer);
     }
+
+    $candidates = array_values(array_unique($candidates));
 
     // Check local docker image first
     foreach ($candidates as $cand) {

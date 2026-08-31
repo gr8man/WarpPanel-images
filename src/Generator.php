@@ -339,13 +339,13 @@ class Generator
                 $expanded[] = "{$registry}/{$repoName}:{$t}-dev";
                 $expanded[] = "{$registry}/{$repoName}:{$t}-dev-{$buildDate}";
             } elseif ($channel === 'stable') {
+                $expanded[] = "{$registry}/{$repoName}:{$t}";
                 $expanded[] = "{$registry}/{$repoName}:{$t}-stable";
                 $expanded[] = "{$registry}/{$repoName}:{$t}-stable-{$buildDate}";
             } else {
                 // current (default)
-                $expanded[] = "{$registry}/{$repoName}:{$t}";
-                $expanded[] = "{$registry}/{$repoName}:{$t}-{$buildDate}";
                 $expanded[] = "{$registry}/{$repoName}:{$t}-current";
+                $expanded[] = "{$registry}/{$repoName}:{$t}-{$buildDate}";
             }
         }
         return array_values(array_unique($expanded));

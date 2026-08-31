@@ -76,36 +76,42 @@ images:
         tags:
           - 5.6-fpm-alpine
           - 5.6-fpm
+          - '5.6'
       -
         version: '7.0'
         base_image: 'php:7.0-fpm-alpine'
         tags:
           - 7.0-fpm-alpine
           - 7.0-fpm
+          - '7.0'
       -
         version: '7.1'
         base_image: 'php:7.1-fpm-alpine'
         tags:
           - 7.1-fpm-alpine
           - 7.1-fpm
+          - '7.1'
       -
         version: '7.2'
         base_image: 'php:7.2-fpm-alpine'
         tags:
           - 7.2-fpm-alpine
           - 7.2-fpm
+          - '7.2'
       -
         version: '7.3'
         base_image: 'php:7.3-fpm-alpine'
         tags:
           - 7.3-fpm-alpine
           - 7.3-fpm
+          - '7.3'
       -
         version: '7.4'
         base_image: 'php:7.4-fpm-alpine'
         tags:
           - 7.4-fpm-alpine
           - 7.4-fpm
+          - '7.4'
     modern:
       -
         version: '8.0'
@@ -113,24 +119,28 @@ images:
         tags:
           - 8.0-fpm-alpine
           - 8.0-fpm
+          - '8.0'
       -
         version: '8.1'
         base_image: 'php:8.1-fpm-alpine'
         tags:
           - 8.1-fpm-alpine
           - 8.1-fpm
+          - '8.1'
       -
         version: '8.2'
         base_image: 'php:8.2-fpm-alpine'
         tags:
           - 8.2-fpm-alpine
           - 8.2-fpm
+          - '8.2'
       -
         version: '8.3'
         base_image: 'php:8.3-fpm-alpine'
         tags:
           - 8.3-fpm-alpine
           - 8.3-fpm
+          - '8.3'
           - latest-fpm
       -
         version: '8.4'
@@ -138,6 +148,7 @@ images:
         tags:
           - 8.4-fpm-alpine
           - 8.4-fpm
+          - '8.4'
       -
         version: '8.5'
         base_image: 'php:8.5-fpm-alpine'
@@ -151,35 +162,37 @@ images:
         php_version: '8.2'
         base_image: 'dunglas/frankenphp:1-php8.2-alpine'
         tags:
-          - frankenphp-8.2-alpine
-          - frankenphp-8.2
+          - 8.2-alpine
+          - '8.2'
       -
         php_version: '8.3'
         base_image: 'dunglas/frankenphp:1-php8.3-alpine'
         tags:
-          - frankenphp-8.3-alpine
-          - frankenphp-8.3
-          - frankenphp-latest
+          - 8.3-alpine
+          - '8.3'
+          - latest
       -
         php_version: '8.4'
         base_image: 'dunglas/frankenphp:1-php8.4-alpine'
         tags:
-          - frankenphp-8.4-alpine
-          - frankenphp-8.4
+          - 8.4-alpine
+          - '8.4'
       -
         php_version: '8.5'
         base_image: 'dunglas/frankenphp:latest-alpine'
         is_experimental: true
         tags:
-          - frankenphp-8.5-alpine
-          - frankenphp-dev
+          - 8.5-alpine
+          - '8.5'
+          - dev
   webservers:
     nginx:
       base_image: 'nginx:1.27-alpine'
       tags:
-        - nginx-alpine
-        - nginx-latest
-        - nginx-1.27
+        - 1.27-alpine
+        - '1.27'
+        - alpine
+        - latest
       features:
         - http2
         - http3_quic
@@ -189,9 +202,10 @@ images:
     apache:
       base_image: 'httpd:2.4-alpine'
       tags:
-        - apache-alpine
-        - apache-latest
-        - httpd-2.4
+        - 2.4-alpine
+        - '2.4'
+        - alpine
+        - latest
       features:
         - mpm_event
         - mod_proxy_fcgi
@@ -201,9 +215,9 @@ images:
     openlitespeed:
       base_image: 'litespeedtech/openlitespeed:latest'
       tags:
-        - openlitespeed-alpine
-        - openlitespeed-latest
-        - ols-latest
+        - 1.8-alpine
+        - '1.8'
+        - latest
       features:
         - lscache
         - quic
@@ -212,9 +226,10 @@ images:
     caddy:
       base_image: 'caddy:2.8-alpine'
       tags:
-        - caddy-alpine
-        - caddy-latest
-        - caddy-2.8
+        - 2.8-alpine
+        - '2.8'
+        - alpine
+        - latest
       features:
         - auto_https
         - http3_quic
@@ -225,8 +240,9 @@ images:
     lighttpd:
       base_image: 'alpine:3.20'
       tags:
-        - lighttpd-alpine
-        - lighttpd-latest
+        - 1.4-alpine
+        - '1.4'
+        - latest
       features:
         - fastcgi_php
         - mod_rewrite
@@ -239,9 +255,9 @@ images:
         version: '2.11'
         base_image: 'traefik:v2.11'
         tags:
-          - traefik-2.11
-          - traefik-v2.11
-          - traefik-v2
+          - '2.11'
+          - v2.11
+          - v2
         features:
           - docker_provider
           - acme_letsencrypt
@@ -252,8 +268,8 @@ images:
         version: '3.1'
         base_image: 'traefik:v3.1'
         tags:
-          - traefik-3.1
-          - traefik-v3.1
+          - '3.1'
+          - v3.1
         features:
           - docker_provider
           - http3_quic
@@ -265,8 +281,8 @@ images:
         version: '3.2'
         base_image: 'traefik:v3.2'
         tags:
-          - traefik-3.2
-          - traefik-v3.2
+          - '3.2'
+          - v3.2
         features:
           - docker_provider
           - http3_quic
@@ -278,10 +294,10 @@ images:
         version: '3.3'
         base_image: 'traefik:v3.3'
         tags:
-          - traefik-3.3
-          - traefik-v3.3
-          - traefik-v3
-          - traefik-latest
+          - '3.3'
+          - v3.3
+          - v3
+          - latest
         features:
           - docker_provider
           - http3_quic
@@ -295,67 +311,65 @@ images:
         version: '8.4'
         base_image: 'mysql:8.4'
         tags:
-          - mysql-8.4
-          - mysql-lts
-          - mysql-latest
+          - '8.4'
+          - lts
+          - latest
       -
         version: '8.0'
         base_image: 'mysql:8.0'
         tags:
-          - mysql-8.0
+          - '8.0'
     mariadb:
       -
         version: '11.4'
         base_image: 'mariadb:11.4'
         tags:
-          - mariadb-11.4
-          - mariadb-lts
-          - mariadb-latest
+          - '11.4'
+          - lts
+          - latest
       -
         version: '10.11'
         base_image: 'mariadb:10.11'
         tags:
-          - mariadb-10.11
-          - mariadb-10.11-lts
+          - '10.11'
+          - 10.11-lts
     postgres:
       -
         version: '17'
         base_image: 'postgres:17-alpine'
         tags:
-          - postgres-17-alpine
-          - postgres-17
-          - postgres-latest
+          - 17-alpine
+          - '17'
+          - latest
       -
         version: '16'
         base_image: 'postgres:16-alpine'
         tags:
-          - postgres-16-alpine
-          - postgres-16
+          - 16-alpine
+          - '16'
     redis:
       -
         version: '7.4'
         base_image: 'redis:7.4-alpine'
         tags:
-          - redis-7.4-alpine
-          - redis-7.4
-          - redis-latest
+          - 7.4-alpine
+          - '7.4'
+          - latest
       -
         version: '7.2'
         base_image: 'redis:7.2-alpine'
         tags:
-          - redis-7.2-alpine
-          - redis-7.2
+          - 7.2-alpine
+          - '7.2'
     mongodb:
       -
         version: '7.0'
         base_image: 'mongo:7.0'
         tags:
-          - mongo-7.0
-          - mongodb-7.0
-          - mongo-latest
+          - '7.0'
+          - latest
       -
         version: '8.0'
         base_image: 'mongo:8.0'
         tags:
-          - mongo-8.0
-          - mongodb-8.0
+          - '8.0'
