@@ -895,77 +895,77 @@ class CatalogManager
     private function writeMarkdownCatalog(array $catalog): void
     {
         $channel = strtoupper($catalog['channel'] ?? 'CURRENT');
-        $md = "# 🚀 Katalog Sprawdzonych Obrazów WarpPanel\n\n";
-        $md .= "> **Kanał Wydań:** `{$channel}`  \n";
-        $md .= "> **Ostatnia aktualizacja:** `{$catalog['updated_at']}`  \n";
-        $md .= "> **Aktywny Build ID:** `{$catalog['current_build_id']}`  \n";
-        $md .= "> **Rejestr Główny:** `{$catalog['registry']}`  \n\n";
-        $md .= "Centralny rejestr i katalog zweryfikowanych obrazów kontenerowych dla platformy hostingowej WarpPanel. Każdy obraz i kanał (`current`, `stable`, `dev`) posiada dedykowaną specyfikację oprogramowania w katalogu `catalog/{channel}/` z listą zainstalowanych pakietów, modułów i konfiguracji runtime.\n\n";
+        $md = "# 🚀 WarpPanel Verified Container Images Catalog\n\n";
+        $md .= "> **Release Channel:** `{$channel}`  \n";
+        $md .= "> **Last Updated:** `{$catalog['updated_at']}`  \n";
+        $md .= "> **Active Build ID:** `{$catalog['current_build_id']}`  \n";
+        $md .= "> **Primary Registry:** `{$catalog['registry']}`  \n\n";
+        $md .= "Central registry and catalog of verified container images for the WarpPanel hosting platform. Each image and release channel (`current`, `stable`, `dev`) has a dedicated software bill of materials (SBOM) in the `catalog/{channel}/` directory detailing installed packages, extensions, and runtime defaults.\n\n";
 
         // 1. PHP-FPM
         $md .= "## 1. 🐘 PHP-FPM (Alpine Linux)\n\n";
-        $md .= "| Wersja | Build ID | Typ | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+        $md .= "| Version | Build ID | Type | Base Docker Image | Primary Image Tag | Build Specification | Status |\n";
         $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
         foreach ($catalog['images']['php_fpm'] as $item) {
             $primaryTag = $item['primary_tag'];
             $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+            $detailsLink = "[📄 Specification {$item['build_id']}]({$item['details_file']})";
             $md .= "| **PHP {$item['version']}** | `{$item['build_id']}` | `{$item['type']}` | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
         }
 
         // 2. FrankenPHP
         $md .= "\n## 2. ⚡ FrankenPHP (All-in-One Caddy + PHP + Worker Mode)\n\n";
-        $md .= "| Wersja PHP | Build ID | Silnik / Serwer | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+        $md .= "| PHP Version | Build ID | Engine / Server | Base Docker Image | Primary Image Tag | Build Specification | Status |\n";
         $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
         foreach ($catalog['images']['frankenphp'] as $item) {
             $primaryTag = $item['primary_tag'];
             $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+            $detailsLink = "[📄 Specification {$item['build_id']}]({$item['details_file']})";
             $md .= "| **PHP {$item['php_version']}** | `{$item['build_id']}` | FrankenPHP 1.x (Caddy v2) | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
         }
 
-        // 3. Webserwery
-        $md .= "\n## 3. 🌐 Serwery WWW (Standalone)\n\n";
-        $md .= "| Serwer | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+        // 3. Webservers
+        $md .= "\n## 3. 🌐 Web Servers (Standalone)\n\n";
+        $md .= "| Server | Build ID | Base Docker Image | Features / Protocols | Primary Image Tag | Build Specification | Status |\n";
         $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
         foreach ($catalog['images']['webservers'] as $item) {
             $srvName = strtoupper($item['server']);
             $primaryTag = $item['primary_tag'];
             $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
             $featsStr = implode(', ', array_map(fn($f) => "`{$f}`", $item['features'] ?? []));
-            $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+            $detailsLink = "[📄 Specification {$item['build_id']}]({$item['details_file']})";
             $md .= "| **{$srvName}** | `{$item['build_id']}` | `{$item['base_image']}` | {$featsStr} | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
         }
 
         // 4. Traefik (Edge Router & Load Balancer)
         if (!empty($catalog['images']['traefik'])) {
             $md .= "\n## 4. 🚦 Traefik (Cloud-Native Ingress, Reverse Proxy & Load Balancer)\n\n";
-            $md .= "| Wersja | Build ID | Baza Docker | Cechy / Protokoły | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+            $md .= "| Version | Build ID | Base Docker Image | Features / Protocols | Primary Image Tag | Build Specification | Status |\n";
             $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
             foreach ($catalog['images']['traefik'] as $item) {
                 $primaryTag = $item['primary_tag'];
                 $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
                 $featsStr = implode(', ', array_map(fn($f) => "`{$f}`", $item['features'] ?? []));
-                $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+                $detailsLink = "[📄 Specification {$item['build_id']}]({$item['details_file']})";
                 $md .= "| **Traefik v{$item['version']}** | `{$item['build_id']}` | `{$item['base_image']}` | {$featsStr} | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
             }
         }
 
-        // 5. Bazy Danych
+        // 5. Databases
         if (!empty($catalog['images']['databases'])) {
-            $md .= "\n## 5. 🗄️ Sieciowe Bazy Danych i Pamięć Podręczna\n\n";
-            $md .= "| Baza / Silnik | Wersja | Build ID | Baza Docker | Główny Tag Obrazu | Specyfikacja Buildu | Status |\n";
+            $md .= "\n## 5. 🗄️ Network Databases & Caching Engines\n\n";
+            $md .= "| Database / Engine | Version | Build ID | Base Docker Image | Primary Image Tag | Build Specification | Status |\n";
             $md .= "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n";
             foreach ($catalog['images']['databases'] as $item) {
                 $dbName = ucfirst($item['type']);
                 $primaryTag = $item['primary_tag'];
                 $statusBadge = ($item['status'] === 'VERIFIED_PASS') ? '✅ **VERIFIED (PASS)**' : '⚡ READY';
-                $detailsLink = "[📄 Specyfikacja {$item['build_id']}]({$item['details_file']})";
+                $detailsLink = "[📄 Specification {$item['build_id']}]({$item['details_file']})";
                 $md .= "| **{$dbName}** | `{$item['version']}` | `{$item['build_id']}` | `{$item['base_image']}` | `{$primaryTag}` | {$detailsLink} | {$statusBadge} |\n";
             }
         }
 
-        $md .= "\n---\n*Wszystkie szczegółowe specyfikacje buildów znajdują się w folderze `catalog/`.*\n";
+        $md .= "\n---\n*Detailed software bill of materials and build specifications are located in the `catalog/` directory.*\n";
 
         file_put_contents($this->catalogMdFile, $md);
     }

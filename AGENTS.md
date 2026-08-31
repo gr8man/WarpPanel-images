@@ -1,45 +1,46 @@
-# WarpPanel Images — Instrukcje dla Agentów AI (AGENTS.md)
+# WarpPanel Images — Instructions for AI Agents (AGENTS.md)
 
-Projekt **WarpPanel-images** odpowiada za automatyczne generowanie, budowanie, testowanie i publikowanie zoptymalizowanych, lekkich obrazów kontenerowych (Alpine Linux) dla systemu hostingowego WarpPanel.
+The **WarpPanel-images** repository is responsible for the automated generation, building, end-to-end integration testing, and publishing of lightweight, optimized container images (**Alpine Linux** & official Docker Hub base images) for the **WarpPanel** hosting system.
 
-## Silnik Buildera (PHP & Composer)
-Projekt wykorzystuje **PHP 8.1+ & Composer** (`symfony/yaml`, `twig/twig`) do parsowania macierzy i generowania szablonów.
+## Builder Engine (PHP & Composer)
+The project utilizes **PHP 8.1+ & Composer** (`symfony/yaml`, `twig/twig`) to parse matrices and render templates.
 
-### Dostępne Komendy Composera
-- `composer generate` — generuje Dockerfile i docker-bake.hcl na podstawie `matrix.yaml` i szablonów Twig.
-- `composer build` — buduje obrazy lokalnie za pomocą `docker buildx bake`.
-- `composer test` — uruchamia automatyczne testy integracyjne stosu WWW + PHP-FPM / FrankenPHP / Baz Danych.
-- `composer catalog` — aktualizuje katalog sprawdzonych obrazów (`catalog.json`, `CATALOG.md`).
+### Available Composer Commands
+- `composer generate` — Generates Dockerfiles, manifests, and `docker-bake.hcl` from `matrix.yaml` and Twig templates.
+- `composer build` — Builds container images locally using `docker buildx bake`.
+- `composer test` — Executes automated cross-stack integration tests (Web + PHP-FPM / FrankenPHP / Databases).
+- `composer scan` — Scans container images for CVE vulnerabilities, malware, and security misconfigurations via Trivy.
+- `composer catalog` — Updates the verified images catalog (`catalog.json`, `available-images.json`, `CATALOG.md`).
 
-## Zasady Architektury Obrazów
-1. **Baza Alpine & Oficjalne Obrazy Docker Hub**: Wszystkie obrazy bazują na oficjalnych bazach Alpine Linux / Docker Hub (lekkie, bezpieczne, szybki start).
-2. **Standard ścieżek wzorowany na `serversideup/php`**:
-   - Domyślny katalog: `/var/www/html`
-   - DocumentRoot: zmienna środowiskowa `WEB_DOCUMENT_ROOT` (domyślnie `/var/www/html/public`, fallback do `/var/www/html`).
-   - Dynamiczny UID/GID: zmienne `PUID` i `PGID` (domyślnie `1000:1000` dla `www-data`), brak problemów z uprawnieniami na wolumenach hosta.
-3. **Wbudowany Composer, Xdebug, ionCube Loader & Obsługa SQLite w kontenerach PHP**:
-   - Wersje 5.6-7.1: Composer 2.2 LTS.
-   - Wersje 7.2-8.5 oraz FrankenPHP: najnowszy Composer 2.x.
-   - ionCube Loader wbudowany w standardzie dla wersji ze wsparciem upstream.
-   - Xdebug zainstalowany we wszystkich wersjach, domyślnie wyłączony (`PHP_XDEBUG_ENABLED=0`) z możliwością włączenia w locie (`PHP_XDEBUG_ENABLED=1`).
-   - Wbudowane rozszerzenia `pdo_sqlite` oraz `sqlite3` we wszystkich obrazach PHP-FPM i FrankenPHP (lokalny zapis plików bazodanowych).
-4. **Wbudowane Serwery WWW i Reverse Proxy**:
-   - Nginx (Mainline Alpine z HTTP/2, HTTP/3 QUIC, Brotli, WAF)
-   - Apache (httpd 2.4 Alpine z event MPM, mod_proxy_fcgi, mod_rewrite, WAF)
+## Container Architecture Standards
+1. **Alpine Linux Base & Official Docker Hub Images**: All images are built on lightweight, secure Alpine Linux or official Docker Hub bases for fast boot times and minimal resource footprint.
+2. **Path & Permissions Standard (serversideup-inspired)**:
+   - Default application directory: `/var/www/html`
+   - DocumentRoot: Environment variable `WEB_DOCUMENT_ROOT` (defaults to `/var/www/html/public`, automatic fallback to `/var/www/html`).
+   - Dynamic UID/GID: `PUID` and `PGID` variables (default `1000:1000` for `www-data`) to prevent host volume permission conflicts.
+3. **Built-in Composer, Xdebug, ionCube Loader & SQLite Support**:
+   - PHP 5.6–7.1: Composer 2.2 LTS.
+   - PHP 7.2–8.5 & FrankenPHP: Latest Composer 2.x.
+   - ionCube Loader pre-installed for supported upstream versions.
+   - Xdebug installed across all PHP versions, disabled by default (`PHP_XDEBUG_ENABLED=0`) with on-the-fly activation (`PHP_XDEBUG_ENABLED=1`).
+   - Built-in `pdo_sqlite` and `sqlite3` extensions across all PHP-FPM and FrankenPHP images for zero-overhead local databases.
+4. **Web Servers & Ingress Proxies**:
+   - Nginx (Mainline Alpine with HTTP/2, HTTP/3 QUIC, Brotli, WAF)
+   - Apache (httpd 2.4 Alpine with event MPM, mod_proxy_fcgi, mod_rewrite, WAF)
    - OpenLiteSpeed (LSCache, HTTP/3 QUIC, WAF)
-   - Caddy (Standalone v2 z Auto-HTTPS, HTTP/3, Zstd/Gzip, FastCGI PHP-FPM)
-   - Lighttpd (Ultra-lightweight z FastCGI PHP-FPM, mod_deflate, WAF)
-   - Traefik (Wersje: 2.11 LTS, 3.1, 3.2, 3.3 z Docker Provider auto-discovery, Cloudflare Real-IP, HTTP/3, Dashboard)
-5. **Wbudowane Sieciowe Bazy Danych**:
+   - Caddy (Standalone v2 with Auto-HTTPS, HTTP/3, Zstd/Gzip, FastCGI PHP-FPM)
+   - Lighttpd (Ultra-lightweight with FastCGI PHP-FPM, mod_deflate, WAF)
+   - Traefik (Versions: 2.11 LTS, 3.1, 3.2, 3.3 with Docker Provider auto-discovery, Cloudflare Real-IP, HTTP/3, Dashboard)
+5. **Network Databases & Caching**:
    - MySQL 8.0, 8.4 LTS
    - MariaDB 10.11, 11.4 LTS (Alpine)
    - PostgreSQL 16, 17 (Alpine)
-   - Redis 7.2, 7.4 (Alpine) z LRU cache i AOF persistence
+   - Redis 7.2, 7.4 (Alpine) with LRU cache and AOF persistence
    - MongoDB 7.0, 8.0
-6. **Sieć & Bezpieczeństwo**:
-   - Wbudowane wsparcie dla `Traefik` (główny load balancer) oraz `Cloudflare` Real IP (`CF-Connecting-IP`, `X-Forwarded-For`).
-   - Wbudowana warstwa WAF i reguły ochronne (blokowanie `.env`, `.git`, ochrona przed atakami Path Traversal, bezpieczne nagłówki HTTP).
-7. **Katalog Sprawdzonych Obrazów**:
-   - Tylko obrazy, które pomyślnie przeszły testy integracyjne, trafiają do `catalog.json` oraz `CATALOG.md`.
-7. **Zarządzanie Bazy Wiedzy (Tylko dla Modeli AI)**:
-   - Agent AI korzysta bezpośrednio z narzędzi MCP Obsidian (`Projekty/WarpPanel/`) do aktualizacji bazy wiedzy. Repozytorium jest wolne od lokalnych zależności.
+6. **Networking & Security**:
+   - Built-in support for `Traefik` (primary ingress) and `Cloudflare` Real IP (`CF-Connecting-IP`, `X-Forwarded-For`).
+   - Built-in WAF rules (blocking `.env`, `.git`, path traversal attempts, enforcing hardened security headers).
+7. **Verified Images Catalog**:
+   - Only images and stack pairs that pass integration tests are published to `catalog.json` and `CATALOG.md`.
+8. **Knowledge Base Management (For AI Agents Only)**:
+   - The AI Agent directly accesses Obsidian MCP tools (`Projekty/WarpPanel/`) to synchronize architectural documentation.

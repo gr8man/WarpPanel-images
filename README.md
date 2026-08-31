@@ -74,7 +74,13 @@ composer test
 # or: make test
 ```
 
-### 5. Check for Upstream Version Updates
+### 5. Run Security & Antivirus/Malware Scanner (Trivy)
+```bash
+composer scan
+# or: php scripts/scan.php --target=nginx
+```
+
+### 6. Check for Upstream Version Updates
 ```bash
 composer check-updates
 # or: make check-updates
@@ -89,24 +95,26 @@ Detailed manifest and verification status are available in [CATALOG.md](CATALOG.
 ### Pulling from GitHub Container Registry (GHCR):
 ```bash
 # PHP-FPM
-docker pull ghcr.io/warppanel/php:8.3-fpm-alpine
-docker pull ghcr.io/warppanel/php:8.4-fpm-alpine
-docker pull ghcr.io/warppanel/php:7.4-fpm-alpine
+docker pull ghcr.io/warppanel/php:8.3-fpm
+docker pull ghcr.io/warppanel/php:8.4-fpm
+docker pull ghcr.io/warppanel/php:7.4-fpm
 
-# Webservers
-docker pull ghcr.io/warppanel/nginx:nginx-alpine
-docker pull ghcr.io/warppanel/apache:apache-alpine
-docker pull ghcr.io/warppanel/openlitespeed:openlitespeed-alpine
+# Web Servers
+docker pull ghcr.io/warppanel/nginx:1.27
+docker pull ghcr.io/warppanel/apache:2.4
+docker pull ghcr.io/warppanel/openlitespeed:1.8
+docker pull ghcr.io/warppanel/caddy:2.8
+docker pull ghcr.io/warppanel/lighttpd:1.4
 
 # FrankenPHP
-docker pull ghcr.io/warppanel/frankenphp:frankenphp-8.3-alpine
+docker pull ghcr.io/warppanel/frankenphp:8.3
 
 # Network Databases
-docker pull ghcr.io/warppanel/mysql:mysql-8.4
-docker pull ghcr.io/warppanel/mariadb:mariadb-11.4-alpine
-docker pull ghcr.io/warppanel/postgres:postgres-17-alpine
-docker pull ghcr.io/warppanel/redis:redis-7.4-alpine
-docker pull ghcr.io/warppanel/mongodb:mongo-7.0
+docker pull ghcr.io/warppanel/mysql:8.4
+docker pull ghcr.io/warppanel/mariadb:11.4
+docker pull ghcr.io/warppanel/postgres:17
+docker pull ghcr.io/warppanel/redis:7.4
+docker pull ghcr.io/warppanel/mongodb:7.0
 ```
 
 ---

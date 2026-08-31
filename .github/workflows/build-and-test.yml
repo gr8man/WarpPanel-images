@@ -2,8 +2,8 @@ name: Build, Test & Publish Matrix (Current)
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Codziennie o północy (00:00 UTC)
-  workflow_dispatch: # Na żądanie z panelu GitHub Actions
+    - cron: '0 0 * * *' # Daily at midnight (00:00 UTC)
+  workflow_dispatch: # On-demand manual trigger
 
 permissions:
   contents: write
@@ -15,7 +15,7 @@ env:
 
 jobs:
   # ============================================================================
-  # ETAP 1: RÓWNOLEGŁE BUDOWANIE I PUBLIKACJA WSZYSTKICH OBRAZÓW (GHCR)
+  # STAGE 1: PARALLEL BUILD & PUSH OF ALL CANDIDATE IMAGES (GHCR)
   # ============================================================================
   build-images:
     name: Build & Push [${{ matrix.target }}]
@@ -23,10 +23,10 @@ jobs:
     env:
       IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
     strategy:
-      fail-fast: false # Błąd jednego obrazu nie przerywa pozostałych!
+      fail-fast: false # Failure of one image does not cancel others!
       matrix:
         target:
-          # Webserwery
+          # Web Servers
           - nginx
           - apache
           - openlitespeed
@@ -56,7 +56,7 @@ jobs:
           - frankenphp-8_3
           - frankenphp-8_4
           - frankenphp-8_5
-          # Bazy Danych Sieciowe
+          # Network Databases
           - mysql-8_4
           - mysql-8_0
           - mariadb-11_4
@@ -116,7 +116,7 @@ jobs:
             *.cache-to=type=gha,scope=${{ matrix.target }},mode=max
 
   # ============================================================================
-  # ETAP 2: TESTY INTEGRACYJNE (PO ZBUDOWANIU WSZYSTKICH KONTENERÓW)
+  # STAGE 2: INTEGRATION TESTS (EXECUTED AFTER ALL IMAGES ARE BUILT)
   # ============================================================================
   test-images:
     name: Integration Test [${{ matrix.target }}]
@@ -129,7 +129,7 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          # Webserwery
+          # Web Servers
           - nginx
           - apache
           - openlitespeed
@@ -159,7 +159,7 @@ jobs:
           - frankenphp-8_3
           - frankenphp-8_4
           - frankenphp-8_5
-          # Bazy Danych
+          # Databases
           - mysql-8_4
           - mysql-8_0
           - mariadb-11_4
@@ -191,11 +191,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Uruchomienie testu integracyjnego (pobiera zbudowane obrazy z GHCR)
+      # Run cross-stack integration test (pulls candidate images from GHCR)
       - name: Run Integration Test [${{ matrix.target }}]
         run: php scripts/test.php --target=${{ matrix.target }}
 
-      # Zapisanie wyniku weryfikacji jako artefaktu (TYLKO JEŚLI TEST PRZESZEDŁ)
+      # Run Security, Malware & Vulnerability Scan (Trivy)
+      - name: Run Security & Malware Scan [${{ matrix.target }}]
+        run: php scripts/scan.php --target=${{ matrix.target }}
+
+      # Upload verification record artifact (ONLY IF PASSED)
       - name: Upload Target Verification Record
         if: success()
         uses: actions/upload-artifact@v4
@@ -204,7 +208,7 @@ jobs:
           path: verifications/verification-${{ matrix.target }}.json
 
   # ============================================================================
-  # ETAP 3: FINALIZACJA I AGREGACJA KATALOGU SPRAWDZONYCH OBRAZÓW (catalog.json)
+  # STAGE 3: AGGREGATION & CATALOG FINALIZATION (catalog.json & CATALOG.md)
   # ============================================================================
   finalize-catalog:
     name: Aggregate & Finalize Catalog
