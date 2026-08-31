@@ -160,7 +160,7 @@ class CatalogManager
             $runtimePkgs = $meta['system_packages'] ?? [];
             $configuredExts = $matrix['defaults']['php_extensions'] ?? [];
             $extensionsWithVersions = $this->buildExtensionsMap($configuredExts, $detectedPhpVer, $runtimeExts);
-            $packagesWithVersions = $this->buildSystemPackagesMap(['bash', 'curl', 'ca-certificates', 'git', 'unzip', 'zip', 'msmtp', 'shadow', 'tzdata', 'sqlite'], $runtimePkgs);
+            $packagesWithVersions = $this->buildSystemPackagesMap(['bash', 'curl', 'ca-certificates', 'git', 'unzip', 'zip', 'msmtp', 'shadow', 'tzdata', 'sqlite', 'nodejs', 'npm', 'rsync', 'rclone', 'mysql-client', 'postgresql-client'], $runtimePkgs);
 
             $versionDir = $channelDir . "/php-fpm/{$ver}";
             $this->ensureDir($versionDir);
@@ -196,6 +196,16 @@ class CatalogManager
                         'sapi' => 'fpm-fcgi (PHP-FPM)',
                         'opcache_jit' => true,
                         'process_manager' => 'ondemand / dynamic',
+                    ],
+                    'developer_cli_tools' => [
+                        'composer' => '2.x (Latest)',
+                        'wp_cli' => 'installed (/usr/local/bin/wp)',
+                        'symfony_cli' => 'installed (/usr/local/bin/symfony)',
+                        'drush' => 'installed (/usr/local/bin/drush)',
+                        'node_npm' => 'installed (Node.js & NPM)',
+                        'rsync' => 'installed',
+                        'rclone' => 'installed',
+                        'database_clients' => ['mysql (MySQL/MariaDB CLI)', 'psql (PostgreSQL CLI)'],
                     ],
                     'composer' => [
                         'version' => '2.x (Latest)',
@@ -864,6 +874,12 @@ class CatalogManager
             'tzdata' => '2024a.x',
             'sqlite' => '3.45.x',
             'sqlite3' => '3.45.x',
+            'nodejs' => '20.x / 22.x (Alpine)',
+            'npm' => '10.x (Alpine)',
+            'rsync' => '3.3.x (Alpine)',
+            'rclone' => '1.66.x (Alpine)',
+            'mysql-client' => 'installed (MariaDB/MySQL CLI)',
+            'postgresql-client' => 'installed (psql CLI)',
         ];
 
         $result = [];

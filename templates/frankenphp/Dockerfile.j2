@@ -13,7 +13,20 @@ RUN apk add --no-cache \
     zip \
     msmtp \
     shadow \
-    tzdata
+    tzdata \
+    nodejs \
+    npm \
+    rsync \
+    rclone \
+    mysql-client \
+    postgresql-client
+
+# Install Developer & Framework CLI tools (WP-CLI, Drush, Symfony CLI)
+RUN curl -sS -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && \
+    curl -sS -OL https://github.com/drush-ops/drush-launcher/releases/latest/download/drush.phar && \
+    chmod +x drush.phar && mv drush.phar /usr/local/bin/drush && \
+    (curl -sS https://get.symfony.com/cli/installer | bash && (mv /root/.symfony5/bin/symfony /usr/local/bin/symfony 2>/dev/null || mv /root/.symfony/bin/symfony /usr/local/bin/symfony 2>/dev/null || true))
 
 # Add official Docker PHP extension installer
 COPY --from=mlocati/php-extension-installer:latest /usr/bin/install-php-extensions /usr/local/bin/

@@ -18,7 +18,8 @@ The project utilizes **PHP 8.1+ & Composer** (`symfony/yaml`, `twig/twig`) to pa
    - Default application directory: `/var/www/html`
    - DocumentRoot: Environment variable `WEB_DOCUMENT_ROOT` (defaults to `/var/www/html/public`, automatic fallback to `/var/www/html`).
    - Dynamic UID/GID: `PUID` and `PGID` variables (default `1000:1000` for `www-data`) to prevent host volume permission conflicts.
-3. **Built-in Composer, Xdebug, ionCube Loader & SQLite Support**:
+3. **Built-in Developer & Framework CLI Tools, Composer, Xdebug & SQLite Support**:
+   - Pre-installed Developer CLI Tools across PHP 7.4–8.5 and FrankenPHP: **WP-CLI** (`wp`), **Symfony CLI** (`symfony`), **Drush** (`drush`), **Node.js & NPM**, **rsync**, **rclone**, and database clients (`mysql-client`, `postgresql-client`).
    - PHP 5.6–7.1: Composer 2.2 LTS.
    - PHP 7.2–8.5 & FrankenPHP: Latest Composer 2.x.
    - ionCube Loader pre-installed for supported upstream versions.

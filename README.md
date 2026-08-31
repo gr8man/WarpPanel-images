@@ -10,6 +10,13 @@ Automated build, testing, and distribution system for lightweight, high-performa
 - **Full PHP Version Matrix (5.6 – 8.5)**:
   - **Legacy PHP (5.6, 7.0, 7.1, 7.2, 7.3, 7.4)** with Composer 2.2 LTS.
   - **Modern PHP (8.0, 8.1, 8.2, 8.3, 8.4, 8.5)** with latest Composer 2.x and pre-installed hosting extensions (`pdo_mysql`, `pdo_pgsql`, `pdo_sqlite`, `sqlite3`, `mysqli`, `pgsql`, `redis`, `imagick`, `igbinary`, `imap`, `intl`, `pcntl`, `posix`, `soap`, `sockets`, `xdebug`, `zip`, etc.).
+- **Built-in Developer & Framework CLI Tooling (PHP 7.4 – 8.5 & FrankenPHP)**:
+  - **WP-CLI** (`wp`): WordPress management, core installs, plugin updates, DB migrations.
+  - **Symfony CLI** (`symfony`): Framework tooling, server certificates, console helpers.
+  - **Drush** (`drush`): Drupal CLI commands and site deployment.
+  - **Node.js & NPM**: Pre-installed for running frontend build pipelines (`npm run build`, `npm install`).
+  - **rsync & rclone**: Fast asset synchronizations and remote object/cloud storage transfers.
+  - **Database CLI Clients**: `mysql-client` & `postgresql-client` for seamless database dumps and CLI administration.
 - **Built-in Xdebug Support**:
   - Pre-installed across all PHP versions and ready for step debugging, profiling, and coverage.
   - Disabled by default for zero performance overhead in production (`PHP_XDEBUG_ENABLED=0`).
