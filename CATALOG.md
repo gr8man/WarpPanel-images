@@ -1,7 +1,7 @@
 # 🚀 WarpPanel Verified Container Images Catalog
 
 > **Release Channel:** `CURRENT`  
-> **Last Updated:** `2026-08-31T20:55:51+00:00`  
+> **Last Updated:** `2026-08-31T22:04:54+00:00`  
 > **Active Build ID:** `20260831`  
 > **Primary Registry:** `ghcr.io/gr8man`  
 
