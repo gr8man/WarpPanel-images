@@ -1,0 +1,59 @@
+{
+    "name": "WarpPanel OPENLITESPEED Web Server (current)",
+    "server": "openlitespeed",
+    "channel": "current",
+    "build_id": "20260831",
+    "build_date": "20260831",
+    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "target": "openlitespeed",
+    "base_image": "litespeedtech/openlitespeed:latest",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-20260831",
+    "tags": [
+        "openlitespeed-alpine",
+        "openlitespeed-alpine-20260831",
+        "openlitespeed-alpine-current",
+        "openlitespeed-latest",
+        "openlitespeed-latest-20260831",
+        "openlitespeed-latest-current",
+        "ols-latest",
+        "ols-latest-20260831",
+        "ols-latest-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine",
+        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-20260831",
+        "ghcr.io/gr8man/openlitespeed:openlitespeed-alpine-current",
+        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest",
+        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-20260831",
+        "ghcr.io/gr8man/openlitespeed:openlitespeed-latest-current",
+        "ghcr.io/gr8man/openlitespeed:ols-latest",
+        "ghcr.io/gr8man/openlitespeed:ols-latest-20260831",
+        "ghcr.io/gr8man/openlitespeed:ols-latest-current"
+    ],
+    "software_stack": {
+        "software": "OpenLiteSpeed High-Performance Server",
+        "cache_engine": "LSCache (LiteSpeed Page Cache Engine)",
+        "protocols": [
+            "HTTP/2",
+            "HTTP/3 (QUIC)"
+        ],
+        "security": [
+            "Built-in WAF rules",
+            "Cloudflare Real-IP"
+        ],
+        "ports": [
+            80,
+            443,
+            7080
+        ]
+    },
+    "features": [
+        "lscache",
+        "quic",
+        "waf_rules",
+        "cloudflare_realip"
+    ],
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-31T03:54:15+00:00"
+}

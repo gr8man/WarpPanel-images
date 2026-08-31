@@ -1,0 +1,68 @@
+{
+    "name": "WarpPanel CADDY Web Server (current)",
+    "server": "caddy",
+    "channel": "current",
+    "build_id": "20260831",
+    "build_date": "20260831",
+    "build_timestamp": "2026-08-31T03:54:15+00:00",
+    "target": "caddy",
+    "base_image": "caddy:2.8-alpine",
+    "registry": "ghcr.io/gr8man",
+    "primary_tag": "ghcr.io/gr8man/caddy:caddy-alpine-20260831",
+    "tags": [
+        "caddy-alpine",
+        "caddy-alpine-20260831",
+        "caddy-alpine-current",
+        "caddy-latest",
+        "caddy-latest-20260831",
+        "caddy-latest-current",
+        "caddy-2.8",
+        "caddy-2.8-20260831",
+        "caddy-2.8-current"
+    ],
+    "full_image_tags": [
+        "ghcr.io/gr8man/caddy:caddy-alpine",
+        "ghcr.io/gr8man/caddy:caddy-alpine-20260831",
+        "ghcr.io/gr8man/caddy:caddy-alpine-current",
+        "ghcr.io/gr8man/caddy:caddy-latest",
+        "ghcr.io/gr8man/caddy:caddy-latest-20260831",
+        "ghcr.io/gr8man/caddy:caddy-latest-current",
+        "ghcr.io/gr8man/caddy:caddy-2.8",
+        "ghcr.io/gr8man/caddy:caddy-2.8-20260831",
+        "ghcr.io/gr8man/caddy:caddy-2.8-current"
+    ],
+    "software_stack": {
+        "software": "Caddy v2 Standalone Web Server",
+        "engine": "Caddy v2 (Go)",
+        "protocols": [
+            "HTTP/1.1",
+            "HTTP/2",
+            "HTTP/3 (QUIC)"
+        ],
+        "compression": [
+            "Zstd",
+            "Gzip"
+        ],
+        "upstream": "FastCGI Support (PHP-FPM :9000)",
+        "security": [
+            "Auto-HTTPS ACME",
+            "Cloudflare Real-IP",
+            "WAF Rules"
+        ],
+        "ports": [
+            80,
+            443,
+            "443/udp"
+        ]
+    },
+    "features": [
+        "auto_https",
+        "http3_quic",
+        "zstd_gzip",
+        "cloudflare_realip",
+        "waf_basic",
+        "fastcgi_php"
+    ],
+    "status": "VERIFIED_PASS",
+    "verified_at": "2026-08-31T03:54:15+00:00"
+}
