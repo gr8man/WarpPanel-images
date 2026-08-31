@@ -5,7 +5,7 @@
     "version": "8.0",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T20:41:09+00:00",
+    "build_timestamp": "2026-08-31T20:55:51+00:00",
     "target": "mysql-8_0",
     "base_image": "mysql:8.0",
     "registry": "ghcr.io/gr8man",
@@ -27,5 +27,5 @@
         "default_port": 3306
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T20:41:09+00:00"
+    "verified_at": "2026-08-31T20:55:51+00:00"
 }

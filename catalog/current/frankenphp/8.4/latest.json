@@ -5,7 +5,7 @@
     "php_version": "8.4",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T20:41:09+00:00",
+    "build_timestamp": "2026-08-31T20:55:51+00:00",
     "exact_php_version": "8.4.25",
     "target": "frankenphp-8_4",
     "base_image": "dunglas/frankenphp:1-php8.4-alpine",
@@ -24,7 +24,7 @@
         "ghcr.io/gr8man/frankenphp:8.4-20260831"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T20:41:09+00:00",
+    "verified_at": "2026-08-31T20:55:51+00:00",
     "software_stack": {
         "engine": "FrankenPHP (Go / Caddy Module)",
         "webserver": "Caddy v2 with Automatic HTTPS",

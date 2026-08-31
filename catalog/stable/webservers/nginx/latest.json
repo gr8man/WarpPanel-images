@@ -4,7 +4,7 @@
     "channel": "stable",
     "build_id": "20260831",
     "build_date": "20260831",
-    "build_timestamp": "2026-08-31T20:41:09+00:00",
+    "build_timestamp": "2026-08-31T20:55:51+00:00",
     "target": "nginx",
     "base_image": "nginx:1.27-alpine",
     "registry": "ghcr.io/gr8man",
@@ -42,5 +42,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-08-31T20:41:09+00:00"
+    "verified_at": "2026-08-31T20:55:51+00:00"
 }
