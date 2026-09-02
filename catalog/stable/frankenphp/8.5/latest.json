@@ -5,7 +5,7 @@
     "php_version": "8.5",
     "build_id": "20260902",
     "build_date": "20260902",
-    "build_timestamp": "2026-09-02T03:06:02+00:00",
+    "build_timestamp": "2026-09-02T20:48:43+00:00",
     "exact_php_version": "8.3.7",
     "target": "frankenphp-8_5",
     "base_image": "dunglas/frankenphp:latest-alpine",
@@ -14,7 +14,7 @@
     "tags": [],
     "full_image_tags": [],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-09-02T03:06:01+00:00",
+    "verified_at": "2026-09-02T20:48:43+00:00",
     "software_stack": {
         "engine": "FrankenPHP (Go / Caddy Module)",
         "webserver": "Caddy v2 with Automatic HTTPS",

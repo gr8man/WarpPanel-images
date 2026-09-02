@@ -5,7 +5,7 @@
     "version": "8.2",
     "build_id": "20260902",
     "build_date": "20260902",
-    "build_timestamp": "2026-09-02T03:06:01+00:00",
+    "build_timestamp": "2026-09-02T20:48:43+00:00",
     "exact_php_version": "8.2.33",
     "target": "php-fpm-8_2",
     "type": "modern",
@@ -29,7 +29,7 @@
         "ghcr.io/gr8man/php:8.2-20260902"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-09-02T03:06:01+00:00",
+    "verified_at": "2026-09-02T20:48:43+00:00",
     "software_stack": {
         "php": {
             "version": "8.2.33",
