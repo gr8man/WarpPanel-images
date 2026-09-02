@@ -5,7 +5,7 @@
     "version": "8.3",
     "build_id": "20260902",
     "build_date": "20260902",
-    "build_timestamp": "2026-09-02T20:48:43+00:00",
+    "build_timestamp": "2026-09-02T20:52:17+00:00",
     "exact_php_version": "8.3.33",
     "target": "php-fpm-8_3",
     "type": "modern",
@@ -15,7 +15,7 @@
     "tags": [],
     "full_image_tags": [],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-09-02T20:48:43+00:00",
+    "verified_at": "2026-09-02T20:52:17+00:00",
     "software_stack": {
         "php": {
             "version": "8.3.33",

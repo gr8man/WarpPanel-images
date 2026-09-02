@@ -5,7 +5,7 @@
     "version": "2.11",
     "build_id": "20260902",
     "build_date": "20260902",
-    "build_timestamp": "2026-09-02T20:48:43+00:00",
+    "build_timestamp": "2026-09-02T20:52:17+00:00",
     "target": "traefik-v2_11",
     "base_image": "traefik:v2.11",
     "registry": "ghcr.io/gr8man",
@@ -33,5 +33,5 @@
         ]
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-09-02T20:48:43+00:00"
+    "verified_at": "2026-09-02T20:52:17+00:00"
 }
