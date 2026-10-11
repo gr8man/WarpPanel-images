@@ -3,28 +3,28 @@
     "product": "Traefik",
     "channel": "current",
     "version": "2.11",
-    "build_id": "20261010",
-    "build_date": "20261010",
-    "build_timestamp": "2026-10-10T04:32:45+00:00",
+    "build_id": "20261011",
+    "build_date": "20261011",
+    "build_timestamp": "2026-10-11T04:49:53+00:00",
     "target": "traefik-v2_11",
     "base_image": "traefik:v2.11",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/traefik:2.11-20261010",
+    "primary_tag": "ghcr.io/gr8man/traefik:2.11-20261011",
     "tags": [
         "2.11-current",
-        "2.11-20261010",
+        "2.11-20261011",
         "v2.11-current",
-        "v2.11-20261010",
+        "v2.11-20261011",
         "v2-current",
-        "v2-20261010"
+        "v2-20261011"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/traefik:2.11-current",
-        "ghcr.io/gr8man/traefik:2.11-20261010",
+        "ghcr.io/gr8man/traefik:2.11-20261011",
         "ghcr.io/gr8man/traefik:v2.11-current",
-        "ghcr.io/gr8man/traefik:v2.11-20261010",
+        "ghcr.io/gr8man/traefik:v2.11-20261011",
         "ghcr.io/gr8man/traefik:v2-current",
-        "ghcr.io/gr8man/traefik:v2-20261010"
+        "ghcr.io/gr8man/traefik:v2-20261011"
     ],
     "software_stack": {
         "software": "Traefik v2.11 Cloud-Native Ingress & Reverse Proxy",
@@ -47,5 +47,5 @@
         ]
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-10T04:32:45+00:00"
+    "verified_at": "2026-10-11T04:49:53+00:00"
 }

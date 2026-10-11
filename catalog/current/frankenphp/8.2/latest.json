@@ -3,28 +3,28 @@
     "category": "frankenphp",
     "channel": "current",
     "php_version": "8.2",
-    "build_id": "20261010",
-    "build_date": "20261010",
-    "build_timestamp": "2026-10-10T04:32:45+00:00",
+    "build_id": "20261011",
+    "build_date": "20261011",
+    "build_timestamp": "2026-10-11T04:49:53+00:00",
     "exact_php_version": "8.2.34",
     "target": "frankenphp-8_2",
     "base_image": "dunglas/frankenphp:1-php8.2-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/frankenphp:8.2-alpine-20261010",
+    "primary_tag": "ghcr.io/gr8man/frankenphp:8.2-alpine-20261011",
     "tags": [
         "8.2-alpine-current",
-        "8.2-alpine-20261010",
+        "8.2-alpine-20261011",
         "8.2-current",
-        "8.2-20261010"
+        "8.2-20261011"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/frankenphp:8.2-alpine-current",
-        "ghcr.io/gr8man/frankenphp:8.2-alpine-20261010",
+        "ghcr.io/gr8man/frankenphp:8.2-alpine-20261011",
         "ghcr.io/gr8man/frankenphp:8.2-current",
-        "ghcr.io/gr8man/frankenphp:8.2-20261010"
+        "ghcr.io/gr8man/frankenphp:8.2-20261011"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-10T04:32:45+00:00",
+    "verified_at": "2026-10-11T04:49:53+00:00",
     "software_stack": {
         "engine": "FrankenPHP (Go / Caddy Module)",
         "webserver": "Caddy v2 with Automatic HTTPS",
@@ -256,7 +256,7 @@
         "exif": "8.2.34",
         "fileinfo": "8.2.34",
         "filter": "8.2.34",
-        "frankenphp": "v1.13.0",
+        "frankenphp": "v1.13.1",
         "gd": "8.2.34",
         "gettext": "8.2.34",
         "gmp": "8.2.34",
