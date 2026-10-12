@@ -3,9 +3,9 @@
     "type": "redis",
     "channel": "stable",
     "version": "7.4",
-    "build_id": "20261011",
-    "build_date": "20261011",
-    "build_timestamp": "2026-10-11T04:49:53+00:00",
+    "build_id": "20261012",
+    "build_date": "20261012",
+    "build_timestamp": "2026-10-12T05:20:50+00:00",
     "target": "redis-7_4",
     "base_image": "redis:7.4-alpine",
     "registry": "ghcr.io/gr8man",
@@ -20,5 +20,5 @@
         "default_port": 6379
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-11T04:49:53+00:00"
+    "verified_at": "2026-10-12T05:20:50+00:00"
 }
