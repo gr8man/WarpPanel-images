@@ -3,9 +3,9 @@
     "category": "php_fpm",
     "channel": "stable",
     "version": "7.4",
-    "build_id": "20261012",
-    "build_date": "20261012",
-    "build_timestamp": "2026-10-12T05:20:50+00:00",
+    "build_id": "20261013",
+    "build_date": "20261013",
+    "build_timestamp": "2026-10-13T05:40:50+00:00",
     "exact_php_version": "7.4.33",
     "target": "php-fpm-7_4",
     "type": "legacy",
@@ -15,7 +15,7 @@
     "tags": [],
     "full_image_tags": [],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-12T05:20:50+00:00",
+    "verified_at": "2026-10-13T05:40:50+00:00",
     "software_stack": {
         "php": {
             "version": "7.4.33",
