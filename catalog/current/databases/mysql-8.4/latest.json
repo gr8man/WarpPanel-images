@@ -3,28 +3,28 @@
     "type": "mysql",
     "channel": "current",
     "version": "8.4",
-    "build_id": "20261013",
-    "build_date": "20261013",
-    "build_timestamp": "2026-10-13T05:40:50+00:00",
+    "build_id": "20261014",
+    "build_date": "20261014",
+    "build_timestamp": "2026-10-14T03:43:26+00:00",
     "target": "mysql-8_4",
     "base_image": "mysql:8.4",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/mysql:8.4-20261013",
+    "primary_tag": "ghcr.io/gr8man/mysql:8.4-20261014",
     "tags": [
         "8.4-current",
-        "8.4-20261013",
+        "8.4-20261014",
         "lts-current",
-        "lts-20261013",
+        "lts-20261014",
         "latest-current",
-        "latest-20261013"
+        "latest-20261014"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/mysql:8.4-current",
-        "ghcr.io/gr8man/mysql:8.4-20261013",
+        "ghcr.io/gr8man/mysql:8.4-20261014",
         "ghcr.io/gr8man/mysql:lts-current",
-        "ghcr.io/gr8man/mysql:lts-20261013",
+        "ghcr.io/gr8man/mysql:lts-20261014",
         "ghcr.io/gr8man/mysql:latest-current",
-        "ghcr.io/gr8man/mysql:latest-20261013"
+        "ghcr.io/gr8man/mysql:latest-20261014"
     ],
     "software_stack": {
         "engine": "MySQL Community Server",
@@ -35,5 +35,5 @@
         "default_port": 3306
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-13T05:40:50+00:00"
+    "verified_at": "2026-10-14T03:43:26+00:00"
 }
