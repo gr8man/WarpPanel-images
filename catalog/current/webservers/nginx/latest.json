@@ -2,32 +2,32 @@
     "name": "WarpPanel NGINX Web Server (current)",
     "server": "nginx",
     "channel": "current",
-    "build_id": "20261014",
-    "build_date": "20261014",
-    "build_timestamp": "2026-10-14T03:43:26+00:00",
+    "build_id": "20261015",
+    "build_date": "20261015",
+    "build_timestamp": "2026-10-15T03:24:34+00:00",
     "target": "nginx",
     "base_image": "nginx:1.27-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/nginx:1.27-alpine-20261014",
+    "primary_tag": "ghcr.io/gr8man/nginx:1.27-alpine-20261015",
     "tags": [
         "1.27-alpine-current",
-        "1.27-alpine-20261014",
+        "1.27-alpine-20261015",
         "1.27-current",
-        "1.27-20261014",
+        "1.27-20261015",
         "alpine-current",
-        "alpine-20261014",
+        "alpine-20261015",
         "latest-current",
-        "latest-20261014"
+        "latest-20261015"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/nginx:1.27-alpine-current",
-        "ghcr.io/gr8man/nginx:1.27-alpine-20261014",
+        "ghcr.io/gr8man/nginx:1.27-alpine-20261015",
         "ghcr.io/gr8man/nginx:1.27-current",
-        "ghcr.io/gr8man/nginx:1.27-20261014",
+        "ghcr.io/gr8man/nginx:1.27-20261015",
         "ghcr.io/gr8man/nginx:alpine-current",
-        "ghcr.io/gr8man/nginx:alpine-20261014",
+        "ghcr.io/gr8man/nginx:alpine-20261015",
         "ghcr.io/gr8man/nginx:latest-current",
-        "ghcr.io/gr8man/nginx:latest-20261014"
+        "ghcr.io/gr8man/nginx:latest-20261015"
     ],
     "software_stack": {
         "software": "Nginx Mainline (Alpine Linux)",
@@ -60,5 +60,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-14T03:43:26+00:00"
+    "verified_at": "2026-10-15T03:24:34+00:00"
 }
