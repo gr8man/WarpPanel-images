@@ -2,9 +2,9 @@
     "name": "WarpPanel NGINX Web Server (stable)",
     "server": "nginx",
     "channel": "stable",
-    "build_id": "20261015",
-    "build_date": "20261015",
-    "build_timestamp": "2026-10-15T03:24:34+00:00",
+    "build_id": "20261016",
+    "build_date": "20261016",
+    "build_timestamp": "2026-10-16T04:09:48+00:00",
     "target": "nginx",
     "base_image": "nginx:1.27-alpine",
     "registry": "ghcr.io/gr8man",
@@ -42,5 +42,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-15T03:24:34+00:00"
+    "verified_at": "2026-10-16T04:09:48+00:00"
 }

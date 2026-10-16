@@ -3,24 +3,24 @@
     "type": "postgres",
     "channel": "current",
     "version": "16",
-    "build_id": "20261015",
-    "build_date": "20261015",
-    "build_timestamp": "2026-10-15T03:24:34+00:00",
+    "build_id": "20261016",
+    "build_date": "20261016",
+    "build_timestamp": "2026-10-16T04:09:48+00:00",
     "target": "postgres-16",
     "base_image": "postgres:16-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/postgres:16-alpine-20261015",
+    "primary_tag": "ghcr.io/gr8man/postgres:16-alpine-20261016",
     "tags": [
         "16-alpine-current",
-        "16-alpine-20261015",
+        "16-alpine-20261016",
         "16-current",
-        "16-20261015"
+        "16-20261016"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/postgres:16-alpine-current",
-        "ghcr.io/gr8man/postgres:16-alpine-20261015",
+        "ghcr.io/gr8man/postgres:16-alpine-20261016",
         "ghcr.io/gr8man/postgres:16-current",
-        "ghcr.io/gr8man/postgres:16-20261015"
+        "ghcr.io/gr8man/postgres:16-20261016"
     ],
     "software_stack": {
         "engine": "PostgreSQL Database Server (Alpine Linux)",
@@ -28,5 +28,5 @@
         "default_port": 5432
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-15T03:24:34+00:00"
+    "verified_at": "2026-10-16T04:09:48+00:00"
 }
