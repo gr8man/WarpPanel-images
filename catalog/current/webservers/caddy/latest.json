@@ -2,32 +2,32 @@
     "name": "WarpPanel CADDY Web Server (current)",
     "server": "caddy",
     "channel": "current",
-    "build_id": "20261017",
-    "build_date": "20261017",
-    "build_timestamp": "2026-10-17T03:11:03+00:00",
+    "build_id": "20261018",
+    "build_date": "20261018",
+    "build_timestamp": "2026-10-18T03:13:57+00:00",
     "target": "caddy",
     "base_image": "caddy:2.8-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/caddy:2.8-alpine-20261017",
+    "primary_tag": "ghcr.io/gr8man/caddy:2.8-alpine-20261018",
     "tags": [
         "2.8-alpine-current",
-        "2.8-alpine-20261017",
+        "2.8-alpine-20261018",
         "2.8-current",
-        "2.8-20261017",
+        "2.8-20261018",
         "alpine-current",
-        "alpine-20261017",
+        "alpine-20261018",
         "latest-current",
-        "latest-20261017"
+        "latest-20261018"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/caddy:2.8-alpine-current",
-        "ghcr.io/gr8man/caddy:2.8-alpine-20261017",
+        "ghcr.io/gr8man/caddy:2.8-alpine-20261018",
         "ghcr.io/gr8man/caddy:2.8-current",
-        "ghcr.io/gr8man/caddy:2.8-20261017",
+        "ghcr.io/gr8man/caddy:2.8-20261018",
         "ghcr.io/gr8man/caddy:alpine-current",
-        "ghcr.io/gr8man/caddy:alpine-20261017",
+        "ghcr.io/gr8man/caddy:alpine-20261018",
         "ghcr.io/gr8man/caddy:latest-current",
-        "ghcr.io/gr8man/caddy:latest-20261017"
+        "ghcr.io/gr8man/caddy:latest-20261018"
     ],
     "software_stack": {
         "software": "Caddy v2 Standalone Web Server",
@@ -62,5 +62,5 @@
         "fastcgi_php"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-17T03:11:03+00:00"
+    "verified_at": "2026-10-18T03:13:57+00:00"
 }
