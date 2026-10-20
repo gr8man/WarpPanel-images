@@ -2,9 +2,9 @@
     "name": "WarpPanel LIGHTTPD Web Server (stable)",
     "server": "lighttpd",
     "channel": "stable",
-    "build_id": "20261019",
-    "build_date": "20261019",
-    "build_timestamp": "2026-10-19T03:26:41+00:00",
+    "build_id": "20261020",
+    "build_date": "20261020",
+    "build_timestamp": "2026-10-20T04:25:35+00:00",
     "target": "lighttpd",
     "base_image": "alpine:3.20",
     "registry": "ghcr.io/gr8man",
@@ -36,5 +36,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-19T03:26:41+00:00"
+    "verified_at": "2026-10-20T04:25:35+00:00"
 }
