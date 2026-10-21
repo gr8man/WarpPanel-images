@@ -3,9 +3,9 @@
     "product": "Traefik",
     "channel": "stable",
     "version": "3.3",
-    "build_id": "20261020",
-    "build_date": "20261020",
-    "build_timestamp": "2026-10-20T04:25:35+00:00",
+    "build_id": "20261021",
+    "build_date": "20261021",
+    "build_timestamp": "2026-10-21T04:06:03+00:00",
     "target": "traefik-v3_3",
     "base_image": "traefik:v3.3",
     "registry": "ghcr.io/gr8man",
@@ -34,5 +34,5 @@
         ]
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-20T04:25:35+00:00"
+    "verified_at": "2026-10-21T04:06:03+00:00"
 }

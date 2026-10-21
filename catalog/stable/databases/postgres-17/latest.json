@@ -3,9 +3,9 @@
     "type": "postgres",
     "channel": "stable",
     "version": "17",
-    "build_id": "20261020",
-    "build_date": "20261020",
-    "build_timestamp": "2026-10-20T04:25:35+00:00",
+    "build_id": "20261021",
+    "build_date": "20261021",
+    "build_timestamp": "2026-10-21T04:06:03+00:00",
     "target": "postgres-17",
     "base_image": "postgres:17-alpine",
     "registry": "ghcr.io/gr8man",
@@ -18,5 +18,5 @@
         "default_port": 5432
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-20T04:25:35+00:00"
+    "verified_at": "2026-10-21T04:06:03+00:00"
 }
