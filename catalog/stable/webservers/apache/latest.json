@@ -2,9 +2,9 @@
     "name": "WarpPanel APACHE Web Server (stable)",
     "server": "apache",
     "channel": "stable",
-    "build_id": "20261021",
-    "build_date": "20261021",
-    "build_timestamp": "2026-10-21T04:06:03+00:00",
+    "build_id": "20261022",
+    "build_date": "20261022",
+    "build_timestamp": "2026-10-22T04:20:34+00:00",
     "target": "apache",
     "base_image": "httpd:2.4-alpine",
     "registry": "ghcr.io/gr8man",
@@ -39,5 +39,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-21T04:06:03+00:00"
+    "verified_at": "2026-10-22T04:20:34+00:00"
 }
