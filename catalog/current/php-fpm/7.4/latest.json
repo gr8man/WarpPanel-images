@@ -3,33 +3,33 @@
     "category": "php_fpm",
     "channel": "current",
     "version": "7.4",
-    "build_id": "20261023",
-    "build_date": "20261023",
-    "build_timestamp": "2026-10-23T04:21:20+00:00",
+    "build_id": "20261024",
+    "build_date": "20261024",
+    "build_timestamp": "2026-10-24T04:18:15+00:00",
     "exact_php_version": "7.4.33",
     "target": "php-fpm-7_4",
     "type": "legacy",
     "base_image": "php:7.4-fpm-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/php:7.4-fpm-alpine-20261023",
+    "primary_tag": "ghcr.io/gr8man/php:7.4-fpm-alpine-20261024",
     "tags": [
         "7.4-fpm-alpine-current",
-        "7.4-fpm-alpine-20261023",
+        "7.4-fpm-alpine-20261024",
         "7.4-fpm-current",
-        "7.4-fpm-20261023",
+        "7.4-fpm-20261024",
         "7.4-current",
-        "7.4-20261023"
+        "7.4-20261024"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/php:7.4-fpm-alpine-current",
-        "ghcr.io/gr8man/php:7.4-fpm-alpine-20261023",
+        "ghcr.io/gr8man/php:7.4-fpm-alpine-20261024",
         "ghcr.io/gr8man/php:7.4-fpm-current",
-        "ghcr.io/gr8man/php:7.4-fpm-20261023",
+        "ghcr.io/gr8man/php:7.4-fpm-20261024",
         "ghcr.io/gr8man/php:7.4-current",
-        "ghcr.io/gr8man/php:7.4-20261023"
+        "ghcr.io/gr8man/php:7.4-20261024"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-23T04:21:20+00:00",
+    "verified_at": "2026-10-24T04:18:15+00:00",
     "software_stack": {
         "php": {
             "version": "7.4.33",

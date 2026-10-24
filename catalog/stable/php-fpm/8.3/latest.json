@@ -3,9 +3,9 @@
     "category": "php_fpm",
     "channel": "stable",
     "version": "8.3",
-    "build_id": "20261023",
-    "build_date": "20261023",
-    "build_timestamp": "2026-10-23T04:21:20+00:00",
+    "build_id": "20261024",
+    "build_date": "20261024",
+    "build_timestamp": "2026-10-24T04:18:15+00:00",
     "exact_php_version": "8.3.36",
     "target": "php-fpm-8_3",
     "type": "modern",
@@ -15,7 +15,7 @@
     "tags": [],
     "full_image_tags": [],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-23T04:21:20+00:00",
+    "verified_at": "2026-10-24T04:18:15+00:00",
     "software_stack": {
         "php": {
             "version": "8.3.36",
