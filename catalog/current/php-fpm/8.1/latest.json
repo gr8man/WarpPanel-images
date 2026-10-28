@@ -3,33 +3,33 @@
     "category": "php_fpm",
     "channel": "current",
     "version": "8.1",
-    "build_id": "20261027",
-    "build_date": "20261027",
-    "build_timestamp": "2026-10-27T04:44:08+00:00",
+    "build_id": "20261028",
+    "build_date": "20261028",
+    "build_timestamp": "2026-10-28T05:00:58+00:00",
     "exact_php_version": "8.1.34",
     "target": "php-fpm-8_1",
     "type": "modern",
     "base_image": "php:8.1-fpm-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/php:8.1-fpm-alpine-20261027",
+    "primary_tag": "ghcr.io/gr8man/php:8.1-fpm-alpine-20261028",
     "tags": [
         "8.1-fpm-alpine-current",
-        "8.1-fpm-alpine-20261027",
+        "8.1-fpm-alpine-20261028",
         "8.1-fpm-current",
-        "8.1-fpm-20261027",
+        "8.1-fpm-20261028",
         "8.1-current",
-        "8.1-20261027"
+        "8.1-20261028"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/php:8.1-fpm-alpine-current",
-        "ghcr.io/gr8man/php:8.1-fpm-alpine-20261027",
+        "ghcr.io/gr8man/php:8.1-fpm-alpine-20261028",
         "ghcr.io/gr8man/php:8.1-fpm-current",
-        "ghcr.io/gr8man/php:8.1-fpm-20261027",
+        "ghcr.io/gr8man/php:8.1-fpm-20261028",
         "ghcr.io/gr8man/php:8.1-current",
-        "ghcr.io/gr8man/php:8.1-20261027"
+        "ghcr.io/gr8man/php:8.1-20261028"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-27T04:44:08+00:00",
+    "verified_at": "2026-10-28T05:00:58+00:00",
     "software_stack": {
         "php": {
             "version": "8.1.34",
