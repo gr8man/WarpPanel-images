@@ -3,9 +3,9 @@
     "category": "php_fpm",
     "channel": "stable",
     "version": "7.2",
-    "build_id": "20261029",
-    "build_date": "20261029",
-    "build_timestamp": "2026-10-29T05:25:12+00:00",
+    "build_id": "20261030",
+    "build_date": "20261030",
+    "build_timestamp": "2026-10-30T05:22:25+00:00",
     "exact_php_version": "7.2.34",
     "target": "php-fpm-7_2",
     "type": "legacy",
@@ -15,7 +15,7 @@
     "tags": [],
     "full_image_tags": [],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-29T05:25:11+00:00",
+    "verified_at": "2026-10-30T05:22:25+00:00",
     "software_stack": {
         "php": {
             "version": "7.2.34",
