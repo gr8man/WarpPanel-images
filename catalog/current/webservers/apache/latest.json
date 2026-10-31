@@ -2,32 +2,32 @@
     "name": "WarpPanel APACHE Web Server (current)",
     "server": "apache",
     "channel": "current",
-    "build_id": "20261030",
-    "build_date": "20261030",
-    "build_timestamp": "2026-10-30T05:22:25+00:00",
+    "build_id": "20261031",
+    "build_date": "20261031",
+    "build_timestamp": "2026-10-31T04:17:28+00:00",
     "target": "apache",
     "base_image": "httpd:2.4-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/apache:2.4-alpine-20261030",
+    "primary_tag": "ghcr.io/gr8man/apache:2.4-alpine-20261031",
     "tags": [
         "2.4-alpine-current",
-        "2.4-alpine-20261030",
+        "2.4-alpine-20261031",
         "2.4-current",
-        "2.4-20261030",
+        "2.4-20261031",
         "alpine-current",
-        "alpine-20261030",
+        "alpine-20261031",
         "latest-current",
-        "latest-20261030"
+        "latest-20261031"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/apache:2.4-alpine-current",
-        "ghcr.io/gr8man/apache:2.4-alpine-20261030",
+        "ghcr.io/gr8man/apache:2.4-alpine-20261031",
         "ghcr.io/gr8man/apache:2.4-current",
-        "ghcr.io/gr8man/apache:2.4-20261030",
+        "ghcr.io/gr8man/apache:2.4-20261031",
         "ghcr.io/gr8man/apache:alpine-current",
-        "ghcr.io/gr8man/apache:alpine-20261030",
+        "ghcr.io/gr8man/apache:alpine-20261031",
         "ghcr.io/gr8man/apache:latest-current",
-        "ghcr.io/gr8man/apache:latest-20261030"
+        "ghcr.io/gr8man/apache:latest-20261031"
     ],
     "software_stack": {
         "software": "Apache HTTP Server (httpd 2.4 Alpine)",
@@ -57,5 +57,5 @@
         "waf_basic"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-10-30T05:22:25+00:00"
+    "verified_at": "2026-10-31T04:17:28+00:00"
 }
