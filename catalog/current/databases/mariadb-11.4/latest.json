@@ -3,28 +3,28 @@
     "type": "mariadb",
     "channel": "current",
     "version": "11.4",
-    "build_id": "20261102",
-    "build_date": "20261102",
-    "build_timestamp": "2026-11-02T04:39:43+00:00",
+    "build_id": "20261103",
+    "build_date": "20261103",
+    "build_timestamp": "2026-11-03T06:22:01+00:00",
     "target": "mariadb-11_4",
     "base_image": "mariadb:11.4",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/mariadb:11.4-20261102",
+    "primary_tag": "ghcr.io/gr8man/mariadb:11.4-20261103",
     "tags": [
         "11.4-current",
-        "11.4-20261102",
+        "11.4-20261103",
         "lts-current",
-        "lts-20261102",
+        "lts-20261103",
         "latest-current",
-        "latest-20261102"
+        "latest-20261103"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/mariadb:11.4-current",
-        "ghcr.io/gr8man/mariadb:11.4-20261102",
+        "ghcr.io/gr8man/mariadb:11.4-20261103",
         "ghcr.io/gr8man/mariadb:lts-current",
-        "ghcr.io/gr8man/mariadb:lts-20261102",
+        "ghcr.io/gr8man/mariadb:lts-20261103",
         "ghcr.io/gr8man/mariadb:latest-current",
-        "ghcr.io/gr8man/mariadb:latest-20261102"
+        "ghcr.io/gr8man/mariadb:latest-20261103"
     ],
     "software_stack": {
         "engine": "MariaDB Server (Alpine Linux)",
@@ -35,5 +35,5 @@
         "default_port": 3306
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-02T04:39:43+00:00"
+    "verified_at": "2026-11-03T06:22:01+00:00"
 }

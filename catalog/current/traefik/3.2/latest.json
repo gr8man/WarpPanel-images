@@ -3,24 +3,24 @@
     "product": "Traefik",
     "channel": "current",
     "version": "3.2",
-    "build_id": "20261102",
-    "build_date": "20261102",
-    "build_timestamp": "2026-11-02T04:39:43+00:00",
+    "build_id": "20261103",
+    "build_date": "20261103",
+    "build_timestamp": "2026-11-03T06:22:01+00:00",
     "target": "traefik-v3_2",
     "base_image": "traefik:v3.2",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/traefik:3.2-20261102",
+    "primary_tag": "ghcr.io/gr8man/traefik:3.2-20261103",
     "tags": [
         "3.2-current",
-        "3.2-20261102",
+        "3.2-20261103",
         "v3.2-current",
-        "v3.2-20261102"
+        "v3.2-20261103"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/traefik:3.2-current",
-        "ghcr.io/gr8man/traefik:3.2-20261102",
+        "ghcr.io/gr8man/traefik:3.2-20261103",
         "ghcr.io/gr8man/traefik:v3.2-current",
-        "ghcr.io/gr8man/traefik:v3.2-20261102"
+        "ghcr.io/gr8man/traefik:v3.2-20261103"
     ],
     "software_stack": {
         "software": "Traefik v3.2 Cloud-Native Ingress & Reverse Proxy",
@@ -44,5 +44,5 @@
         ]
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-02T04:39:43+00:00"
+    "verified_at": "2026-11-03T06:22:01+00:00"
 }
