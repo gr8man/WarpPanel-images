@@ -2,9 +2,9 @@
     "name": "WarpPanel CADDY Web Server (stable)",
     "server": "caddy",
     "channel": "stable",
-    "build_id": "20261104",
-    "build_date": "20261104",
-    "build_timestamp": "2026-11-04T05:00:45+00:00",
+    "build_id": "20261105",
+    "build_date": "20261105",
+    "build_timestamp": "2026-11-05T05:21:05+00:00",
     "target": "caddy",
     "base_image": "caddy:2.8-alpine",
     "registry": "ghcr.io/gr8man",
@@ -44,5 +44,5 @@
         "fastcgi_php"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-04T05:00:45+00:00"
+    "verified_at": "2026-11-05T05:21:05+00:00"
 }
