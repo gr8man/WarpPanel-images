@@ -2,9 +2,9 @@
     "name": "WarpPanel OPENLITESPEED Web Server (stable)",
     "server": "openlitespeed",
     "channel": "stable",
-    "build_id": "20261109",
-    "build_date": "20261109",
-    "build_timestamp": "2026-11-09T04:50:31+00:00",
+    "build_id": "20261110",
+    "build_date": "20261110",
+    "build_timestamp": "2026-11-10T06:05:13+00:00",
     "target": "openlitespeed",
     "base_image": "litespeedtech/openlitespeed:latest",
     "registry": "ghcr.io/gr8man",
@@ -35,5 +35,5 @@
         "cloudflare_realip"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-09T04:50:31+00:00"
+    "verified_at": "2026-11-10T06:05:13+00:00"
 }
