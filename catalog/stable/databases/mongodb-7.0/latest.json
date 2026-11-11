@@ -3,9 +3,9 @@
     "type": "mongodb",
     "channel": "stable",
     "version": "7.0",
-    "build_id": "20261110",
-    "build_date": "20261110",
-    "build_timestamp": "2026-11-10T06:05:13+00:00",
+    "build_id": "20261111",
+    "build_date": "20261111",
+    "build_timestamp": "2026-11-11T05:42:21+00:00",
     "target": "mongodb-7_0",
     "base_image": "mongo:7.0",
     "registry": "ghcr.io/gr8man",
@@ -18,5 +18,5 @@
         "default_port": 27017
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-10T06:05:13+00:00"
+    "verified_at": "2026-11-11T05:42:21+00:00"
 }
