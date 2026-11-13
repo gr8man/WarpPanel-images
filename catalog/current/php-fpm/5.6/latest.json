@@ -3,33 +3,33 @@
     "category": "php_fpm",
     "channel": "current",
     "version": "5.6",
-    "build_id": "20261112",
-    "build_date": "20261112",
-    "build_timestamp": "2026-11-12T06:46:52+00:00",
+    "build_id": "20261113",
+    "build_date": "20261113",
+    "build_timestamp": "2026-11-13T05:17:32+00:00",
     "exact_php_version": "5.6.40",
     "target": "php-fpm-5_6",
     "type": "legacy",
     "base_image": "php:5.6-fpm-alpine",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/php:5.6-fpm-alpine-20261112",
+    "primary_tag": "ghcr.io/gr8man/php:5.6-fpm-alpine-20261113",
     "tags": [
         "5.6-fpm-alpine-current",
-        "5.6-fpm-alpine-20261112",
+        "5.6-fpm-alpine-20261113",
         "5.6-fpm-current",
-        "5.6-fpm-20261112",
+        "5.6-fpm-20261113",
         "5.6-current",
-        "5.6-20261112"
+        "5.6-20261113"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/php:5.6-fpm-alpine-current",
-        "ghcr.io/gr8man/php:5.6-fpm-alpine-20261112",
+        "ghcr.io/gr8man/php:5.6-fpm-alpine-20261113",
         "ghcr.io/gr8man/php:5.6-fpm-current",
-        "ghcr.io/gr8man/php:5.6-fpm-20261112",
+        "ghcr.io/gr8man/php:5.6-fpm-20261113",
         "ghcr.io/gr8man/php:5.6-current",
-        "ghcr.io/gr8man/php:5.6-20261112"
+        "ghcr.io/gr8man/php:5.6-20261113"
     ],
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-12T06:46:52+00:00",
+    "verified_at": "2026-11-13T05:17:32+00:00",
     "software_stack": {
         "php": {
             "version": "5.6.40",
