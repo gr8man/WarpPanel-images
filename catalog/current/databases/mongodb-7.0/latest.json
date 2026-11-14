@@ -3,24 +3,24 @@
     "type": "mongodb",
     "channel": "current",
     "version": "7.0",
-    "build_id": "20261113",
-    "build_date": "20261113",
-    "build_timestamp": "2026-11-13T05:17:32+00:00",
+    "build_id": "20261114",
+    "build_date": "20261114",
+    "build_timestamp": "2026-11-14T05:07:15+00:00",
     "target": "mongodb-7_0",
     "base_image": "mongo:7.0",
     "registry": "ghcr.io/gr8man",
-    "primary_tag": "ghcr.io/gr8man/mongodb:7.0-20261113",
+    "primary_tag": "ghcr.io/gr8man/mongodb:7.0-20261114",
     "tags": [
         "7.0-current",
-        "7.0-20261113",
+        "7.0-20261114",
         "latest-current",
-        "latest-20261113"
+        "latest-20261114"
     ],
     "full_image_tags": [
         "ghcr.io/gr8man/mongodb:7.0-current",
-        "ghcr.io/gr8man/mongodb:7.0-20261113",
+        "ghcr.io/gr8man/mongodb:7.0-20261114",
         "ghcr.io/gr8man/mongodb:latest-current",
-        "ghcr.io/gr8man/mongodb:latest-20261113"
+        "ghcr.io/gr8man/mongodb:latest-20261114"
     ],
     "software_stack": {
         "engine": "MongoDB Document Database",
@@ -28,5 +28,5 @@
         "default_port": 27017
     },
     "status": "VERIFIED_PASS",
-    "verified_at": "2026-11-13T05:17:32+00:00"
+    "verified_at": "2026-11-14T05:07:15+00:00"
 }
